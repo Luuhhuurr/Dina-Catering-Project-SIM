@@ -1,0 +1,51 @@
+{{define "content"}}
+<div class="page-head">
+  <div class="judul-blok">
+    <h1>Pembelian Bahan di Pasar</h1>
+    <p class="sub">Setiap pembelian menambah stok bahan dan mencatat harga baru ke riwayat harga, sehingga HPP ikut terhitung ulang.</p>
+  </div>
+</div>
+{{if .Pesan}}<div class="pesan sukses"><svg class="i"><use href="#i-cek"></use></svg><span>{{ .Pesan }}</span></div>{{end}}
+
+<div class="grid grid-2">
+  <div class="kartu">
+    <h2><svg class="i"><use href="#i-pembelian"></use></svg>Catat pembelian</h2>
+    <form method="post" action="/pembelian" hx-post="/pembelian" hx-target="#pembelian-daftar" hx-swap="outerHTML">
+      <div class="form-grid">
+        <div class="field">
+          <label for="bahan_baku_id">Bahan</label>
+          <select id="bahan_baku_id" name="bahan_baku_id" required>
+            {{range .Bahan}}
+            <option value="{{ .ID }}">{{ .Nama }} ({{ .Satuan }})</option>
+            {{end}}
+          </select>
+        </div>
+        <div class="field">
+          <label for="jumlah">Jumlah</label>
+          <input type="number" step="0.01" id="jumlah" name="jumlah" required>
+        </div>
+        <div class="field">
+          <label for="harga_satuan">Harga satuan (Rp)</label>
+          <input type="number" step="100" id="harga_satuan" name="harga_satuan" required>
+        </div>
+        <div class="field">
+          <label for="pasar">Pasar</label>
+          <input type="text" id="pasar" name="pasar" placeholder="mis. Pasar Klewer">
+        </div>
+        <div class="field">
+          <label for="tanggal">Tanggal pembelian</label>
+          <input type="date" id="tanggal" name="tanggal" value="{{ today.Format "2006-01-02" }}" required>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="tombol">Simpan pembelian</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="kartu">
+    <h2><svg class="i"><use href="#i-naik"></use></svg>Riwayat pembelian</h2>
+    {{template "pembelian_daftar" .}}
+  </div>
+</div>
+{{end}}

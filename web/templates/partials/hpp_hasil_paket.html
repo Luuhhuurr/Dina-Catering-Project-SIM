@@ -1,0 +1,90 @@
+{{define "hpp_hasil_paket"}}
+<div id="hpp-hasil" class="kartu">
+  {{if .Kosong}}
+  <h2><svg class="i"><use href="#i-hpp"></use></svg>Hasil perhitungan</h2>
+  <div class="kosong">
+    <div class="ikon-kosong"><svg class="i i-lg"><use href="#i-kosong"></use></svg></div>
+    Pilih paket atau menu, lalu tekan tombol Hitung HPP.
+  </div>
+  {{else}}
+  <h2><svg class="i"><use href="#i-hpp"></use></svg>Hasil perhitungan · {{ .Paket.Nama }}</h2>
+  <p class="muted">Tanggal acuan {{ tanggal .Tanggal }}.</p>
+
+  {{if .Peringatan}}
+  <div class="pesan error">
+    <svg class="i"><use href="#i-peringatan"></use></svg>
+    <span><strong>Margin di bawah 30%.</strong> Harga jual saat ini belum memenuhi target untung minimum.
+    Naikkan harga jual menjadi minimal {{ rupiah .HargaMinimum }} per porsi, atau turunkan HPP.</span>
+  </div>
+  {{else}}
+  <div class="pesan sukses">
+    <svg class="i"><use href="#i-cek"></use></svg>
+    <span>Margin sudah di atas 30%. Harga jual aman.</span>
+  </div>
+  {{end}}
+
+  <div class="grid grid-3" style="margin-bottom:16px">
+    <div class="statistik amber">
+      <div class="kepala">
+        <span class="ikon"><svg class="i"><use href="#i-hpp"></use></svg></span>
+        <span class="label">HPP per porsi</span>
+      </div>
+      <div class="angka">{{ rupiah .HPP.HPPPerPorsi }}</div>
+      <div class="keterangan">bahan + biaya operasional</div>
+    </div>
+    <div class="statistik biru">
+      <div class="kepala">
+        <span class="ikon"><svg class="i"><use href="#i-uang"></use></svg></span>
+        <span class="label">Harga jual per porsi</span>
+      </div>
+      <div class="angka">{{ rupiah .HargaJual }}</div>
+      <div class="keterangan">harga efektif pada tanggal tersebut</div>
+    </div>
+    <div class="statistik {{ if .Peringatan }}merah{{ else }}hijau{{ end }}">
+      <div class="kepala">
+        <span class="ikon"><svg class="i"><use href="#i-naik"></use></svg></span>
+        <span class="label">Margin untung</span>
+      </div>
+      <div class="angka">{{ persen .Margin }}</div>
+      <div class="keterangan">target minimum 30%</div>
+    </div>
+  </div>
+
+  <div class="minimum-box">
+    <span class="teks">Harga jual minimum agar margin 30% (HPP / 0,7)</span>
+    <span class="nilai">{{ rupiah .HargaMinimum }}</span>
+  </div>
+
+  <h3>Rincian HPP per menu</h3>
+  {{range .HPP.Menu}}
+  <h4>{{ .MenuNama }}</h4>
+  <div class="tabel-bungkus">
+    <table class="hpp-komponen">
+      <thead>
+        <tr>
+          <th>Bahan</th>
+          <th class="angka">Takaran/porsi</th>
+          <th class="angka">Harga satuan</th>
+          <th class="angka">Biaya</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{range .Komponen}}
+        <tr>
+          <td>{{ .NamaBahan }}</td>
+          <td class="angka">{{ numerik .JumlahPerPorsi }} {{ .Satuan }}</td>
+          <td class="angka">{{ rupiah .HargaSatuan }}</td>
+          <td class="angka">{{ rupiah .Biaya }}</td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  </div>
+  <div class="ringkas-hpp total">
+    <span>HPP {{ .MenuNama }}</span>
+    <span class="nilai">{{ rupiah .HPPPerPorsi }}</span>
+  </div>
+  {{end}}
+  {{end}}
+</div>
+{{end}}

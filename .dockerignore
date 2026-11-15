@@ -1,0 +1,12 @@
+# Artefak build lokal
+server
+dina-catering
+*.exe
+*.out
+
+# Berkas yang tidak diperlukan di dalam image
+.git
+.gitignore
+.env
+README.md
+scripts/

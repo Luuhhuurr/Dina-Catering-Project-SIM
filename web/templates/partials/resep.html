@@ -1,0 +1,103 @@
+{{define "resep_panel"}}
+<div id="resep-panel" class="kartu">
+  <h2>Resep · {{ .Menu.Nama }}</h2>
+  {{if .Menu.Deskripsi}}<p class="muted">{{ .Menu.Deskripsi }}</p>{{end}}
+
+  <div class="grid grid-2">
+    <div>
+      <h3>Bahan dan takaran per porsi</h3>
+      <form method="post" action="/menu/{{ .Menu.ID }}/resep" hx-post="/menu/{{ .Menu.ID }}/resep" hx-target="#resep-panel" hx-swap="outerHTML">
+        <div class="form-grid">
+          <div class="field">
+            <label for="bahan_baku_id">Bahan</label>
+            <select id="bahan_baku_id" name="bahan_baku_id" required>
+              {{range .Bahan}}
+              <option value="{{ .ID }}">{{ .Nama }} ({{ .Satuan }})</option>
+              {{end}}
+            </select>
+          </div>
+          <div class="field">
+            <label for="jumlah_per_porsi">Takaran per porsi</label>
+            <input type="number" step="0.001" id="jumlah_per_porsi" name="jumlah_per_porsi" required>
+          </div>
+          <div class="field">
+            <label for="satuan">Satuan takaran</label>
+            <input type="text" id="satuan" name="satuan" placeholder="kg">
+          </div>
+        </div>
+        <button type="submit" class="tombol">Tambah ke resep</button>
+      </form>
+
+      {{if .Resep}}
+      <div class="tabel-bungkus" style="margin-top:12px">
+        <table>
+          <thead>
+            <tr>
+              <th>Bahan</th>
+              <th class="angka">Takaran/porsi</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {{range .Resep}}
+            <tr>
+              <td>{{ .BahanNama }}</td>
+              <td class="angka">{{ numerik .JumlahPerPorsi }} {{ .Satuan }}</td>
+              <td class="kanan">
+                <form method="post" action="/menu/resep/{{ .ID }}/hapus" hx-post="/menu/resep/{{ .ID }}/hapus" hx-target="#menu-tabel" hx-swap="outerHTML" hx-confirm="Hapus bahan ini dari resep?">
+                  <button type="submit" class="tombol kecil bahaya-lembut">Hapus</button>
+                </form>
+              </td>
+            </tr>
+            {{end}}
+          </tbody>
+        </table>
+      </div>
+      {{else}}
+      <div class="kosong">Menu ini belum punya bahan. Tambahkan bahan di atas.</div>
+      {{end}}
+    </div>
+
+    <div>
+      <h3>HPP per porsi (tanggal {{ today.Format "2006-01-02" }})</h3>
+      <div class="tabel-bungkus">
+        <table class="hpp-komponen">
+          <thead>
+            <tr>
+              <th>Bahan</th>
+              <th class="angka">Takaran</th>
+              <th class="angka">Harga satuan</th>
+              <th class="angka">Biaya</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{range .HPP.Komponen}}
+            <tr>
+              <td>{{ .NamaBahan }}</td>
+              <td class="angka">{{ numerik .JumlahPerPorsi }} {{ .Satuan }}</td>
+              <td class="angka">{{ rupiah .HargaSatuan }}</td>
+              <td class="angka">{{ rupiah .Biaya }}</td>
+            </tr>
+            {{end}}
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top:12px">
+        <div class="ringkas-hpp">
+          <span>HPP bahan</span>
+          <span class="nilai">{{ rupiah .HPP.HPPBahan }}</span>
+        </div>
+        <div class="ringkas-hpp">
+          <span>Biaya operasional ({{ persen .Persen }})</span>
+          <span class="nilai">{{ rupiah (sub .HPP.HPPPerPorsi .HPP.HPPBahan) }}</span>
+        </div>
+        <div class="ringkas-hpp total">
+          <span>HPP per porsi</span>
+          <span class="nilai">{{ rupiah .HPP.HPPPerPorsi }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{end}}

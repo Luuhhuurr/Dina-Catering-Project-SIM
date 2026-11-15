@@ -1,0 +1,14 @@
+{{define "content"}}
+<div class="page-head">
+  <div class="judul-blok">
+    <h1>Jadwal Produksi</h1>
+    <p class="sub">Papan pengganti papan tulis di dapur. Rentang {{ tanggal .Mulai }} - {{ tanggal .Selesai }}.</p>
+  </div>
+</div>
+{{if .Pesan}}<div class="pesan sukses"><svg class="i"><use href="#i-cek"></use></svg><span>{{ .Pesan }}</span></div>{{end}}
+
+<div class="kartu">
+  <h2><svg class="i"><use href="#i-produksi"></use></svg>Papan produksi</h2>
+  {{template "produksi_papan" .}}
+</div>
+{{end}}

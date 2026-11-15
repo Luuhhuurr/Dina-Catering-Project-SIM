@@ -1,0 +1,67 @@
+{{define "hpp_hasil_menu"}}
+<div id="hpp-hasil" class="kartu">
+  <h2><svg class="i"><use href="#i-hpp"></use></svg>Hasil perhitungan · {{ .HPP.MenuNama }}</h2>
+  <p class="muted">Tanggal acuan {{ tanggal .Tanggal }}.</p>
+
+  <div class="grid grid-3" style="margin-bottom:16px">
+    <div class="statistik biru">
+      <div class="kepala">
+        <span class="ikon"><svg class="i"><use href="#i-bahan"></use></svg></span>
+        <span class="label">HPP bahan per porsi</span>
+      </div>
+      <div class="angka">{{ rupiah .HPP.HPPBahan }}</div>
+      <div class="keterangan">sebelum biaya operasional</div>
+    </div>
+    <div class="statistik amber">
+      <div class="kepala">
+        <span class="ikon"><svg class="i"><use href="#i-biaya"></use></svg></span>
+        <span class="label">Biaya operasional</span>
+      </div>
+      <div class="angka">{{ persen .HPP.PersenOperasional }}</div>
+      <div class="keterangan">ditambahkan proporsional ke HPP bahan</div>
+    </div>
+    <div class="statistik hijau">
+      <div class="kepala">
+        <span class="ikon"><svg class="i"><use href="#i-hpp"></use></svg></span>
+        <span class="label">HPP per porsi</span>
+      </div>
+      <div class="angka">{{ rupiah .HPP.HPPPerPorsi }}</div>
+      <div class="keterangan">harga jual minimum {{ rupiah .HargaMinimum }}</div>
+    </div>
+  </div>
+
+  <div class="minimum-box">
+    <span class="teks">Harga jual minimum agar margin 30% (HPP / 0,7)</span>
+    <span class="nilai">{{ rupiah .HargaMinimum }}</span>
+  </div>
+
+  <h3>Rincian bahan per porsi</h3>
+  <div class="tabel-bungkus">
+    <table class="hpp-komponen">
+      <thead>
+        <tr>
+          <th>Bahan</th>
+          <th class="angka">Takaran/porsi</th>
+          <th class="angka">Harga satuan</th>
+          <th class="angka">Biaya</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{range .HPP.Komponen}}
+        <tr>
+          <td>{{ .NamaBahan }}</td>
+          <td class="angka">{{ numerik .JumlahPerPorsi }} {{ .Satuan }}</td>
+          <td class="angka">{{ rupiah .HargaSatuan }}</td>
+          <td class="angka">{{ rupiah .Biaya }}</td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ringkas-hpp total">
+    <span>HPP per porsi</span>
+    <span class="nilai">{{ rupiah .HPP.HPPPerPorsi }}</span>
+  </div>
+</div>
+{{end}}

@@ -1,0 +1,54 @@
+{{define "content"}}
+<div class="page-head">
+  <div class="judul-blok">
+    <h1>Kalkulator HPP</h1>
+    <p class="sub">Hitung HPP per porsi, margin untung, dan harga jual minimum agar margin minimal 30%.</p>
+  </div>
+</div>
+
+<div class="kartu">
+  <h2><svg class="i"><use href="#i-hpp"></use></svg>Pilih yang dihitung</h2>
+  <form method="get" action="/hpp/hasil" hx-get="/hpp/hasil" hx-target="#hpp-hasil" hx-swap="outerHTML">
+    <div class="form-grid">
+      <div class="field">
+        <label for="paket_id">Paket</label>
+        <select id="paket_id" name="paket_id">
+          <option value="">- pilih paket -</option>
+          {{range .Paket}}
+          <option value="{{ .ID }}" {{if eq (printf "%d" .ID) (printf "%d" $.PaketTerpilih)}}selected{{end}}>{{ .Nama }} ({{ rupiah .HargaPerPorsi }}, tahun {{ .TahunBerlaku }})</option>
+          {{end}}
+        </select>
+      </div>
+      <div class="field">
+        <label for="menu_id">Atau satu menu</label>
+        <select id="menu_id" name="menu_id">
+          <option value="">- pilih menu -</option>
+          {{range .Menu}}
+          <option value="{{ .ID }}" {{if eq (printf "%d" .ID) (printf "%d" $.MenuTerpilih)}}selected{{end}}>{{ .Nama }}</option>
+          {{end}}
+        </select>
+      </div>
+      <div class="field">
+        <label for="tanggal">Tanggal acuan harga</label>
+        <input type="date" id="tanggal" name="tanggal" value="{{ .Tanggal }}">
+      </div>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="tombol">Hitung HPP</button>
+      <span class="muted">Biaya operasional yang ditambahkan ke HPP bahan: {{ persen .Persen }} (bisa diubah di halaman Pengaturan).</span>
+    </div>
+  </form>
+</div>
+
+{{if .Panel}}
+{{if eq (printf "%v" .Jenis) "paket"}}{{template "hpp_hasil_paket" .Panel}}{{else}}{{template "hpp_hasil_menu" .Panel}}{{end}}
+{{else}}
+<div id="hpp-hasil" class="kartu">
+  <h2><svg class="i"><use href="#i-hpp"></use></svg>Hasil perhitungan</h2>
+  <div class="kosong">
+    <div class="ikon-kosong"><svg class="i i-lg"><use href="#i-kosong"></use></svg></div>
+    Pilih paket atau menu, lalu tekan tombol Hitung HPP.
+  </div>
+</div>
+{{end}}
+{{end}}

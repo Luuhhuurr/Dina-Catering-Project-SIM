@@ -1,0 +1,18 @@
+# Environment — jangan pernah commit nilai rahasia
+.env
+.env.local
+
+# Hasil build lokal
+/server
+/dina-catering
+*.exe
+*.out
+
+# Alat bantu lokal
+/scripts/.tmp/
+
+# Editor dan sistem operasi
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

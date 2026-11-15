@@ -1,0 +1,39 @@
+{{define "pengaturan_form"}}
+<div id="pengaturan-form" class="kartu">
+  <h2>Biaya operasional</h2>
+  <p class="muted">Persentase ini ditambahkan proporsional ke HPP bahan sebelum margin dihitung. Nilai bawaan 10%.</p>
+  <form method="post" action="/pengaturan" hx-post="/pengaturan" hx-target="#pengaturan-form" hx-swap="outerHTML">
+    <div class="field-inline">
+      <div class="field">
+        <label for="biaya_operasional_persen">Persentase (%)</label>
+        <input type="number" step="0.5" id="biaya_operasional_persen" name="biaya_operasional_persen" value="{{ numerik .Persen }}" required>
+      </div>
+      <button type="submit" class="tombol">Simpan pengaturan</button>
+    </div>
+  </form>
+</div>
+
+<div class="kartu">
+  <h2>Seluruh nilai pengaturan</h2>
+  <div class="tabel-bungkus">
+    <table>
+      <thead>
+        <tr>
+          <th>Kunci</th>
+          <th>Nilai</th>
+          <th>Terakhir diubah</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{range .Daftar}}
+        <tr>
+          <td><code>{{ .Kunci }}</code></td>
+          <td>{{ .Nilai }}</td>
+          <td>{{ tanggal .UpdatedAt }}</td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  </div>
+</div>
+{{end}}

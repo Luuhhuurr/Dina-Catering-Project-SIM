@@ -1,0 +1,41 @@
+{{define "content"}}
+<div class="page-head">
+  <div class="judul-blok">
+    <h1>Pelanggan</h1>
+    <p class="sub">Daftar pelanggan yang pernah memesan katering Dina Catering.</p>
+  </div>
+</div>
+{{if .Pesan}}<div class="pesan sukses"><svg class="i"><use href="#i-cek"></use></svg><span>{{ .Pesan }}</span></div>{{end}}
+
+<div class="grid grid-2">
+  <div class="kartu">
+    <h2><svg class="i"><use href="#i-pelanggan"></use></svg>Tambah pelanggan</h2>
+    <form method="post" action="/pelanggan" hx-post="/pelanggan" hx-target="#pelanggan-tabel" hx-swap="outerHTML">
+      <div class="field">
+        <label for="nama">Nama</label>
+        <input type="text" id="nama" name="nama" required>
+      </div>
+      <div class="field">
+        <label for="kontak">Kontak (WhatsApp)</label>
+        <input type="text" id="kontak" name="kontak" placeholder="08xxxxxxxxxx">
+      </div>
+      <div class="field">
+        <label for="alamat">Alamat</label>
+        <textarea id="alamat" name="alamat" rows="2"></textarea>
+      </div>
+      <div class="field">
+        <label for="catatan">Catatan</label>
+        <input type="text" id="catatan" name="catatan" placeholder="catatan khusus pelanggan">
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="tombol">Simpan pelanggan</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="kartu">
+    <h2><svg class="i"><use href="#i-pelanggan"></use></svg>Daftar pelanggan</h2>
+    {{template "pelanggan_tabel" .}}
+  </div>
+</div>
+{{end}}

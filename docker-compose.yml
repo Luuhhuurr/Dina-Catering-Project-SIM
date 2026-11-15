@@ -1,0 +1,35 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-dina}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dina}
+      POSTGRES_DB: ${POSTGRES_DB:-dinacatering}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-dina} -d ${POSTGRES_DB:-dinacatering}"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER:-dina}:${POSTGRES_PASSWORD:-dina}@postgres:5432/${POSTGRES_DB:-dinacatering}?sslmode=disable
+      PORT: "8080"
+      SESSION_SECRET: ${SESSION_SECRET:-ganti-secret-ini-sebelum-dipakai-produksi}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin123}
+      SEED_ON_BOOT: ${SEED_ON_BOOT:-true}
+    ports:
+      - "${PORT:-8080}:8080"
+
+volumes:
+  pgdata:

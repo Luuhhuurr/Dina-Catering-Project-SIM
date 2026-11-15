@@ -1,0 +1,49 @@
+{{define "produksi_papan"}}
+<div id="produksi-papan">
+  {{if .Papan}}
+  <div class="papan">
+    {{range .Papan}}
+    <div class="hari">
+      <h3>{{ tanggal .Tanggal }}</h3>
+      <div class="isi">
+        {{range .Tugas}}
+        <div class="tugas {{ if eq .Status "selesai" }}selesai{{ else if eq .Status "jalan" }}jalan{{ end }}">
+          <div class="judul">{{ .NamaTugas }}</div>
+          <div class="meta">
+            {{ .PelangganNama }} · {{ .PaketNama }} · {{ .JumlahTamu }} tamu
+            {{if .MasakDiLokasi}}<br>masak di lokasi{{ end}}
+          </div>
+
+          <form method="post" action="/produksi/tugas/{{ .ID }}/pj" hx-post="/produksi/tugas/{{ .ID }}/pj" hx-target="#produksi-papan" hx-swap="outerHTML" class="field-inline" style="margin-top:6px">
+            <div class="field">
+              <label for="pj-{{ .ID }}">Penanggung jawab</label>
+              <input type="text" id="pj-{{ .ID }}" name="pj" value="{{ .Pj }}" placeholder="nama PJ">
+            </div>
+            <button type="submit" class="tombol kecil secondary">Simpan</button>
+          </form>
+
+          <form method="post" action="/produksi/tugas/{{ .ID }}/status" hx-post="/produksi/tugas/{{ .ID }}/status" hx-target="#produksi-papan" hx-swap="outerHTML" class="field-inline" style="margin-top:6px">
+            <div class="field">
+              <label for="status-{{ .ID }}">Status tugas</label>
+              <select id="status-{{ .ID }}" name="status">
+                <option value="belum" {{ if eq .Status "belum" }}selected{{ end }}>Belum</option>
+                <option value="jalan" {{ if eq .Status "jalan" }}selected{{ end }}>Dalam proses</option>
+                <option value="selesai" {{ if eq .Status "selesai" }}selected{{ end }}>Selesai</option>
+              </select>
+            </div>
+            <button type="submit" class="tombol kecil secondary">Simpan</button>
+          </form>
+        </div>
+        {{end}}
+      </div>
+    </div>
+    {{end}}
+  </div>
+  {{else}}
+  <div class="kosong">
+    <div class="ikon-kosong"><svg class="i i-lg"><use href="#i-kosong"></use></svg></div>
+    Belum ada tugas produksi. Tugas dibuat otomatis begitu DP dicatat.
+  </div>
+  {{end}}
+</div>
+{{end}}

@@ -1,0 +1,14 @@
+DROP TABLE IF EXISTS biaya_operasional;
+DROP TABLE IF EXISTS tugas_produksi;
+DROP TABLE IF EXISTS pembayaran;
+DROP TABLE IF EXISTS pesanan;
+DROP TABLE IF EXISTS paket_menu_item;
+DROP TABLE IF EXISTS paket_menu;
+DROP TABLE IF EXISTS resep_item;
+DROP TABLE IF EXISTS menu;
+DROP TABLE IF EXISTS pembelian_bahan;
+DROP TABLE IF EXISTS harga_bahan_history;
+DROP TABLE IF EXISTS bahan_baku;
+DROP TABLE IF EXISTS pelanggan;
+DROP TABLE IF EXISTS pengaturan;
+DROP TABLE IF EXISTS users;

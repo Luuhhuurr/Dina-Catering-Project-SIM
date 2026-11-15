@@ -1,0 +1,46 @@
+{{define "bahan_tabel"}}
+<div id="bahan-tabel">
+  {{if .Daftar}}
+  <div class="tabel-bungkus">
+    <table>
+      <thead>
+        <tr>
+          <th>Bahan</th>
+          <th>Satuan</th>
+          <th class="angka">Stok</th>
+          <th class="angka">Harga terakhir</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{range .Daftar}}
+        <tr>
+          <td><strong>{{ .Nama }}</strong></td>
+          <td>{{ .Satuan }}</td>
+          <td class="angka">{{ numerik .StokSaatIni }}</td>
+          <td class="angka">{{ rupiah .HargaTerakhir }}</td>
+          <td class="kanan">
+            <div class="grup">
+              <a class="tombol kecil secondary"
+                href="/bahan/{{ .ID }}/harga"
+                hx-get="/bahan/{{ .ID }}/harga"
+                hx-target="#riwayat-harga"
+                hx-swap="outerHTML">Harga</a>
+              <form method="post" action="/bahan/{{ .ID }}/hapus" hx-post="/bahan/{{ .ID }}/hapus" hx-target="#bahan-tabel" hx-swap="outerHTML" hx-confirm="Hapus bahan {{ .Nama }}?">
+                <button type="submit" class="tombol kecil bahaya-lembut">Hapus</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  </div>
+  {{else}}
+  <div class="kosong">
+    <div class="ikon-kosong"><svg class="i i-lg"><use href="#i-kosong"></use></svg></div>
+    Belum ada bahan baku.
+  </div>
+  {{end}}
+</div>
+{{end}}

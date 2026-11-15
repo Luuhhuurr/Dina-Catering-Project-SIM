@@ -1,0 +1,188 @@
+{{define "pesanan_detail"}}
+<div id="pesanan-detail">
+  <div class="page-head">
+    <div class="judul-blok">
+      <h1>Pesanan #{{ .Pesanan.ID }} · {{ .Pesanan.PelangganNama }}</h1>
+      <p class="sub"><a href="/pesanan">&larr; kembali ke daftar pesanan</a></p>
+    </div>
+  </div>
+
+  <div class="kartu">
+    <h2><svg class="i"><use href="#i-pesanan"></use></svg>Ringkasan pesanan</h2>
+    <div class="grid grid-4" style="margin-bottom:14px">
+      <div class="statistik biru">
+        <div class="kepala">
+          <span class="ikon"><svg class="i"><use href="#i-kalendar"></use></svg></span>
+          <span class="label">Tanggal acara</span>
+        </div>
+        <div class="angka" style="font-size:18px">{{ tanggal .Pesanan.TanggalAcara }}</div>
+        <div class="keterangan">{{ .Pesanan.PaketNama }} · {{ .Pesanan.JumlahTamu }} tamu</div>
+      </div>
+      <div class="statistik hijau">
+        <div class="kepala">
+          <span class="ikon"><svg class="i"><use href="#i-uang"></use></svg></span>
+          <span class="label">Total harga</span>
+        </div>
+        <div class="angka" style="font-size:18px">{{ rupiah .Pesanan.TotalHarga }}</div>
+        <div class="keterangan">sumber: {{ labelSumber .Pesanan.SumberPesanan }}</div>
+      </div>
+      <div class="statistik amber">
+        <div class="kepala">
+          <span class="ikon"><svg class="i"><use href="#i-jam"></use></svg></span>
+          <span class="label">Status pembayaran</span>
+        </div>
+        <div class="angka" style="font-size:18px">
+          {{ if eq .StatusPembayaran "lunas" }}<span class="lencana sukses">Lunas</span>{{ else if eq .StatusPembayaran "dp_terbayar" }}<span class="lencana peringatan">DP terbayar</span>{{ else }}<span class="lencana bahaya">Belum DP</span>{{ end }}
+        </div>
+        <div class="keterangan">sisa tagihan {{ rupiah (sub .Pesanan.TotalHarga .Pesanan.TotalBayar) }}</div>
+      </div>
+      <div class="statistik {{ if .Margin.Peringatan }}merah{{ else }}hijau{{ end }}">
+        <div class="kepala">
+          <span class="ikon"><svg class="i"><use href="#i-naik"></use></svg></span>
+          <span class="label">Margin untung</span>
+        </div>
+        <div class="angka" style="font-size:18px">
+          {{ if .Margin.Peringatan }}<span class="lencana bahaya">{{ persen .Margin.MarginPersen }}</span>{{ else }}<span class="lencana sukses">{{ persen .Margin.MarginPersen }}</span>{{ end }}
+        </div>
+        <div class="keterangan">HPP {{ rupiah .Margin.HPPPerPorsi }}/porsi</div>
+      </div>
+    </div>
+
+    <div class="tabel-bungkus">
+      <table>
+        <tbody>
+          <tr><td class="muted" style="width:180px">Kontak pelanggan</td><td>{{ .Pesanan.PelangganKontak }}</td></tr>
+          <tr><td class="muted">Lokasi acara</td><td>{{ .Pesanan.Lokasi }}{{ if .Pesanan.MasakDiLokasi }} <span class="lencana netral">masak di lokasi</span>{{ end }}</td></tr>
+          <tr><td class="muted">Catatan</td><td>{{ .Pesanan.Catatan }}</td></tr>
+          <tr><td class="muted">Tenggat DP (H-30)</td><td>{{ tanggal .Pesanan.TglJatuhTempoDp }} <span class="muted">({{ tanggal .TenggatDP }})</span></td></tr>
+          <tr><td class="muted">Tenggat pelunasan (H-7)</td><td>{{ tanggal .Pesanan.TglJatuhTempoLunas }} <span class="muted">({{ tanggal .TenggatLunas }})</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid grid-2">
+    <div class="kartu">
+      <h2><svg class="i"><use href="#i-naik"></use></svg>Ubah status pesanan</h2>
+      <form method="post" action="/pesanan/{{ .Pesanan.ID }}/status" hx-post="/pesanan/{{ .Pesanan.ID }}/status" hx-target="#pesanan-detail" hx-swap="outerHTML">
+        <input type="hidden" name="dari" value="detail">
+        <div class="field-inline">
+          <div class="field">
+            <label for="status">Status baru</label>
+            <select id="status" name="status">
+              {{range .StatusPesanan}}
+              <option value="{{ . }}" {{ if eq . $.Pesanan.Status }}selected{{ end }}>{{ labelStatus . }}</option>
+              {{end}}
+            </select>
+          </div>
+          <button type="submit" class="tombol">Simpan status</button>
+        </div>
+      </form>
+      <p class="muted">Status <strong>Produksi</strong> mengurangi stok bahan sesuai resep dan jumlah tamu.</p>
+    </div>
+
+    <div class="kartu">
+      <h2><svg class="i"><use href="#i-uang"></use></svg>Catat pembayaran</h2>
+      <form method="post" action="/pesanan/{{ .Pesanan.ID }}/pembayaran" hx-post="/pesanan/{{ .Pesanan.ID }}/pembayaran" hx-target="#pesanan-detail" hx-swap="outerHTML">
+        <div class="form-grid">
+          <div class="field">
+            <label for="tipe">Jenis</label>
+            <select id="tipe" name="tipe">
+              <option value="dp">DP 50%</option>
+              <option value="pelunasan">Pelunasan</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="jumlah">Nominal (Rp)</label>
+            <input type="number" step="1000" id="jumlah" name="jumlah" value="{{ .NilaiDP }}" data-dp="{{ .NilaiDP }}" data-pelunasan="{{ .NilaiPelunasan }}" required>
+            <span class="muted">DP 50% = {{ rupiah .NilaiDP }} · sisa pelunasan = {{ rupiah .NilaiPelunasan }}</span>
+          </div>
+          <div class="field">
+            <label for="metode">Metode</label>
+            <select id="metode" name="metode">
+              {{range .Metode}}
+              <option value="{{ . }}">{{ . }}</option>
+              {{end}}
+            </select>
+          </div>
+          <div class="field">
+            <label for="tanggal_bayar">Tanggal</label>
+            <input type="date" id="tanggal_bayar" name="tanggal" value="{{ .HariIni.Format "2006-01-02" }}">
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="tombol">Simpan pembayaran</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="grid grid-2">
+    <div class="kartu">
+      <h2><svg class="i"><use href="#i-uang"></use></svg>Riwayat pembayaran</h2>
+      {{if .Pembayaran}}
+      <div class="tabel-bungkus">
+        <table>
+          <thead>
+            <tr>
+              <th>Tanggal</th>
+              <th>Jenis</th>
+              <th>Metode</th>
+              <th class="angka">Nominal</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{range .Pembayaran}}
+            <tr>
+              <td class="nowrap">{{ tanggal .Tanggal }}</td>
+              <td><span class="lencana netral">{{ .Tipe }}</span></td>
+              <td>{{ .Metode }}</td>
+              <td class="angka">{{ rupiah .Jumlah }}</td>
+            </tr>
+            {{end}}
+          </tbody>
+        </table>
+      </div>
+      {{else}}
+      <div class="kosong">
+        <div class="ikon-kosong"><svg class="i i-lg"><use href="#i-kosong"></use></svg></div>
+        Belum ada pembayaran untuk pesanan ini.
+      </div>
+      {{end}}
+    </div>
+
+    <div class="kartu">
+      <h2><svg class="i"><use href="#i-produksi"></use></svg>Tugas produksi</h2>
+      {{if .Tugas}}
+      <div class="tabel-bungkus">
+        <table>
+          <thead>
+            <tr>
+              <th>Tugas</th>
+              <th>PJ</th>
+              <th>Deadline</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{range .Tugas}}
+            <tr>
+              <td>{{ .NamaTugas }}</td>
+              <td>{{ .Pj }}</td>
+              <td>{{ if .Deadline.Valid }}{{ tanggal .Deadline.Time }}{{ end }}</td>
+              <td><span class="lencana netral">{{ .Status }}</span></td>
+            </tr>
+            {{end}}
+          </tbody>
+        </table>
+      </div>
+      {{else}}
+      <div class="kosong">
+        <div class="ikon-kosong"><svg class="i i-lg"><use href="#i-kosong"></use></svg></div>
+        Tugas produksi dibuat otomatis begitu DP dicatat.
+      </div>
+      {{end}}
+    </div>
+  </div>
+</div>
+{{end}}

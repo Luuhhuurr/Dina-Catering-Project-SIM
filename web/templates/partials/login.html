@@ -1,0 +1,27 @@
+{{define "login_kotak"}}
+<div class="login-kotak">
+  <div class="login-logo">
+    <div class="mark"><svg class="i"><use href="#i-logo"></use></svg></div>
+    <div class="nama">SIM Dina Catering</div>
+    <div class="sub">Sistem Informasi Manajemen Usaha Katering</div>
+  </div>
+  <div class="kartu">
+    <h2>Masuk</h2>
+    {{if .Error}}<div class="pesan error"><svg class="i"><use href="#i-peringatan"></use></svg><span>{{ .Error }}</span></div>{{end}}
+    <form method="post" action="/login" hx-post="/login" hx-target=".login-kotak" hx-swap="outerHTML">
+      <div class="field">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" autocomplete="username" required autofocus>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="current-password" required>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="tombol" style="width:100%; justify-content:center">Masuk</button>
+      </div>
+    </form>
+  </div>
+  <p class="login-catatan">Akun demo: <code>admin</code> · <code>admin123</code></p>
+</div>
+{{end}}

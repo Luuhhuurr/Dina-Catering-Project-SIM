@@ -1,0 +1,38 @@
+{{define "menu_tabel"}}
+<div id="menu-tabel">
+  {{if .Daftar}}
+  <div class="tabel-bungkus">
+    <table>
+      <thead>
+        <tr>
+          <th>Menu</th>
+          <th class="angka">Jumlah bahan</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{range .Daftar}}
+        <tr>
+          <td><strong>{{ .Nama }}</strong>{{if .Deskripsi}}<br><span class="muted">{{ .Deskripsi }}</span>{{end}}</td>
+          <td class="angka">{{ .JumlahResep }}</td>
+          <td class="kanan">
+            <div class="grup">
+              <a class="tombol kecil secondary" href="/menu/{{ .ID }}/resep" hx-get="/menu/{{ .ID }}/resep" hx-target="#resep-panel" hx-swap="outerHTML">Resep</a>
+              <form method="post" action="/menu/{{ .ID }}/hapus" hx-post="/menu/{{ .ID }}/hapus" hx-target="#menu-tabel" hx-swap="outerHTML" hx-confirm="Hapus menu {{ .Nama }}?">
+                <button type="submit" class="tombol kecil bahaya-lembut">Hapus</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  </div>
+  {{else}}
+  <div class="kosong">
+    <div class="ikon-kosong"><svg class="i i-lg"><use href="#i-kosong"></use></svg></div>
+    Belum ada menu.
+  </div>
+  {{end}}
+</div>
+{{end}}

@@ -1,0 +1,47 @@
+{{define "pelanggan_tabel"}}
+<div id="pelanggan-tabel">
+  <form class="filter-bar" method="get" action="/pelanggan" hx-get="/pelanggan/tabel" hx-target="#pelanggan-tabel" hx-swap="outerHTML">
+    <div class="field">
+      <label for="cari">Cari nama atau kontak</label>
+      <input type="search" id="cari" name="cari" value="{{ .Cari }}">
+    </div>
+    <button type="submit" class="tombol secondary">Cari</button>
+  </form>
+
+  {{if .Daftar}}
+  <div class="tabel-bungkus">
+    <table>
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Kontak</th>
+          <th>Alamat</th>
+          <th class="angka">Pesanan</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{range .Daftar}}
+        <tr>
+          <td><strong>{{ .Nama }}</strong>{{if .Catatan}}<br><span class="muted">{{ .Catatan }}</span>{{end}}</td>
+          <td>{{ .Kontak }}</td>
+          <td>{{ .Alamat }}</td>
+          <td class="angka">{{ .JumlahPesanan }}</td>
+          <td class="kanan">
+            <form method="post" action="/pelanggan/{{ .ID }}/hapus" hx-post="/pelanggan/{{ .ID }}/hapus" hx-target="#pelanggan-tabel" hx-swap="outerHTML" hx-confirm="Hapus pelanggan {{ .Nama }}?">
+              <button type="submit" class="tombol kecil bahaya-lembut">Hapus</button>
+            </form>
+          </td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  </div>
+  {{else}}
+  <div class="kosong">
+    <div class="ikon-kosong"><svg class="i i-lg"><use href="#i-kosong"></use></svg></div>
+    Belum ada pelanggan yang cocok.
+  </div>
+  {{end}}
+</div>
+{{end}}

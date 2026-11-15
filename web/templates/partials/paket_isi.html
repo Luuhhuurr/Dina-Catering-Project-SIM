@@ -1,0 +1,49 @@
+{{define "paket_isi"}}
+<div id="paket-isi-panel" class="kartu">
+  <h2>Isi paket · {{ .Paket.Nama }}</h2>
+  <p class="muted">Harga per porsi {{ rupiah .Paket.HargaPerPorsi }} · tahun {{ .Paket.TahunBerlaku }}</p>
+
+  <form method="post" action="/paket/{{ .Paket.ID }}/isi" hx-post="/paket/{{ .Paket.ID }}/isi" hx-target="#paket-isi-panel" hx-swap="outerHTML">
+    <div class="field-inline">
+      <div class="field">
+        <label for="menu_id">Tambah menu ke paket</label>
+        <select id="menu_id" name="menu_id" required>
+          {{range .Menu}}
+          <option value="{{ .ID }}">{{ .Nama }}</option>
+          {{end}}
+        </select>
+      </div>
+      <button type="submit" class="tombol">Tambah</button>
+    </div>
+  </form>
+
+  {{if .Isi}}
+  <div class="tabel-bungkus" style="margin-top:12px">
+    <table>
+      <thead>
+        <tr>
+          <th>Menu</th>
+          <th>Deskripsi</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{range .Isi}}
+        <tr>
+          <td>{{ .MenuNama }}</td>
+          <td class="muted">{{ .MenuDeskripsi }}</td>
+          <td class="kanan">
+            <form method="post" action="/paket/isi/{{ .ID }}/hapus" hx-post="/paket/isi/{{ .ID }}/hapus" hx-target="#paket-tabel" hx-swap="outerHTML" hx-confirm="Hapus {{ .MenuNama }} dari paket?">
+              <button type="submit" class="tombol kecil bahaya-lembut">Hapus</button>
+            </form>
+          </td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  </div>
+  {{else}}
+  <div class="kosong">Paket ini belum punya menu.</div>
+  {{end}}
+</div>
+{{end}}

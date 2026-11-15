@@ -1,0 +1,43 @@
+{{define "harga_riwayat"}}
+<div id="riwayat-harga" class="kartu">
+  <h2>Riwayat harga · {{ .Bahan.Nama }}</h2>
+  <p class="muted">Harga yang dipakai perhitungan HPP adalah baris terbaru dengan tanggal berlaku paling awal pada atau sebelum tanggal perhitungan.</p>
+
+  <form method="post" action="/bahan/{{ .Bahan.ID }}/harga" hx-post="/bahan/{{ .Bahan.ID }}/harga" hx-target="#riwayat-harga" hx-swap="outerHTML">
+    <div class="form-grid">
+      <div class="field">
+        <label for="harga_satuan">Harga baru / {{ .Bahan.Satuan }} (Rp)</label>
+        <input type="number" step="100" id="harga_satuan" name="harga_satuan" required>
+      </div>
+      <div class="field">
+        <label for="tanggal_berlaku">Berlaku mulai tanggal</label>
+        <input type="date" id="tanggal_berlaku" name="tanggal_berlaku" value="{{ today.Format "2006-01-02" }}" required>
+      </div>
+    </div>
+    <button type="submit" class="tombol">Simpan harga baru</button>
+  </form>
+
+  {{if .Riwayat}}
+  <div class="tabel-bungkus" style="margin-top:14px">
+    <table>
+      <thead>
+        <tr>
+          <th>Berlaku mulai</th>
+          <th class="angka">Harga / {{ .Bahan.Satuan }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{range .Riwayat}}
+        <tr>
+          <td>{{ tanggal .TanggalBerlaku }}</td>
+          <td class="angka">{{ rupiah .HargaSatuan }}</td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  </div>
+  {{else}}
+  <div class="kosong">Belum ada riwayat harga untuk bahan ini.</div>
+  {{end}}
+</div>
+{{end}}

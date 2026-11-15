@@ -1,0 +1,38 @@
+{{define "pembelian_daftar"}}
+<div id="pembelian-daftar">
+  <p class="muted">Periode {{ tanggal .Dari }} - {{ tanggal .Sampai }}</p>
+  {{if .Daftar}}
+  <div class="tabel-bungkus">
+    <table>
+      <thead>
+        <tr>
+          <th>Tanggal</th>
+          <th>Bahan</th>
+          <th class="angka">Jumlah</th>
+          <th class="angka">Harga</th>
+          <th class="angka">Total</th>
+          <th>Pasar</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{range .Daftar}}
+        <tr>
+          <td>{{ tanggal .Tanggal }}</td>
+          <td>{{ .BahanNama }}</td>
+          <td class="angka">{{ numerik .Jumlah }} {{ .Satuan }}</td>
+          <td class="angka">{{ rupiah .HargaSatuan }}</td>
+          <td class="angka">{{ rupiah .Total }}</td>
+          <td>{{ .Pasar }}</td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  </div>
+  {{else}}
+  <div class="kosong">
+    <div class="ikon-kosong"><svg class="i i-lg"><use href="#i-kosong"></use></svg></div>
+    Belum ada pembelian pada periode ini.
+  </div>
+  {{end}}
+</div>
+{{end}}

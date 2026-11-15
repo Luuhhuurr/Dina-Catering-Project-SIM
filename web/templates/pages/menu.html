@@ -1,0 +1,40 @@
+{{define "content"}}
+<div class="page-head">
+  <div class="judul-blok">
+    <h1>Menu &amp; Resep</h1>
+    <p class="sub">Resep beserta takaran bahan menentukan HPP per porsi.</p>
+  </div>
+</div>
+{{if .Pesan}}<div class="pesan sukses"><svg class="i"><use href="#i-cek"></use></svg><span>{{ .Pesan }}</span></div>{{end}}
+
+<div class="grid grid-2">
+  <div class="kartu">
+    <h2><svg class="i"><use href="#i-menu"></use></svg>Tambah menu</h2>
+    <form method="post" action="/menu" hx-post="/menu" hx-target="#menu-tabel" hx-swap="outerHTML">
+      <div class="field">
+        <label for="nama">Nama menu</label>
+        <input type="text" id="nama" name="nama" required>
+      </div>
+      <div class="field">
+        <label for="deskripsi">Deskripsi</label>
+        <input type="text" id="deskripsi" name="deskripsi" placeholder="mis. Sayur Sop khas Ungaran">
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="tombol">Simpan menu</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="kartu">
+    <h2><svg class="i"><use href="#i-menu"></use></svg>Daftar menu</h2>
+    {{template "menu_tabel" .}}
+  </div>
+</div>
+
+{{if .Panel}}{{template "resep_panel" .Panel}}{{else}}
+<div id="resep-panel" class="kartu">
+  <h2><svg class="i"><use href="#i-hpp"></use></svg>Resep &amp; HPP per porsi</h2>
+  <p class="muted">Pilih salah satu menu untuk melihat bahan dan takarannya, sekaligus HPP per porsinya.</p>
+</div>
+{{end}}
+{{end}}

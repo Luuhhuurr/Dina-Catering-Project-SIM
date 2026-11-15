@@ -1,0 +1,49 @@
+{{define "content"}}
+<div class="page-head">
+  <div class="judul-blok">
+    <h1>Biaya Operasional</h1>
+    <p class="sub">Periode {{ tanggal .Dari }} - {{ tanggal .Sampai }}. Biaya ini dipakai di perhitungan laba rugi.</p>
+  </div>
+</div>
+
+<div class="grid grid-2">
+  <div class="kartu">
+    <h2><svg class="i"><use href="#i-biaya"></use></svg>Catat biaya</h2>
+    <form method="post" action="/biaya" hx-post="/biaya" hx-target="#halaman-biaya" hx-swap="outerHTML">
+      <div class="form-grid">
+        <div class="field">
+          <label for="kategori">Kategori</label>
+          <select id="kategori" name="kategori">
+            <option value="gas">Gas LPG</option>
+            <option value="listrik">Listrik</option>
+            <option value="mobilitas">Mobilitas</option>
+            <option value="tenaga_kerja">Tenaga kerja</option>
+            <option value="perlengkapan">Perlengkapan</option>
+            <option value="lainnya">Lainnya</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="deskripsi">Deskripsi</label>
+          <input type="text" id="deskripsi" name="deskripsi">
+        </div>
+        <div class="field">
+          <label for="jumlah">Nominal (Rp)</label>
+          <input type="number" step="1000" id="jumlah" name="jumlah" required>
+        </div>
+        <div class="field">
+          <label for="tanggal">Tanggal</label>
+          <input type="date" id="tanggal" name="tanggal" value="{{ today.Format "2006-01-02" }}" required>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="tombol">Simpan biaya</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="kartu">
+    <h2><svg class="i"><use href="#i-biaya"></use></svg>Daftar biaya</h2>
+    {{template "biaya_daftar" .}}
+  </div>
+</div>
+{{end}}

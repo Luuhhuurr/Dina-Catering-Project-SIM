@@ -1,0 +1,52 @@
+{{define "paket_tabel"}}
+<div id="paket-tabel">
+  {{if .Daftar}}
+  <div class="tabel-bungkus">
+    <table>
+      <thead>
+        <tr>
+          <th>Paket</th>
+          <th class="angka">Harga biasa</th>
+          <th class="angka">Harga weekend</th>
+          <th class="angka">HPP/porsi</th>
+          <th class="angka">Margin</th>
+          <th class="angka">Min. harga 30%</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{range .Daftar}}
+        <tr>
+          <td>
+            <strong>{{ .Nama }}</strong>
+            {{if .PeringatanMargin}}<span class="lencana bahaya">margin &lt; 30%</span>{{end}}
+            <br><span class="muted">{{ .JumlahMenu }} menu · tahun {{ .TahunBerlaku }}</span>
+          </td>
+          <td class="angka">{{ rupiah .HargaPerPorsi }}</td>
+          <td class="angka">{{ if .HargaPerPorsiWeekend }}{{ rupiah .HargaPerPorsiWeekend }}{{ else }}-{{ end }}</td>
+          <td class="angka">{{ rupiah .HPPPerPorsi }}</td>
+          <td class="angka">
+            <span class="lencana {{ if .PeringatanMargin }}bahaya{{ else }}sukses{{ end }}">{{ persen .MarginPersen }}</span>
+          </td>
+          <td class="angka">{{ rupiah .HargaJualMinimum }}</td>
+          <td class="kanan">
+            <div class="grup">
+              <a class="tombol kecil secondary" href="/paket/{{ .PaketID }}/isi" hx-get="/paket/{{ .PaketID }}/isi" hx-target="#paket-isi-panel" hx-swap="outerHTML">Isi paket</a>
+              <form method="post" action="/paket/{{ .PaketID }}/hapus" hx-post="/paket/{{ .PaketID }}/hapus" hx-target="#paket-tabel" hx-swap="outerHTML" hx-confirm="Hapus paket {{ .Nama }}?">
+                <button type="submit" class="tombol kecil bahaya-lembut">Hapus</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  </div>
+  {{else}}
+  <div class="kosong">
+    <div class="ikon-kosong"><svg class="i i-lg"><use href="#i-kosong"></use></svg></div>
+    Belum ada paket.
+  </div>
+  {{end}}
+</div>
+{{end}}

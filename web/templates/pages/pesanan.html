@@ -1,0 +1,105 @@
+{{define "content"}}
+{{if .Detail}}
+{{template "pesanan_detail" .}}
+{{else}}
+<div class="page-head">
+  <div class="judul-blok">
+    <h1>Pesanan</h1>
+    <p class="sub">Total harga, tenggat DP (H-30), dan tenggat pelunasan (H-7) dihitung otomatis.</p>
+  </div>
+</div>
+{{if .Pesan}}<div class="pesan sukses"><svg class="i"><use href="#i-cek"></use></svg><span>{{ .Pesan }}</span></div>{{end}}
+
+<div class="grid grid-2">
+  <div class="kartu">
+    <h2><svg class="i"><use href="#i-pesanan"></use></svg>Pesanan baru</h2>
+    <form method="post" action="/pesanan" hx-post="/pesanan" hx-target="#pesanan-tabel" hx-swap="outerHTML">
+      <div class="form-grid">
+        <div class="field">
+          <label for="pelanggan_id">Pelanggan</label>
+          <select id="pelanggan_id" name="pelanggan_id" required>
+            {{range .Pelanggan}}
+            <option value="{{ .ID }}">{{ .Nama }}</option>
+            {{end}}
+          </select>
+        </div>
+        <div class="field">
+          <label for="nama_paket">Paket</label>
+          <select id="nama_paket" name="nama_paket" required>
+            {{range .Paket}}
+            <option value="{{ .Nama }}">{{ .Nama }} - {{ rupiah .HargaPerPorsi }} (tahun {{ .TahunBerlaku }})</option>
+            {{end}}
+          </select>
+        </div>
+        <div class="field">
+          <label for="jumlah_tamu">Jumlah tamu</label>
+          <input type="number" id="jumlah_tamu" name="jumlah_tamu" min="1" value="50" required>
+        </div>
+        <div class="field">
+          <label for="tanggal_acara">Tanggal acara</label>
+          <input type="date" id="tanggal_acara" name="tanggal_acara" required>
+        </div>
+        <div class="field">
+          <label for="sumber_pesanan">Sumber pesanan</label>
+          <select id="sumber_pesanan" name="sumber_pesanan">
+            {{range .SumberPesanan}}
+            <option value="{{ . }}">{{ labelSumber . }}</option>
+            {{end}}
+          </select>
+        </div>
+        <div class="field">
+          <label for="lokasi">Lokasi acara</label>
+          <input type="text" id="lokasi" name="lokasi">
+        </div>
+        <div class="field">
+          <label for="catatan">Catatan</label>
+          <input type="text" id="catatan" name="catatan">
+        </div>
+        <div class="field">
+          <label class="centang"><input type="checkbox" name="masak_di_lokasi" value="on"> Masak di lokasi</label>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="tombol">Simpan pesanan</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="kartu">
+    <h2><svg class="i"><use href="#i-jam"></use></svg>Menunggu pembayaran</h2>
+    {{if .MenungguBayar}}
+    <div class="tabel-bungkus">
+      <table>
+        <thead>
+          <tr>
+            <th>Pesanan</th>
+            <th class="angka">Sisa</th>
+            <th>Tenggat</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{range .MenungguBayar}}
+          <tr>
+            <td><a href="/pesanan/{{ .ID }}">{{ .PelangganNama }}</a><br><span class="muted">{{ .PaketNama }}</span></td>
+            <td class="angka">{{ rupiah .SisaTagihan }}</td>
+            <td><span class="lencana {{ if eq .LabelJatuhTempo "DP terlambat" }}bahaya{{ else if eq .LabelJatuhTempo "Pelunasan terlambat" }}bahaya{{ else if eq .LabelJatuhTempo "DP jatuh tempo" }}peringatan{{ else if eq .LabelJatuhTempo "Pelunasan jatuh tempo" }}peringatan{{ else }}netral{{ end }}">{{ .LabelJatuhTempo }}</span></td>
+          </tr>
+          {{end}}
+        </tbody>
+      </table>
+    </div>
+    {{else}}
+    <div class="kosong">
+      <div class="ikon-kosong"><svg class="i i-lg"><use href="#i-cek"></use></svg></div>
+      Tidak ada pesanan yang menunggu pembayaran.
+    </div>
+    {{end}}
+  </div>
+</div>
+
+<div class="kartu">
+  <h2><svg class="i"><use href="#i-pesanan"></use></svg>Daftar pesanan</h2>
+  {{template "pesanan_tabel" .}}
+</div>
+{{end}}
+{{end}}

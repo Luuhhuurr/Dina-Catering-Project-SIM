@@ -1,0 +1,69 @@
+{{define "pesanan_tabel"}}
+<div id="pesanan-tabel">
+  <form class="filter-bar" method="get" action="/pesanan" hx-get="/pesanan/tabel" hx-target="#pesanan-tabel" hx-swap="outerHTML">
+    <div class="field">
+      <label for="filter-status">Status</label>
+      <select id="filter-status" name="status">
+        <option value="">Semua</option>
+        {{range .StatusPesanan}}
+        <option value="{{ . }}" {{ if eq . $.Status }}selected{{ end }}>{{ labelStatus . }}</option>
+        {{end}}
+      </select>
+    </div>
+    <div class="field">
+      <label for="filter-sumber">Sumber</label>
+      <select id="filter-sumber" name="sumber">
+        <option value="">Semua</option>
+        {{range .SumberPesanan}}
+        <option value="{{ . }}" {{ if eq . $.Sumber }}selected{{ end }}>{{ labelSumber . }}</option>
+        {{end}}
+      </select>
+    </div>
+    <button type="submit" class="tombol secondary">Terapkan</button>
+  </form>
+
+  {{if .Daftar}}
+  <div class="tabel-bungkus">
+    <table>
+      <thead>
+        <tr>
+          <th>Pesanan</th>
+          <th>Acara</th>
+          <th class="angka">Tamu</th>
+          <th class="angka">Total</th>
+          <th class="angka">Dibayar</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{range .Daftar}}
+        <tr>
+          <td>
+            <strong>#{{ .ID }} · {{ .PelangganNama }}</strong><br>
+            <span class="muted">{{ .PaketNama }} · {{ labelSumber .SumberPesanan }}{{ if .MasakDiLokasi }} · masak di lokasi{{ end }}</span>
+          </td>
+          <td class="nowrap">{{ tanggal .TanggalAcara }}</td>
+          <td class="angka">{{ .JumlahTamu }}</td>
+          <td class="angka">{{ rupiah .TotalHarga }}</td>
+          <td class="angka">{{ rupiah .TotalDibayar }}</td>
+          <td>
+            <span class="lencana {{ if eq .Status "selesai" }}sukses{{ else if eq .Status "batal" }}bahaya{{ else if eq .Status "produksi" }}peringatan{{ else }}netral{{ end }}">{{ labelStatus .Status }}</span>
+            <br><span class="muted">{{ .LabelJatuhTempo }}</span>
+          </td>
+          <td class="kanan">
+            <a class="tombol kecil secondary" href="/pesanan/{{ .ID }}">Detail</a>
+          </td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  </div>
+  {{else}}
+  <div class="kosong">
+    <div class="ikon-kosong"><svg class="i i-lg"><use href="#i-kosong"></use></svg></div>
+    Tidak ada pesanan yang cocok dengan filter.
+  </div>
+  {{end}}
+</div>
+{{end}}

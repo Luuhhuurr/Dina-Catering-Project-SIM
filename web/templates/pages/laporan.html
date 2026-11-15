@@ -1,0 +1,178 @@
+{{define "content"}}
+<div class="page-head">
+  <div class="judul-blok">
+    <h1>Laporan</h1>
+    <p class="sub">Laba rugi, rekap pesanan, margin per pesanan, dan posisi stok bahan.</p>
+  </div>
+</div>
+
+<div class="kartu">
+  <h2><svg class="i"><use href="#i-kalendar"></use></svg>Periode laporan</h2>
+  <form class="filter-bar" method="get" action="/laporan">
+    <div class="field">
+      <label for="bulan">Pilih bulan</label>
+      <input type="month" id="bulan" name="bulan" value="{{ .Bulan }}">
+    </div>
+    <button type="submit" class="tombol secondary">Terapkan</button>
+    <span class="muted">Periode {{ tanggal .Dari }} - {{ tanggal .Sampai }}</span>
+  </form>
+</div>
+
+<div class="grid grid-4" style="margin-bottom:18px">
+  <div class="statistik hijau">
+    <div class="kepala">
+      <span class="ikon"><svg class="i"><use href="#i-naik"></use></svg></span>
+      <span class="label">Pemasukan</span>
+    </div>
+    <div class="angka">{{ rupiah .LabaRugi.Pemasukan }}</div>
+    <div class="keterangan">dari pembayaran diterima</div>
+  </div>
+  <div class="statistik amber">
+    <div class="kepala">
+      <span class="ikon"><svg class="i"><use href="#i-bahan"></use></svg></span>
+      <span class="label">Pengeluaran bahan</span>
+    </div>
+    <div class="angka">{{ rupiah .LabaRugi.PengeluaranBahan }}</div>
+    <div class="keterangan">pembelian di pasar</div>
+  </div>
+  <div class="statistik biru">
+    <div class="kepala">
+      <span class="ikon"><svg class="i"><use href="#i-biaya"></use></svg></span>
+      <span class="label">Biaya operasional</span>
+    </div>
+    <div class="angka">{{ rupiah .LabaRugi.PengeluaranOps }}</div>
+    <div class="keterangan">gas, listrik, mobilitas, lain-lain</div>
+  </div>
+  <div class="statistik hijau">
+    <div class="kepala">
+      <span class="ikon"><svg class="i"><use href="#i-uang"></use></svg></span>
+      <span class="label">Keuntungan</span>
+    </div>
+    <div class="angka">{{ rupiah .LabaRugi.Keuntungan }}</div>
+    <div class="keterangan">pemasukan - bahan - biaya</div>
+  </div>
+</div>
+
+<div class="grid grid-2">
+  <div class="kartu">
+    <h2><svg class="i"><use href="#i-pesanan"></use></svg>Rekap pesanan per status</h2>
+    <div class="tabel-bungkus">
+      <table>
+        <thead><tr><th>Status</th><th class="angka">Jumlah</th></tr></thead>
+        <tbody>
+          {{range .StatusCounts}}
+          <tr><td>{{ labelStatus .Status }}</td><td class="angka">{{ .Jumlah }}</td></tr>
+          {{end}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="kartu">
+    <h2><svg class="i"><use href="#i-pelanggan"></use></svg>Rekap pesanan per sumber</h2>
+    <div class="tabel-bungkus">
+      <table>
+        <thead><tr><th>Sumber</th><th class="angka">Jumlah</th></tr></thead>
+        <tbody>
+          {{range .SumberCounts}}
+          <tr><td>{{ labelSumber .SumberPesanan }}</td><td class="angka">{{ .Jumlah }}</td></tr>
+          {{end}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="kartu">
+  <h2><svg class="i"><use href="#i-laporan"></use></svg>Margin per pesanan</h2>
+  {{if .Margin}}
+  <div class="tabel-bungkus">
+    <table>
+      <thead>
+        <tr>
+          <th>Pesanan</th>
+          <th>Paket</th>
+          <th class="angka">Total</th>
+          <th class="angka">HPP total</th>
+          <th class="angka">Margin</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{range .Margin}}
+        <tr>
+          <td><a href="/pesanan/{{ .PesananID }}">#{{ .PesananID }} · {{ .PelangganNama }}</a></td>
+          <td>{{ .PaketNama }} · {{ .JumlahTamu }} tamu</td>
+          <td class="angka">{{ rupiah .TotalHarga }}</td>
+          <td class="angka">{{ rupiah .TotalHPP }}</td>
+          <td class="angka">
+            <span class="lencana {{ if .Peringatan }}bahaya{{ else }}sukses{{ end }}">{{ persen .MarginPersen }}</span>
+          </td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  </div>
+  {{else}}
+  <div class="kosong">
+    <div class="ikon-kosong"><svg class="i i-lg"><use href="#i-kosong"></use></svg></div>
+    Belum ada pesanan untuk dihitung marginnya.
+  </div>
+  {{end}}
+</div>
+
+{{if .PeringatanMargin}}
+<div class="kartu">
+  <h2><svg class="i"><use href="#i-peringatan"></use></svg>Paket dengan margin di bawah 30%</h2>
+  <div class="tabel-bungkus">
+    <table>
+      <thead>
+        <tr>
+          <th>Paket</th>
+          <th class="angka">Harga jual</th>
+          <th class="angka">HPP/porsi</th>
+          <th class="angka">Margin</th>
+          <th class="angka">Harga min. 30%</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{range .PeringatanMargin}}
+        <tr>
+          <td>{{ .Nama }}</td>
+          <td class="angka">{{ rupiah .HargaJualEfektif }}</td>
+          <td class="angka">{{ rupiah .HPPPerPorsi }}</td>
+          <td class="angka"><span class="lencana bahaya">{{ persen .MarginPersen }}</span></td>
+          <td class="angka">{{ rupiah .HargaJualMinimum }}</td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  </div>
+</div>
+{{end}}
+
+<div class="kartu">
+  <h2><svg class="i"><use href="#i-bahan"></use></svg>Stok bahan saat ini</h2>
+  <div class="tabel-bungkus">
+    <table>
+      <thead>
+        <tr>
+          <th>Bahan</th>
+          <th>Satuan</th>
+          <th class="angka">Stok</th>
+          <th class="angka">Harga terakhir</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{range .Bahan}}
+        <tr>
+          <td>{{ .Nama }}</td>
+          <td>{{ .Satuan }}</td>
+          <td class="angka">{{ numerik .StokSaatIni }}</td>
+          <td class="angka">{{ rupiah .HargaTerakhir }}</td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  </div>
+</div>
+{{end}}
