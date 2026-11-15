@@ -7,9 +7,32 @@ HPP, pesanan, pembayaran, jadwal produksi, dan laporan keuangan.
 Dibangun sebagai Final Proyek dengan **Go 1.26 + chi + sqlc (pgx) + PostgreSQL 16 +
 HTMX**. Tanpa ORM, tanpa framework frontend.
 
+| | |
+|---|---|
+| **Dokumentasi Docker (untuk pemula)** | [`docs/DOCKER.md`](docs/DOCKER.md) |
+| **Bahasa** | Go 1.26 · `html/template` + HTMX 2 (vanilla CSS) |
+| **Database** | PostgreSQL 16 · akses via **sqlc (pgx/v5)**, tanpa ORM |
+| **Migrasi** | golang-migrate v4 (file migrasi di-embed ke binary) |
+| **Runtime** | Docker + docker-compose (2 service: `app`, `postgres`) |
+| **Pengujian** | unit test HPP/margin/jadwal bayar + smoke test 18 langkah |
+| **Lisensi** | Dibuat sebagai Final Proyek kuliah |
+
+### Masalah yang diselesaikan
+
+Owner usaha katering mencatat stok di buku, harga di Excel, dan jadwal dapur di
+papan tulis. Akibatnya **harga bahan naik, harga paket tetap, dan dia tidak tahu
+berapa yang benar-benar untung**. Proyek ini memindahkan seluruh itu ke satu
+aplikasi web, dengan kalkulator HPP berbasis resep sebagai inti: begitu harga
+bahan berubah, HPP dan margin semua paket langsung dihitung ulang dan paket
+yang turun di bawah margin 30% diberi badge peringatan.
+
 ---
 
 ## 1. Menjalankan aplikasi
+
+> **Belum pernah pakai Docker?** Baca [`docs/DOCKER.md`](docs/DOCKER.md) dulu —
+> panduan lengkap dari nol (image, container, volume, network) sampai penjelasan
+> baris per baris `Dockerfile` dan `docker-compose.yml`.
 
 ```bash
 git clone <repo>
@@ -50,7 +73,27 @@ export PORT=8080
 
 ---
 
-## 2. Fitur
+## 2. Tangkapan layar
+
+| Login | Dashboard |
+|---|---|
+| ![Login](docs/screenshots/1-login.png) | ![Dashboard](docs/screenshots/2-dashboard.png) |
+
+| Kalkulator HPP | Paket & margin |
+|---|---|
+| ![Kalkulator HPP](docs/screenshots/3-kalkulator-hpp.png) | ![Paket](docs/screenshots/4-paket-margin.png) |
+
+| Resep menu | Papan produksi |
+|---|---|
+| ![Resep](docs/screenshots/5-menu-resep.png) | ![Produksi](docs/screenshots/6-produksi.png) |
+
+| Laporan laba rugi |
+|---|
+| ![Laporan](docs/screenshots/7-laporan.png) |
+
+---
+
+## 3. Fitur
 
 ### A. Kalkulator HPP & Resep (fitur prioritas)
 
@@ -112,7 +155,7 @@ Kolom `role` sudah disiapkan untuk pembatasan hak akses di masa depan.
 
 ---
 
-## 3. Rumus perhitungan
+## 4. Rumus perhitungan
 
 Semua rumus ada di `internal/service` dan tersedia unit test.
 
@@ -137,7 +180,7 @@ perhitungan tidak tumpang tindih.
 
 ---
 
-## 4. Struktur proyek
+## 5. Struktur proyek
 
 ```
 dina-catering/
@@ -168,6 +211,9 @@ dina-catering/
 ├── docker-compose.yml
 ├── .env.example
 ├── scripts/smoke-test.sh             # uji otomatis seluruh alur aplikasi
+├── docs/
+│   ├── DOCKER.md                     # panduan Docker untuk pemula
+│   └── screenshots/                  # tangkapan layar halaman utama
 ├── go.mod
 └── README.md
 ```
@@ -216,7 +262,7 @@ HTMX versus halaman penuh, serta logout.
 
 ---
 
-## 5. ERD
+## 6. ERD
 
 ```mermaid
 erDiagram
@@ -335,7 +381,7 @@ erDiagram
 
 ---
 
-## 6. Catatan keputusan desain
+## 7. Catatan keputusan desain
 
 Hal-hal yang tidak sepenuhnya ditentukan oleh spesifikasi, dan pilihan yang dipakai:
 
@@ -385,7 +431,7 @@ Hal-hal yang tidak sepenuhnya ditentukan oleh spesifikasi, dan pilihan yang dipa
 
 ---
 
-## 7. Catatan operasional
+## 8. Catatan operasional
 
 * Zona waktu container diset `Asia/Jakarta` agar perhitungan H-30 dan H-7 konsisten
   dengan kalender toko.
