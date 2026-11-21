@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daftar Layar — Prototipe Antarmuka SIM Dina Catering</title>
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<div class="rangka">
+ <aside class="sidebar">
+ <div class="merek">
+ <span class="logo">DC</span>
+ <span>
+ <span class="nama">Dina Catering</span>
+ <span class="sub">Prototipe Antarmuka</span>
+ </span>
+ </div>
+ <nav>
+ <div class="nav-grup">
+ <div class="judul">Daftar Layar</div>
+ <a href="index.html" class="aktif"><span class="kotak-ikon"></span>Semua layar</a>
+ <a href="../05-Rancangan-Antarmuka.md"><span class="kotak-ikon"></span>Dokumen rancangan</a>
+ </div>
+ </nav>
+ </aside>
+
+ <div class="isi">
+ <header class="topbar">
+ <div class="remah">Dina Catering &nbsp;/&nbsp; <b>Prototipe Antarmuka</b></div>
+ <div class="spasi"></div>
+ </header>
+
+ <main class="kontener">
+ <div class="kepala-halaman">
+ <h1>Prototipe Antarmuka</h1>
+ <p>Wireframe low-fidelity untuk laporan tugas akhir. Klik salah satu layar di bawah untuk
+ melihat wireframe dan keterangan rancangannya.</p>
+ </div>
+
+ <div class="daftar-layar">
+ <a class="kartu-layar" id="layar-1" href="01-login.html">
+ <span class="no">Layar 1</span>
+ <h3>Login</h3>
+ <p>Masuk ke aplikasi sebagai owner</p>
+ <span class="rute">/login</span>
+ </a>
+ <a class="kartu-layar" id="layar-2" href="02-dashboard.html">
+ <span class="no">Layar 2</span>
+ <h3>Dashboard</h3>
+ <p>Ringkasan usaha harian</p>
+ <span class="rute">/</span>
+ </a>
+ <a class="kartu-layar" id="layar-3" href="03-pelanggan.html">
+ <span class="no">Layar 3</span>
+ <h3>Pelanggan</h3>
+ <p>Kelola data pelanggan</p>
+ <span class="rute">/pelanggan</span>
+ </a>
+ <a class="kartu-layar" id="layar-4" href="04-bahan-baku.html">
+ <span class="no">Layar 4</span>
+ <h3>Bahan Baku</h3>
+ <p>Master bahan dan riwayat harga</p>
+ <span class="rute">/bahan</span>
+ </a>
+ <a class="kartu-layar" id="layar-5" href="05-pembelian.html">
+ <span class="no">Layar 5</span>
+ <h3>Pembelian</h3>
+ <p>Catat pembelian bahan di pasar</p>
+ <span class="rute">/pembelian</span>
+ </a>
+ <a class="kartu-layar" id="layar-6" href="06-menu-resep.html">
+ <span class="no">Layar 6</span>
+ <h3>Menu & Resep</h3>
+ <p>Menu dan bahan per porsi</p>
+ <span class="rute">/menu</span>
+ </a>
+ <a class="kartu-layar" id="layar-7" href="07-paket-margin.html">
+ <span class="no">Layar 7</span>
+ <h3>Paket & Margin</h3>
+ <p>Harga paket, HPP, dan margin</p>
+ <span class="rute">/paket</span>
+ </a>
+ <a class="kartu-layar" id="layar-8" href="08-kalkulator-hpp.html">
+ <span class="no">Layar 8</span>
+ <h3>Kalkulator HPP</h3>
+ <p>Hitung HPP, margin, harga minimum</p>
+ <span class="rute">/hpp</span>
+ </a>
+ <a class="kartu-layar" id="layar-9" href="09-pesanan.html">
+ <span class="no">Layar 9</span>
+ <h3>Pesanan</h3>
+ <p>Buat pesanan dan pantau pembayaran</p>
+ <span class="rute">/pesanan</span>
+ </a>
+ <a class="kartu-layar" id="layar-10" href="10-pesanan-detail.html">
+ <span class="no">Layar 10</span>
+ <h3>Detail Pesanan</h3>
+ <p>Status, pembayaran, dan tugas</p>
+ <span class="rute">/pesanan/{id}</span>
+ </a>
+ <a class="kartu-layar" id="layar-11" href="11-produksi.html">
+ <span class="no">Layar 11</span>
+ <h3>Produksi</h3>
+ <p>Papan tugas dapur</p>
+ <span class="rute">/produksi</span>
+ </a>
+ <a class="kartu-layar" id="layar-12" href="12-laporan.html">
+ <span class="no">Layar 12</span>
+ <h3>Laporan</h3>
+ <p>Laba rugi, margin, dan stok</p>
+ <span class="rute">/laporan</span>
+ </a>
+ <a class="kartu-layar" id="layar-13" href="13-biaya.html">
+ <span class="no">Layar 13</span>
+ <h3>Biaya</h3>
+ <p>Catat biaya operasional</p>
+ <span class="rute">/biaya</span>
+ </a>
+ <a class="kartu-layar" id="layar-14" href="14-pengaturan.html">
+ <span class="no">Layar 14</span>
+ <h3>Pengaturan</h3>
+ <p>Persentase biaya operasional</p>
+ <span class="rute">/pengaturan</span>
+ </a>
+ </div>
+
+ <section class="kartu" style="margin-top:16px">
+ <h2>Peta navigasi</h2>
+ <table>
+ <thead><tr><th>Dari</th><th>Ke</th><th>Kondisi</th></tr></thead>
+ <tbody>
+ <tr><td>Login</td><td>Dashboard</td><td>Berhasil login</td></tr>
+ <tr><td>Dashboard</td><td>Detail Pesanan</td><td>Klik nama pelanggan atau tanggal acara</td></tr>
+ <tr><td>Pesanan</td><td>Detail Pesanan</td><td>Setelah pesanan baru disimpan</td></tr>
+ <tr><td>Detail Pesanan</td><td>Produksi</td><td>Setelah DP dicatat, tugas produksi dibuat otomatis</td></tr>
+ <tr><td>Dashboard</td><td>Laporan</td><td>Menu Analitik &amp; Sistem</td></tr>
+ <tr><td>Sidebar mana pun</td><td>Logout</td><td>Tombol Keluar di topbar</td></tr>
+ </tbody>
+ </table>
+ </section>
+
+ <section class="kartu">
+ <h2>Legenda simbol</h2>
+ <div class="legenda">
+ <div class="item"><span class="simbol kotak"></span> Area input / daftar data</div>
+ <div class="item"><span class="simbol garis"></span> Area pilihan atau nilai yang dihitung otomatis</div>
+ <div class="item"><span class="simbol kosong"></span> Area kosong (belum ada data)</div>
+ </div>
+ <ul style="margin-top:12px">
+ <li><strong>Kotak abu-abu solid</strong> — elemen yang dapat diklik atau diisi.</li>
+ <li><strong>Bingkai putus-putus</strong> — nilai yang dihitung sistem dan tidak dapat diisi manual
+ (mis. total harga, tenggat DP, tenggat pelunasan).</li>
+ <li><strong>Lencana berpola tepi tebal</strong> — status yang perlu perhatian, misalnya margin di bawah 30%
+ atau pembayaran terlambat.</li>
+ <li><strong>Kotak kosong bergaris titik</strong> — pesan galat atau kondisi tanpa data.</li>
+ </ul>
+ </section>
+
+ <section class="keterangan">
+ <h3>Keterangan rancangan</h3>
+ <h4>Tujuan wireframe</h4>
+ <p>Menunjukkan letak dan jenis setiap komponen antarmuka beserta aturan mainannya,
+ tanparides concerned dengan warna dan ornaments. Prototipe sengaja dibuat low-fidelity
+ karena yang diuji adalah tata letak dan alur, bukanampilan akhir.</p>
+ <h4>Cara memakai</h4>
+ <ul>
+ <li>Buka <code>index.html</code> pada browser; tidak perlu server.</li>
+ <li>Klik nama layar untuk melihat wireframe lengkapnya.</li>
+ <li>Setiap wireframe memuat blok "Keterangan rancangan" di bagian bawah.</li>
+ </ul>
+ </section>
+ </main>
+
+ <footer class="kaki-halaman">
+ Prototipe low-fidelity untuk laporan tugas akhir — Sistem Informasi Manajemen Dina Catering.
+ </footer>
+ </div>
+</div>
+</body>
+</html>

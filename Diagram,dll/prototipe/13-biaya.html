@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biaya — Prototipe Antarmuka SIM Dina Catering</title>
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<div class="rangka">
+ <aside class="sidebar">
+ <div class="merek">
+ <span class="logo">DC</span>
+ <span>
+ <span class="nama">Dina Catering</span>
+ <span class="sub">SIM Usaha Katering</span>
+ </span>
+ </div>
+ <nav>
+
+ <div class="nav-grup">
+ <div class="judul">Utama</div>
+ <a href="02-dashboard.html" class=""><span class="kotak-ikon"></span>Dashboard</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Pelanggan &amp; Menu</div>
+ <a href="03-pelanggan.html" class=""><span class="kotak-ikon"></span>Pelanggan</a>
+ <a href="06-menu-resep.html" class=""><span class="kotak-ikon"></span>Menu &amp; Resep</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Bahan &amp; Produksi</div>
+ <a href="04-bahan-baku.html" class=""><span class="kotak-ikon"></span>Bahan Baku</a>
+ <a href="05-pembelian.html" class=""><span class="kotak-ikon"></span>Pembelian</a>
+ <a href="11-produksi.html" class=""><span class="kotak-ikon"></span>Produksi</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Penjualan</div>
+ <a href="07-paket-margin.html" class=""><span class="kotak-ikon"></span>Paket &amp; HPP</a>
+ <a href="08-kalkulator-hpp.html" class=""><span class="kotak-ikon"></span>Kalkulator HPP</a>
+ <a href="09-pesanan.html" class=""><span class="kotak-ikon"></span>Pesanan</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Analitik &amp; Sistem</div>
+ <a href="12-laporan.html" class=""><span class="kotak-ikon"></span>Laporan</a>
+ <a href="13-biaya.html" class="aktif"><span class="kotak-ikon"></span>Biaya</a>
+ <a href="14-pengaturan.html" class=""><span class="kotak-ikon"></span>Pengaturan</a>
+ </div>
+ </nav>
+ </aside>
+
+ <div class="isi">
+ <header class="topbar">
+ <div class="remah">Dina Catering &nbsp;/&nbsp; <b>Biaya</b></div>
+ <div class="spasi"></div>
+ <div class="pengguna">
+ <span class="avatar">A</span>
+ <span>
+ <span>admin</span>
+ <span class="peran">admin</span>
+ </span>
+ <button class="tombol kecil polos" type="button">Keluar</button>
+ </div>
+ </header>
+
+ <main class="kontener">
+ <div class="kepala-halaman">
+ <h1>Biaya Operasional</h1>
+ <p>Periode 01 Juni 2026 - 30 Juni 2026. Biaya ini dipakai di perhitungan laba rugi.</p>
+ </div>
+
+ <div class="grid grid-2">
+ <section class="kartu">
+ <h2>Catat biaya</h2>
+ <div class="baris-form">
+ <div class="bidang">
+ <label for="kategori">Kategori</label>
+ <select id="kategori">
+ <option>Gas LPG</option>
+ <option>Listrik</option>
+ <option>Mobilitas</option>
+ <option>Tenaga kerja</option>
+ <option>Perlengkapan</option>
+ <option>Lainnya</option>
+ </select>
+ </div>
+ <div class="bidang">
+ <label for="deskripsi">Deskripsi</label>
+ <input type="text" id="deskripsi" placeholder="mis. Isi tabung gas 3 kg">
+ </div>
+ <div class="baris-form kolom-2">
+ <div class="bidang">
+ <label for="jumlah">Nominal (Rp)</label>
+ <input type="number" id="jumlah" step="1000" value="225000">
+ </div>
+ <div class="bidang">
+ <label for="tanggal">Tanggal</label>
+ <input type="date" id="tanggal">
+ </div>
+ </div>
+ <div class="baris-tombol">
+ <button class="tombol utama" type="button">Simpan biaya</button>
+ </div>
+ </div>
+ </section>
+
+ <section class="kartu">
+ <h2>Daftar biaya</h2>
+ <table>
+ <thead><tr><th>Tanggal</th><th>Kategori</th><th>Deskripsi</th><th class="angka">Nominal</th></tr></thead>
+ <tbody>
+ <tr><td>21 Jun 2026</td><td>Gas LPG</td><td>Isi tabung gas 3 kg</td><td class="angka">Rp 225.000</td></tr>
+ <tr><td>18 Jun 2026</td><td>Tenaga kerja</td><td>Honor 2 awak dapur</td><td class="angka">Rp 500.000</td></tr>
+ <tr><td>12 Jun 2026</td><td>Mobilitas</td><td>Bensin angkut 1 hari</td><td class="angka">Rp 150.000</td></tr>
+ </tbody>
+ <tfoot>
+ <tr><th colspan="3">Total</th><th class="angka">Rp 875.000</th></tr>
+ </tfoot>
+ </table>
+ </section>
+ </div>
+
+ <section class="keterangan">
+ <h3>Keterangan rancangan</h3>
+ <h4>Tujuan layar</h4>
+ <p>Mencatat biaya operasional yang tidak termasuk harga bahan — seperti gas, listrik, transport,
+ dan honor pekerja dapur. Jumlah ini dipakai pada laporan laba rugi.</p>
+ <h4>Komponen</h4>
+ <ul>
+ <li>Form catat biaya: kategori, deskripsi, nominal, tanggal.</li>
+ <li>Tabel daftar biaya pada periode terpilih beserta baris total.</li>
+ </ul>
+ <h4>Aturan mainannya</h4>
+ <ul>
+ <li>Kategori dipilih dari daftar tetap: gas, listrik, mobilitas, tenaga kerja, perlengkapan, lainnya.</li>
+ <li>Nominal disimpan dalam Rupiah penuh (BIGINT), tanpa pecahan.</li>
+ <li>Deskripsi bebas diisi untuk menjelaskan rincian biaya.</li>
+ <li>Total pada kaki tabel adalah jumlah seluruh biaya pada periode yang sedang ditampilkan.</li>
+ <li>Biaya yang dicatat di sini <strong>bukan</strong> bagian dari HPP bahan. Hubungan antara
+ biaya operasional dan HPP diatur lewat persentase pada halaman Pengaturan.</li>
+ </ul>
+ <h4>Aksi</h4>
+ <ul>
+ <li>Simpan biaya — menambah catatan biaya baru.</li>
+ <li>Pilih periode — mengubah rentang biaya yang ditampilkan.</li>
+ </ul>
+ </section>
+ </main>
+
+ <footer class="kaki-halaman">
+ Prototipe low-fidelity untuk laporan tugas akhir — Sistem Informasi Manajemen Dina Catering.
+ Rute sebenarnya: <code>/biaya</code>
+ </footer>
+ </div>
+</div>
+</body>
+</html>

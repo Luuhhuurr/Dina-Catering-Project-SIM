@@ -1,0 +1,14 @@
+flowchart TD
+ A([Pelanggan mengirim pesanan<br/>via Instagram / WhatsApp]) --> B[Owner mencatat pesanan<br/>di buku tulis]
+ B --> C[Owner cek ketersediaan bahan<br/>di buku stok]
+ C --> D{Bahan<br/>cukup?}
+ D -- Tidak --> E[Owner informing pelanggan<br/>dan menawarkan paket lain]
+ E --> B
+ D -- Ya --> F[Owner menghitung HPP<br/>manual di Excel]
+ F --> G[Owner menentukan harga jual<br/>dan margin]
+ G --> H[Owner menulis jadwal produksi<br/>di papan tulis dapur]
+ H --> I[Owner mencari data pembayaran<br/>di buku catatan]
+ I --> J[Owner menyusun laporan laba rugi<br/>manual dari beberapa buku]
+
+ J --> K([Owner tidak mengetahui<br/>harga jual minimum agar<br/>margin tetap 30%])
+ K --> L([Harga bahan naik tetapi<br/>harga paket tidak pernah<br/>diperbarui])

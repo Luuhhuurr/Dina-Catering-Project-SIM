@@ -1,0 +1,139 @@
+erDiagram
+ USERS {
+ serial id PK
+ text username UK
+ text password_hash
+ text role
+ timestamptz created_at
+ }
+
+ PENGATURAN {
+ text kunci PK
+ text nilai
+ timestamptz updated_at
+ }
+
+ PELANGGAN {
+ serial id PK
+ text nama
+ text kontak
+ text alamat
+ text catatan
+ timestamptz created_at
+ }
+
+ BAHAN_BAKU {
+ serial id PK
+ text nama UK
+ text satuan
+ double stok_saat_ini
+ bigint harga_terakhir
+ timestamptz created_at
+ }
+
+ HARGA_BAHAN_HISTORY {
+ serial id PK
+ int bahan_baku_id FK
+ bigint harga_satuan
+ date tanggal_berlaku
+ timestamptz created_at
+ }
+
+ PEMBELIAN_BAHAN {
+ serial id PK
+ int bahan_baku_id FK
+ double jumlah
+ bigint harga_satuan
+ bigint total
+ text pasar
+ date tanggal
+ timestamptz created_at
+ }
+
+ MENU {
+ serial id PK
+ text nama UK
+ text deskripsi
+ timestamptz created_at
+ }
+
+ RESEP_ITEM {
+ serial id PK
+ int menu_id FK
+ int bahan_baku_id FK
+ double jumlah_per_porsi
+ text satuan
+ }
+
+ PAKET_MENU {
+ serial id PK
+ text nama UK
+ bigint harga_per_porsi
+ bigint harga_per_porsi_weekend "nullable"
+ int tahun_berlaku
+ text deskripsi
+ timestamptz created_at
+ }
+
+ PAKET_MENU_ITEM {
+ serial id PK
+ int paket_menu_id FK
+ int menu_id FK
+ }
+
+ PESANAN {
+ serial id PK
+ int pelanggan_id FK
+ int paket_menu_id FK
+ int jumlah_tamu
+ date tanggal_acara
+ text lokasi
+ text sumber_pesanan
+ bigint total_harga
+ text status
+ text catatan
+ boolean masak_di_lokasi
+ date tgl_jatuh_tempo_dp
+ date tgl_jatuh_tempo_lunas
+ timestamptz created_at
+ }
+
+ PEMBAYARAN {
+ serial id PK
+ int pesanan_id FK
+ bigint jumlah
+ text tipe
+ date tanggal
+ text metode
+ timestamptz created_at
+ }
+
+ TUGAS_PRODUKSI {
+ serial id PK
+ int pesanan_id FK
+ text nama_tugas
+ text pj
+ date deadline "nullable"
+ text status
+ timestamptz created_at
+ }
+
+ BIAYA_OPERASIONAL {
+ serial id PK
+ text kategori
+ text deskripsi
+ bigint jumlah
+ date tanggal
+ timestamptz created_at
+ }
+
+ PELANGGAN ||--o{ PESANAN: "memesan"
+ PAKET_MENU ||--o{ PESANAN: "dipilih"
+ MENU ||--o{ RESEP_ITEM: "diresep"
+ BAHAN_BAKU ||--o{ RESEP_ITEM: "dipakai"
+ PAKET_MENU ||--o{ PAKET_MENU_ITEM: "berisi"
+ MENU ||--o{ PAKET_MENU_ITEM: "tercantum"
+ BAHAN_BAKU ||--o{ HARGA_BAHAN_HISTORY: "riwayat harga"
+ BAHAN_BAKU ||--o{ PEMBELIAN_BAHAN: "dibeli"
+ PESANAN ||--o{ PEMBAYARAN: "dibayar"
+ PESANAN ||--o{ TUGAS_PRODUKSI: "dikerjakan"

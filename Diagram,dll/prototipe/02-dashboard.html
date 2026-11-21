@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard — Prototipe Antarmuka SIM Dina Catering</title>
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<div class="rangka">
+ <aside class="sidebar">
+ <div class="merek">
+ <span class="logo">DC</span>
+ <span>
+ <span class="nama">Dina Catering</span>
+ <span class="sub">SIM Usaha Katering</span>
+ </span>
+ </div>
+ <nav>
+
+ <div class="nav-grup">
+ <div class="judul">Utama</div>
+ <a href="02-dashboard.html" class="aktif"><span class="kotak-ikon"></span>Dashboard</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Pelanggan & Menu</div>
+ <a href="03-pelanggan.html" class=""><span class="kotak-ikon"></span>Pelanggan</a>
+ <a href="06-menu-resep.html" class=""><span class="kotak-ikon"></span>Menu & Resep</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Bahan & Produksi</div>
+ <a href="04-bahan-baku.html" class=""><span class="kotak-ikon"></span>Bahan Baku</a>
+ <a href="05-pembelian.html" class=""><span class="kotak-ikon"></span>Pembelian</a>
+ <a href="11-produksi.html" class=""><span class="kotak-ikon"></span>Produksi</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Penjualan</div>
+ <a href="07-paket-margin.html" class=""><span class="kotak-ikon"></span>Paket & HPP</a>
+ <a href="08-kalkulator-hpp.html" class=""><span class="kotak-ikon"></span>Kalkulator HPP</a>
+ <a href="09-pesanan.html" class=""><span class="kotak-ikon"></span>Pesanan</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Analitik & Sistem</div>
+ <a href="12-laporan.html" class=""><span class="kotak-ikon"></span>Laporan</a>
+ <a href="13-biaya.html" class=""><span class="kotak-ikon"></span>Biaya</a>
+ <a href="14-pengaturan.html" class=""><span class="kotak-ikon"></span>Pengaturan</a>
+ </div>
+ </nav>
+ </aside>
+
+ <div class="isi">
+ <header class="topbar">
+ <div class="remah">Dina Catering &nbsp;/&nbsp; <b>Dashboard</b></div>
+ <div class="spasi"></div>
+ <div class="pengguna">
+ <span class="avatar">A</span>
+ <span>
+ <span>admin</span>
+ <span class="peran">admin</span>
+ </span>
+ <button class="tombol kecil polos" type="button">Keluar</button>
+ </div>
+ </header>
+
+ <main class="kontener">
+ <div class="kepala-halaman">
+ <h1>Dashboard</h1>
+ <p>Ringkasan usaha per hari ini.</p>
+ </div>
+
+ <div class="banner">
+ <strong>Perhatian:</strong> 1 paket punya margin di bawah 30%. Update harga jual atau turunkan HPP.
+ </div>
+
+ <div class="grid grid-4">
+ <div class="statistik">
+ <div class="label">Pelanggan</div>
+ <div class="angka">6</div>
+ <div class="ket">tersimpan di basis data</div>
+ </div>
+ <div class="statistik">
+ <div class="label">Menunggu pembayaran</div>
+ <div class="angka">4</div>
+ <div class="ket">DP atau pelunasan belum lengkap</div>
+ </div>
+ <div class="statistik">
+ <div class="label">Pemasukan bulan ini</div>
+ <div class="angka">Rp 12.450.000</div>
+ <div class="ket">dari pembayaran diterima</div>
+ </div>
+ <div class="statistik">
+ <div class="label">Keuntungan bulan ini</div>
+ <div class="angka">Rp 6.120.000</div>
+ <div class="ket">pemasukan dikurangi bahan & biaya</div>
+ </div>
+ </div>
+
+ <div class="grid grid-2">
+ <section class="kartu">
+ <h2>Menunggu pembayaran</h2>
+ <table>
+ <thead><tr><th class="">Pesanan</th><th class="">Acara</th><th class="angka">Sisa</th><th class="">Keterangan</th></tr></thead>
+ <tbody>
+ <tr><td class="">Agus Prasetyo<br><small>Standar · 150 tamu</small></td><td class="">25 Nov 2026</td><td class="angka">Rp 2.625.000</td><td class=""><span class="lencana bahaya">DP terlambat</span></td></tr>
+ <tr><td class="">Budi Santoso<br><small>Hemat · 50 tamu</small></td><td class="">05 Des 2026</td><td class="angka">Rp 800.000</td><td class=""><span class="lencana peringatan">Pelunasan jatuh tempo</span></td></tr>
+ <tr><td class="">Ratna Wulandari<br><small>Standar · 80 tamu</small></td><td class="">16 Des 2026</td><td class="angka">Rp 2.800.000</td><td class=""><span class="lencana peringatan">DP jatuh tempo</span></td></tr>
+ </tbody>
+ </table>
+ </section>
+
+ <section class="kartu">
+ <h2>Agenda acara 7 hari ke depan</h2>
+ <table>
+ <thead><tr><th class="">Acara</th><th class="">Paket</th><th class="angka">Total</th></tr></thead>
+ <tbody>
+ <tr><td class="">25 Nov 2026<br><small>Agus Prasetyo</small></td><td class="">Standar<br><small>150 tamu</small></td><td class="angka">Rp 5.250.000</td></tr>
+ <tr><td class="">05 Des 2026<br><small>Budi Santoso</small></td><td class="">Hemat<br><small>50 tamu</small></td><td class="angka">Rp 1.600.000</td></tr>
+ </tbody>
+ </table>
+ </section>
+ </div>
+
+ <div class="grid grid-2">
+ <section class="kartu">
+ <h2>Pesanan per status</h2>
+ <table>
+ <thead><tr><th class="">Status</th><th class="angka">Jumlah</th></tr></thead>
+ <tbody>
+ <tr><td class=""><span class="lencana">Baru</span></td><td class="angka">1</td></tr>
+ <tr><td class=""><span class="lencana">Final Meeting</span></td><td class="angka">1</td></tr>
+ <tr><td class=""><span class="lencana">Survei Lokasi</span></td><td class="angka">1</td></tr>
+ <tr><td class=""><span class="lencana">Produksi</span></td><td class="angka">1</td></tr>
+ <tr><td class=""><span class="lencana">Selesai</span></td><td class="angka">1</td></tr>
+ <tr><td class=""><span class="lencana">Batal</span></td><td class="angka">1</td></tr>
+ </tbody>
+ </table>
+ </section>
+
+ <section class="kartu">
+ <h2>Pesanan per sumber</h2>
+ <table>
+ <thead><tr><th class="">Sumber</th><th class="angka">Jumlah</th></tr></thead>
+ <tbody>
+ <tr><td class="">Instagram</td><td class="angka">3</td></tr>
+ <tr><td class="">Mulut ke Mulut</td><td class="angka">1</td></tr>
+ <tr><td class="">Hotel / Wedding</td><td class="angka">1</td></tr>
+ <tr><td class="">Lainnya</td><td class="angka">1</td></tr>
+ </tbody>
+ </table>
+ </section>
+ </div>
+
+ <section class="kartu">
+ <h2>Paket dengan margin di bawah 30%</h2>
+ <table>
+ <thead><tr><th class="">Paket</th><th class="angka">Harga jual</th><th class="angka">HPP/porsi</th><th class="angka">Margin</th><th class="angka">Harga min. 30%</th></tr></thead>
+ <tbody>
+ <tr><td class="">Premium<br><small>4 menu</small></td><td class="angka">Rp 40.000</td><td class="angka">Rp 29.850</td><td class="angka"><span class="lencana bahaya">25,4%</span></td><td class="angka">Rp 42.643</td></tr>
+ </tbody>
+ </table>
+ </section>
+
+
+ <section class="keterangan">
+ <h3>Keterangan rancangan</h3>
+ <h4>Tujuan layar</h4>
+ <p>Memberi gambaran keadaan usaha hari ini dalam satu layar, dan langsung menunjuk hal yang
+ perlu ditangani owner: pesanan yang belum lunas, acara yang akan datang, dan paket yang
+ marginnya terlalu tipis.</p>
+ <h4>Komponen</h4>
+ <ul>
+ <li>Banner peringatan margin (hanya tampil bila ada paket di bawah 30%).</li>
+ <li>Empat kartu statistik: pelanggan, menunggu pembayaran, pemasukan, keuntungan.</li>
+ <li>Tabel pesanan menunggu pembayaran beserta label jatuh tempo.</li>
+ <li>Tabel agenda acara tujuh hari ke depan.</li>
+ <li>Tabel rekap pesanan per status dan per sumber.</li>
+ <li>Tabel paket dengan margin di bawah 30% beserta harga jual minimum.</li>
+ </ul>
+ <h4>Label jatuh tempo</h4>
+ <ul>
+ <li><span class="lencana bahaya">DP terlambat</span> — sudah lewat tanggal jatuh tempo DP.</li>
+ <li><span class="lencana bahaya">Pelunasan terlambat</span> — sudah lewat tanggal pelunasan.</li>
+ <li><span class="lencana peringatan">DP jatuh tempo</span> — jatuh tempo dalam 7 hari.</li>
+ <li><span class="lencana peringatan">Pelunasan jatuh tempo</span> — jatuh tempo dalam 7 hari.</li>
+ </ul>
+ <h4>Interaksi</h4>
+ <ul>
+ <li>Nama pelanggan dan tanggal acara tertaut ke halaman detail pesanan.</li>
+ <li>Tabelwaiting diisi ulang secara otomatis setelah pembayaran dicatat.</li>
+ </ul>
+ </section>
+ </main>
+
+ <footer class="kaki-halaman">
+ Prototipe low-fidelity untuk laporan tugas akhir — Sistem Informasi Manajemen Dina Catering.
+ Rute sebenarnya: <code>/</code>
+ </footer>
+ </div>
+</div>
+</body>
+</html>

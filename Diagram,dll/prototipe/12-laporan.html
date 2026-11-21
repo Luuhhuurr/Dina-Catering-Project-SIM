@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laporan — Prototipe Antarmuka SIM Dina Catering</title>
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<div class="rangka">
+ <aside class="sidebar">
+ <div class="merek">
+ <span class="logo">DC</span>
+ <span>
+ <span class="nama">Dina Catering</span>
+ <span class="sub">SIM Usaha Katering</span>
+ </span>
+ </div>
+ <nav>
+
+ <div class="nav-grup">
+ <div class="judul">Utama</div>
+ <a href="02-dashboard.html" class=""><span class="kotak-ikon"></span>Dashboard</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Pelanggan & Menu</div>
+ <a href="03-pelanggan.html" class=""><span class="kotak-ikon"></span>Pelanggan</a>
+ <a href="06-menu-resep.html" class=""><span class="kotak-ikon"></span>Menu & Resep</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Bahan & Produksi</div>
+ <a href="04-bahan-baku.html" class=""><span class="kotak-ikon"></span>Bahan Baku</a>
+ <a href="05-pembelian.html" class=""><span class="kotak-ikon"></span>Pembelian</a>
+ <a href="11-produksi.html" class=""><span class="kotak-ikon"></span>Produksi</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Penjualan</div>
+ <a href="07-paket-margin.html" class=""><span class="kotak-ikon"></span>Paket & HPP</a>
+ <a href="08-kalkulator-hpp.html" class=""><span class="kotak-ikon"></span>Kalkulator HPP</a>
+ <a href="09-pesanan.html" class=""><span class="kotak-ikon"></span>Pesanan</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Analitik & Sistem</div>
+ <a href="12-laporan.html" class="aktif"><span class="kotak-ikon"></span>Laporan</a>
+ <a href="13-biaya.html" class=""><span class="kotak-ikon"></span>Biaya</a>
+ <a href="14-pengaturan.html" class=""><span class="kotak-ikon"></span>Pengaturan</a>
+ </div>
+ </nav>
+ </aside>
+
+ <div class="isi">
+ <header class="topbar">
+ <div class="remah">Dina Catering &nbsp;/&nbsp; <b>Laporan</b></div>
+ <div class="spasi"></div>
+ <div class="pengguna">
+ <span class="avatar">A</span>
+ <span>
+ <span>admin</span>
+ <span class="peran">admin</span>
+ </span>
+ <button class="tombol kecil polos" type="button">Keluar</button>
+ </div>
+ </header>
+
+ <main class="kontener">
+ <div class="kepala-halaman">
+ <h1>Laporan</h1>
+ <p>Laba rugi, rekap pesanan, margin per pesanan, dan posisi stok bahan.</p>
+ </div>
+
+ <section class="kartu">
+ <h2>Periode laporan</h2>
+ <div class="baris-form">
+ <div class="baris-form kolom-3">
+ <div class="bidang">
+ <label for="bulan">Pilih bulan</label>
+ <input type="month" id="bulan" value="2026-11">
+ </div>
+ <div class="bidang">
+ <label>&nbsp;</label>
+ <div class="baris-tombol" style="margin-top:0"><button class="tombol" type="button">Terapkan</button></div>
+ </div>
+ <div class="bidang">
+ <label>&nbsp;</label>
+ <div class="petunjuk" style="margin-top:6px">Periode 1 Nov 2026 – 30 Nov 2026</div>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <div class="grid grid-4">
+ <div class="statistik">
+ <div class="label">Pemasukan</div>
+ <div class="angka">Rp 12.450.000</div>
+ <div class="ket">dari pembayaran diterima</div>
+ </div>
+ <div class="statistik">
+ <div class="label">Pengeluaran bahan</div>
+ <div class="angka">Rp 4.830.000</div>
+ <div class="ket">pembelian di pasar</div>
+ </div>
+ <div class="statistik">
+ <div class="label">Biaya operasional</div>
+ <div class="angka">Rp 1.500.000</div>
+ <div class="ket">gas, listrik, mobilitas, lain-lain</div>
+ </div>
+ <div class="statistik">
+ <div class="label">Keuntungan</div>
+ <div class="angka">Rp 6.120.000</div>
+ <div class="ket">pemasukan - bahan - biaya</div>
+ </div>
+ </div>
+
+ <div class="grid grid-2">
+ <section class="kartu">
+ <h2>Rekap pesanan per status</h2>
+ <table>
+ <thead><tr><th class="">Status</th><th class="angka">Jumlah</th></tr></thead>
+ <tbody>
+ <tr><td class=""><span class="lencana">Baru</span></td><td class="angka">1</td></tr>
+ <tr><td class=""><span class="lencana">Final Meeting</span></td><td class="angka">1</td></tr>
+ <tr><td class=""><span class="lencana">Produksi</span></td><td class="angka">1</td></tr>
+ <tr><td class=""><span class="lencana">Selesai</span></td><td class="angka">1</td></tr>
+ </tbody>
+ </table>
+ </section>
+
+ <section class="kartu">
+ <h2>Rekap pesanan per sumber</h2>
+ <table>
+ <thead><tr><th class="">Sumber</th><th class="angka">Jumlah</th></tr></thead>
+ <tbody>
+ <tr><td class="">Instagram</td><td class="angka">2</td></tr>
+ <tr><td class="">Hotel / Wedding</td><td class="angka">1</td></tr>
+ <tr><td class="">Mulut ke Mulut</td><td class="angka">1</td></tr>
+ </tbody>
+ </table>
+ </section>
+ </div>
+
+ <section class="kartu">
+ <h2>Margin per pesanan</h2>
+ <table>
+ <thead><tr><th class="">Pesanan</th><th class="">Paket</th><th class="angka">Total</th><th class="angka">Total HPP</th><th class="angka">Margin</th></tr></thead>
+ <tbody>
+ <tr><td class="">#5 Dewi Lestari</td><td class="">Premium</td><td class="angka">Rp 8.000.000</td><td class="angka">Rp 5.970.000</td><td class="angka">25,4%</td></tr>
+ <tr><td class="">#4 Agus Prasetyo</td><td class="">Standar</td><td class="angka">Rp 5.250.000</td><td class="angka">Rp 3.096.000</td><td class="angka">41,0%</td></tr>
+ </tbody>
+ </table>
+ </section>
+
+ <section class="kartu">
+ <h2>Peringatan margin di bawah 30%</h2>
+ <table>
+ <thead><tr><th class="">Paket</th><th class="angka">Harga jual</th><th class="angka">HPP/porsi</th><th class="angka">Margin</th><th class="angka">Harga min. 30%</th></tr></thead>
+ <tbody>
+ <tr><td class="">Premium</td><td class="angka">Rp 40.000</td><td class="angka">Rp 29.850</td><td class="angka"><span class="lencana bahaya">25,4%</span></td><td class="angka">Rp 42.643</td></tr>
+ </tbody>
+ </table>
+ </section>
+
+ <section class="kartu">
+ <h2>Posisi stok bahan</h2>
+ <table>
+ <thead><tr><th class="">Bahan</th><th class="">Satuan</th><th class="angka">Stok</th><th class="angka">Harga terakhir</th></tr></thead>
+ <tbody>
+ <tr><td class="">Beras Premium</td><td class="">kg</td><td class="angka">40</td><td class="angka">Rp 16.000</td></tr>
+ <tr><td class="">Daging Sapi</td><td class="">kg</td><td class="angka">15</td><td class="angka">Rp 135.000</td></tr>
+ <tr><td class="">Ayam Potong</td><td class="">kg</td><td class="angka">30</td><td class="angka">Rp 38.000</td></tr>
+ </tbody>
+ </table>
+ </section>
+
+
+ <section class="keterangan">
+ <h3>Keterangan rancangan</h3>
+ <h4>Tujuan layar</h4>
+ <p>Menjadi sumber kebenaran untung-rugi usaha. Owner melihat berapa pemasukan, berapa
+ pengeluaran, dan berapa keuntungan dalam satu bulan, sekaligus paket mana yang marginnya
+ perlu ditinjau.</p>
+ <h4>Komponen</h4>
+ <ul>
+ <li>Filter bulan periode laporan.</li>
+ <li>Empat kartu statistik laba rugi.</li>
+ <li>Tabel rekap pesanan per status dan per sumber.</li>
+ <li>Tabel margin per pesanan.</li>
+ <li>Tabel peringatan margin di bawah 30%.</li>
+ <li>Tabel posisi stok bahan.</li>
+ </ul>
+ <h4>Rumus laba rugi</h4>
+ <ul>
+ <li>Pemasukan = Σ pembayaran pada periode (DP dan pelunasan).</li>
+ <li>Pengeluaran bahan = Σ pembelian bahan pada periode.</li>
+ <li>Biaya operasional = Σ catatan biaya operasional pada periode.</li>
+ <li>Keuntungan = pemasukan − pengeluaran bahan − biaya operasional.</li>
+ </ul>
+ <h4>Catatan penting</h4>
+ <ul>
+ <li>Laba rugi memakai biaya operasional <strong>aktual</strong> yang dicatat, bukan
+ estimasi persentase. Karena itu persentase biaya operasional pada kalkulator HPP tidak
+ ditambahkan lagi di sini agar tidak terjadi penghitungan ganda.</li>
+ <li>Margin per pesanan dihitung dari HPP paket memakai harga bahan pada tanggal acara pesanan
+ tersebut.</li>
+ <li>Bulan bawaan adalah bulan berjalan.</li>
+ </ul>
+ </section>
+ </main>
+
+ <footer class="kaki-halaman">
+ Prototipe low-fidelity untuk laporan tugas akhir — Sistem Informasi Manajemen Dina Catering.
+ Rute sebenarnya: <code>/laporan</code>
+ </footer>
+ </div>
+</div>
+</body>
+</html>

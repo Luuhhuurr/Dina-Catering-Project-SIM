@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pelanggan — Prototipe Antarmuka SIM Dina Catering</title>
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<div class="rangka">
+ <aside class="sidebar">
+ <div class="merek">
+ <span class="logo">DC</span>
+ <span>
+ <span class="nama">Dina Catering</span>
+ <span class="sub">SIM Usaha Katering</span>
+ </span>
+ </div>
+ <nav>
+
+ <div class="nav-grup">
+ <div class="judul">Utama</div>
+ <a href="02-dashboard.html" class=""><span class="kotak-ikon"></span>Dashboard</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Pelanggan &amp; Menu</div>
+ <a href="03-pelanggan.html" class="aktif"><span class="kotak-ikon"></span>Pelanggan</a>
+ <a href="06-menu-resep.html" class=""><span class="kotak-ikon"></span>Menu &amp; Resep</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Bahan &amp; Produksi</div>
+ <a href="04-bahan-baku.html" class=""><span class="kotak-ikon"></span>Bahan Baku</a>
+ <a href="05-pembelian.html" class=""><span class="kotak-ikon"></span>Pembelian</a>
+ <a href="11-produksi.html" class=""><span class="kotak-ikon"></span>Produksi</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Penjualan</div>
+ <a href="07-paket-margin.html" class=""><span class="kotak-ikon"></span>Paket &amp; HPP</a>
+ <a href="08-kalkulator-hpp.html" class=""><span class="kotak-ikon"></span>Kalkulator HPP</a>
+ <a href="09-pesanan.html" class=""><span class="kotak-ikon"></span>Pesanan</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Analitik &amp; Sistem</div>
+ <a href="12-laporan.html" class=""><span class="kotak-ikon"></span>Laporan</a>
+ <a href="13-biaya.html" class=""><span class="kotak-ikon"></span>Biaya</a>
+ <a href="14-pengaturan.html" class=""><span class="kotak-ikon"></span>Pengaturan</a>
+ </div>
+ </nav>
+ </aside>
+
+ <div class="isi">
+ <header class="topbar">
+ <div class="remah">Dina Catering &nbsp;/&nbsp; <b>Pelanggan</b></div>
+ <div class="spasi"></div>
+ <div class="pengguna">
+ <span class="avatar">A</span>
+ <span>
+ <span>admin</span>
+ <span class="peran">admin</span>
+ </span>
+ <button class="tombol kecil polos" type="button">Keluar</button>
+ </div>
+ </header>
+
+ <main class="kontener">
+ <div class="kepala-halaman">
+ <h1>Pelanggan</h1>
+ <p>Daftar pelanggan yang pernah memesan katering Dina Catering.</p>
+ </div>
+
+ <div class="grid grid-2">
+ <section class="kartu">
+ <h2>Tambah pelanggan</h2>
+ <div class="baris-form">
+ <div class="bidang">
+ <label for="nama">Nama</label>
+ <input type="text" id="nama" placeholder="Contoh: Ibu Rina Wijaya">
+ </div>
+ <div class="bidang">
+ <label for="kontak">Kontak (WhatsApp)</label>
+ <input type="text" id="kontak" placeholder="08xxxxxxxxxx">
+ </div>
+ <div class="bidang">
+ <label for="alamat">Alamat</label>
+ <textarea id="alamat" rows="2"></textarea>
+ </div>
+ <div class="bidang">
+ <label for="catatan">Catatan</label>
+ <input type="text" id="catatan" placeholder="catatan khusus pelanggan">
+ </div>
+ <div class="baris-tombol">
+ <button class="tombol utama" type="button">Simpan pelanggan</button>
+ </div>
+ </div>
+ </section>
+
+ <section class="kartu">
+ <h2>Daftar pelanggan</h2>
+ <table>
+ <thead><tr><th>Nama</th><th>Kontak</th><th>Alamat</th><th class="angka">Pesanan</th><th>Aksi</th></tr></thead>
+ <tbody>
+ <tr><td>Ibu Rina Wijaya</td><td>0812-3456-7890</td><td>Jl. Melati No. 12, Ungaran</td><td class="angka">4</td><td>Hapus</td></tr>
+ <tr><td>Bapak Hendra</td><td>0813-2222-1111</td><td>Jl. Kenanga No. 5, Ungaran</td><td class="angka">2</td><td>Hapus</td></tr>
+ <tr><td>Kantor PT Maju</td><td>0271-555444</td><td>Jl. Sudirman No. 88</td><td class="angka">1</td><td>Hapus</td></tr>
+ <tr><td>Siti Aminah</td><td>0857-9090-1234</td><td>Jl. Anggrek No. 3, Ungaran</td><td class="angka">1</td><td>Hapus</td></tr>
+ </tbody>
+ </table>
+ </section>
+ </div>
+
+ <section class="keterangan">
+ <h3>Keterangan rancangan</h3>
+ <h4>Tujuan layar</h4>
+ <p>Menyimpan data pelanggan agar setiap pesanan selalu terhubung dengan pemesan yang jelas.
+ Pelanggan menjadi acuan saat membuat pesanan.</p>
+ <h4>Komponen</h4>
+ <ul>
+ <li>Form tambah pelanggan: nama, kontak (WhatsApp), alamat, catatan.</li>
+ <li>Tabel seluruh pelanggan dengan kolom jumlah pesanan dan aksi hapus.</li>
+ </ul>
+ <h4>Aturan mainannya</h4>
+ <ul>
+ <li>Nama pelanggan wajib diisi; kontak, alamat, dan catatan boleh dikosongkan.</li>
+ <li>Nama pelanggan tidak dibatasi unik — satu orang boleh punya lebih dari satu entri bila
+ misalnya berbeda nomor telepon.</li>
+ <li>Kolom jumlah pesanan dihitung otomatis dari tabel pesanan, bukan disimpan.</li>
+ <li>Penghapusan pelanggan ditolak bila masih dipakai oleh pesanan.</li>
+ </ul>
+ <h4>Aksi</h4>
+ <ul>
+ <li>Simpan pelanggan — menambah pelanggan baru.</li>
+ <li>Hapus — menghapus pelanggan (dengan konfirmasi).</li>
+ </ul>
+ </section>
+ </main>
+
+ <footer class="kaki-halaman">
+ Prototipe low-fidelity untuk laporan tugas akhir — Sistem Informasi Manajemen Dina Catering.
+ Rute sebenarnya: <code>/pelanggan</code>
+ </footer>
+ </div>
+</div>
+</body>
+</html>

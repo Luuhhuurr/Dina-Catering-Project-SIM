@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pengaturan — Prototipe Antarmuka SIM Dina Catering</title>
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<div class="rangka">
+ <aside class="sidebar">
+ <div class="merek">
+ <span class="logo">DC</span>
+ <span>
+ <span class="nama">Dina Catering</span>
+ <span class="sub">SIM Usaha Katering</span>
+ </span>
+ </div>
+ <nav>
+
+ <div class="nav-grup">
+ <div class="judul">Utama</div>
+ <a href="02-dashboard.html" class=""><span class="kotak-ikon"></span>Dashboard</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Pelanggan &amp; Menu</div>
+ <a href="03-pelanggan.html" class=""><span class="kotak-ikon"></span>Pelanggan</a>
+ <a href="06-menu-resep.html" class=""><span class="kotak-ikon"></span>Menu &amp; Resep</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Bahan &amp; Produksi</div>
+ <a href="04-bahan-baku.html" class=""><span class="kotak-ikon"></span>Bahan Baku</a>
+ <a href="05-pembelian.html" class=""><span class="kotak-ikon"></span>Pembelian</a>
+ <a href="11-produksi.html" class=""><span class="kotak-ikon"></span>Produksi</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Penjualan</div>
+ <a href="07-paket-margin.html" class=""><span class="kotak-ikon"></span>Paket &amp; HPP</a>
+ <a href="08-kalkulator-hpp.html" class=""><span class="kotak-ikon"></span>Kalkulator HPP</a>
+ <a href="09-pesanan.html" class=""><span class="kotak-ikon"></span>Pesanan</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Analitik &amp; Sistem</div>
+ <a href="12-laporan.html" class=""><span class="kotak-ikon"></span>Laporan</a>
+ <a href="13-biaya.html" class=""><span class="kotak-ikon"></span>Biaya</a>
+ <a href="14-pengaturan.html" class="aktif"><span class="kotak-ikon"></span>Pengaturan</a>
+ </div>
+ </nav>
+ </aside>
+
+ <div class="isi">
+ <header class="topbar">
+ <div class="remah">Dina Catering &nbsp;/&nbsp; <b>Pengaturan</b></div>
+ <div class="spasi"></div>
+ <div class="pengguna">
+ <span class="avatar">A</span>
+ <span>
+ <span>admin</span>
+ <span class="peran">admin</span>
+ </span>
+ <button class="tombol kecil polos" type="button">Keluar</button>
+ </div>
+ </header>
+
+ <main class="kontener">
+ <div class="kepala-halaman">
+ <h1>Pengaturan</h1>
+ <p>Pengaturan perhitungan HPP dan margin.</p>
+ </div>
+
+ <div class="grid grid-2">
+ <section class="kartu">
+ <h2>Biaya operasional</h2>
+ <p class="petunjuk">Persentase ini ditambahkan proporsional ke HPP bahan sebelum margin dihitung. Nilai bawaan 10%.</p>
+ <div class="baris-form">
+ <div class="bidang">
+ <label for="persen">Persentase (%)</label>
+ <input type="number" id="persen" step="0.5" value="10">
+ </div>
+ <div class="baris-tombol">
+ <button class="tombol utama" type="button">Simpan pengaturan</button>
+ </div>
+ </div>
+ </section>
+
+ <section class="kartu">
+ <h2>Seluruh nilai pengaturan</h2>
+ <table>
+ <thead><tr><th>Kunci</th><th>Nilai</th><th>Terakhir diubah</th></tr></thead>
+ <tbody>
+ <tr><td><code>biaya_operasional_persen</code></td><td>10</td><td>01 Jun 2026, 09:12</td></tr>
+ </tbody>
+ </table>
+ </section>
+ </div>
+
+ <section class="keterangan">
+ <h3>Keterangan rancangan</h3>
+ <h4>Tujuan layar</h4>
+ <p>Menetapkan parameter perhitungan yang dipakai seluruh sistem, agar owner dapat mengubahnya
+ tanpa mengubah kode atau-basis data.</p>
+ <h4>Komponen</h4>
+ <ul>
+ <li>Form biaya operasional: persentase yang ditambahkan ke HPP bahan.</li>
+ <li>Tabel seluruh nilai pengaturan beserta waktu perubahan terakhir.</li>
+ </ul>
+ <h4>Aturan mainannya</h4>
+ <ul>
+ <li>Persentase boleh pecahan (step 0,5), misal 12,5%.</li>
+ <li>Nilai bawaan bila belum pernah diatur adalah 10%.</li>
+ <li>Perubahan persentase langsung berlaku pada perhitungan HPP, margin, dan harga minimum
+ untuk setiap paket.</li>
+ <li>Nilai pengaturan disimpan sebagai pasangan kunci dan nilai pada tabel
+ <code>pengaturan</code>, sehingga jumlah jenis pengaturan dapat bertambah tanpa mengubah
+ skema tabel.</li>
+ <li>Margin minimum 30% bersifat tetap di dalam program dan tidak dapat diubah dari halaman ini.</li>
+ </ul>
+ <h4>Aksi</h4>
+ <ul>
+ <li>Simpan pengaturan — menyimpan nilai baru dan mencatat waktu perubahan.</li>
+ </ul>
+ </section>
+ </main>
+
+ <footer class="kaki-halaman">
+ Prototipe low-fidelity untuk laporan tugas akhir — Sistem Informasi Manajemen Dina Catering.
+ Rute sebenarnya: <code>/pengaturan</code>
+ </footer>
+ </div>
+</div>
+</body>
+</html>

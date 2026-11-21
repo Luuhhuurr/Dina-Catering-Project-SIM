@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagram SIM Dina Catering — Viewer</title>
+<style>body{font-family:"Segoe UI", Arial, sans-serif;margin:0;background:#f6f3ef;color:#241d18}header{background:#1e1814;color:#fff;padding:18px 24px}h1{margin:0 0 4px;font-size:19px}header p{margin:0;color:#cbbdb1;font-size:13px}main{padding:20px 24px;max-width:1400px;margin:0 auto}.dok{margin-bottom:26px}.dok h2{font-size:15px;border-bottom:2px solid #e2621c;padding-bottom:6px;margin:0 0 14px}.blok{border:1px solid #e8e1d9;border-radius:12px;background:#fff;padding:16px;margin-bottom:14px;overflow:auto}.blok h3{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#7d7268;margin:0 0 10px}.mermaid{text-align:center}</style>
+</head>
+<body>
+<header><h1>Diagram SIM Dina Catering</h1><p>Viewer Mermaid — sumber diagram tetap berupa blok Mermaid di dalam file Markdown pada folder ini.</p></header>
+<main>
+<section class="dok"><h2>01-Diagram-Proses-Usulan</h2>
+<div class="blok"><h3>Diagram 1</h3><pre class="mermaid">flowchart TD
+ A([Pelanggan mengirim pesanan&lt;br/&gt;via Instagram / WhatsApp]) --&gt; B[Owner mencatat pesanan&lt;br/&gt;di buku tulis]
+ B --&gt; C[Owner cek ketersediaan bahan&lt;br/&gt;di buku stok]
+ C --&gt; D{Bahan&lt;br/&gt;cukup?}
+ D -- Tidak --&gt; E[Owner informing pelanggan&lt;br/&gt;dan menawarkan paket lain]
+ E --&gt; B
+ D -- Ya --&gt; F[Owner menghitung HPP&lt;br/&gt;manual di Excel]
+ F --&gt; G[Owner menentukan harga jual&lt;br/&gt;dan margin]
+ G --&gt; H[Owner menulis jadwal produksi&lt;br/&gt;di papan tulis dapur]
+ H --&gt; I[Owner mencari data pembayaran&lt;br/&gt;di buku catatan]
+ I --&gt; J[Owner menyusun laporan laba rugi&lt;br/&gt;manual dari beberapa buku]
+
+ J --&gt; K([Owner tidak mengetahui&lt;br/&gt;harga jual minimum agar&lt;br/&gt;margin tetap 30%])
+ K --&gt; L([Harga bahan naik tetapi&lt;br/&gt;harga paket tidak pernah&lt;br/&gt;diperbarui])
+</pre></div>
+<div class="blok"><h3>Diagram 2</h3><pre class="mermaid">flowchart TD
+ A([Pelanggan mengirim pesanan&lt;br/&gt;via Instagram / WhatsApp]) --&gt; B[Owner login ke aplikasi&lt;br/&gt;SIM Dina Catering]
+ B --&gt; C[Owner membuka halaman&lt;br/&gt;Pesanan dan mengisi form&lt;br/&gt;pesanan baru]
+
+ C --&gt; D[Owner memilih Pelanggan&lt;br/&gt;atau menambah pelanggan baru]
+ D --&gt; E[Owner memilih Paket Menu&lt;br/&gt;dan mengisi jumlah tamu&lt;br/&gt;serta tanggal acara]
+
+ E --&gt; F[Owner menyimpan pesanan]
+ F --&gt; G([Sistem menghitung total harga&lt;br/&gt;otomatis])
+ G --&gt; H{Sistem mencari harga paket&lt;br/&gt;berlaku pada tahun acara}
+ H -- I[Ambil baris paket dengan&lt;br/&gt;tahun_berlaku &lt;= tahun acara&lt;br/&gt;paling dekat]
+ H --&gt; J{Saturday/Minggu&lt;br/&gt;dan ada harga weekend?}
+ J -- Ya --&gt; K[Harga jual efektif memakai&lt;br/&gt;harga akhir pekan]
+ J -- Tidak --&gt; L[Harga jual efektif memakai&lt;br/&gt;harga biasa]
+ I --&gt; M[Sistem menghitung tenggat&lt;br/&gt;DP H-30 dan pelunasan H-7]
+ K --&gt; M
+ L --&gt; M
+
+ M --&gt; N([Pesanan tersimpan dengan&lt;br/&gt;status 'baru' dan&lt;br/&gt;tenggat pembayaran]):::output
+
+ N --&gt; O[Owner mencatat pembayaran DP 50%]
+ O --&gt; P{Sistem membuat tugas produksi&lt;br/&gt;default untuk hari acara}
+ P -- Q[Persiapan bahan H-1, Masak H,&lt;br/&gt;Plating H, Pengiriman H]
+ Q --&gt; R[Status pesanan naik otomatis&lt;br/&gt;ke 'final_meeting']:::output
+ R --&gt; S[Owner melakukan final meeting&lt;br/&gt;dan survei lokasi bersama pelanggan]
+
+ S --&gt; T[Owner mengubah status pesanan&lt;br/&gt;menjadi 'produksi']
+ T --&gt; U([Sistem mengurangi stok bahan&lt;br/&gt;sesuai resep x jumlah tamu&lt;br/&gt;dalam satu transaksi]):::output
+ U --&gt; V[Tim dapur mengerjakan tugas&lt;br/&gt;pada papan produksi]
+ V --&gt; W[Owner mengubah status pesanan&lt;br/&gt;menjadi 'pengiriman' lalu 'selesai']
+ W --&gt; X[Owner mencatat pelunasan]
+ X --&gt; Y([Pesanan lunas])
+
+ Y --&gt; Z[Owner membuka halaman Laporan]
+ Z --&gt; AA([Laba rugi, rekap pesanan,&lt;br/&gt;margin per pesanan, dan&lt;br/&gt;posisi stok bahan]):::output
+
+ classDef output fill:#e8f6ed, stroke:#15803d, color:#0b3d1e
+</pre></div>
+<div class="blok"><h3>Diagram 3</h3><pre class="mermaid">flowchart TD
+ A([Owner mencatat pembelian bahan&lt;br/&gt;atau mengubah harga bahan]) --&gt; B[Sistem menyimpan baris baru&lt;br/&gt;di tabel harga_bahan_history&lt;br/&gt;dengan tanggal berlaku]
+ B --&gt; C[Sistem memperbarui&lt;br/&gt;harga_terakhir bahan]
+ C --&gt; D[Owner membuka menu atau paket&lt;br/&gt;dan menekan Hitung HPP]
+ D --&gt; E[Sistem membaca resep menu:&lt;br/&gt;bahan dan takaran per porsi]
+ E --&gt; F{Untuk setiap bahan,&lt;br/&gt;harga efektif pada&lt;br/&gt;tanggal acuan}
+ F -- G[Ambil harga terakhir dengan&lt;br/&gt;tanggal_berlaku &lt;= tanggal acuan]
+ F --&gt; H[Sistem menghitung&lt;br/&gt;HPP bahan = SUM&lt;br/&gt;takaran x harga efektif]
+ G --&gt; H
+ H --&gt; I[Sistem menambahkan biaya operasional&lt;br/&gt;persentase ke HPP bahan]
+ I --&gt; J[Sistem menjumlahkan HPP seluruh&lt;br/&gt;menu di dalam paket]
+ J --&gt; K[Sistem menghitung margin&lt;br/&gt;= (harga jual - HPP) / harga jual]
+ K --&gt; L{Margin minimal&lt;br/&gt;30% tercapai?}
+ L -- Tidak --&gt; M[Sistem menampilkan badge&lt;br/&gt;peringatan dan harga jual&lt;br/&gt;minimum HPP / 0,7]:::output
+ L -- Ya --&gt; N([Margin aman, paket&lt;br/&gt;siap dijual]):::output
+
+ classDef output fill:#e8f6ed, stroke:#15803d, color:#0b3d1e
+</pre></div>
+<div class="blok"><h3>Diagram 4</h3><pre class="mermaid">flowchart TD
+ A([Owner mencatat kebutuhan bahan]) --&gt; B[Owner membuka halaman&lt;br/&gt;Pembelian]
+ B --&gt; C[Owner mengisi data pembelian:&lt;br/&gt;bahan, jumlah, harga satuan,&lt;br/&gt;nama pasar, tanggal]
+ C --&gt; D[Sistem memulai transaksi database]
+ D --&gt; E[Sistem menyimpan baris baru&lt;br/&gt;di tabel pembelian_bahan]
+ E --&gt; F[System menambah stok_saat_ini&lt;br/&gt;pada bahan_baku]
+ F --&gt; G[Sistem menyimpan baris baru&lt;br/&gt;di tabel harga_bahan_history]
+ G --&gt; H[Sistem memperbarui harga_terakhir&lt;br/&gt;dengan harga pada tanggal berlaku&lt;br/&gt;paling baru]
+ H --&gt; I([Transaksi di-commit])
+ I --&gt; J([HPP seluruh paket&lt;br/&gt;terhitung ulang otomatis&lt;br/&gt;karena harga bahan berubah]):::output
+
+ D --&gt; K{Bahan tersedia&lt;br/&gt;cukup untuk pesanan&lt;br/&gt;yang masuk produksi?}
+ K -- Tidak --&gt; L[Sistem menampilkan&lt;br/&gt;stok bahan terkini di&lt;br/&gt;dashboard dan laporan]
+
+ classDef output fill:#e8f6ed, stroke:#15803d, color:#0b3d1e
+</pre></div>
+<div class="blok"><h3>Diagram 5</h3><pre class="mermaid">flowchart TD
+ A([Owner membuka halaman Laporan]) --&gt; B[Owner memilih bulan&lt;br/&gt;periode laporan]
+ B --&gt; C[Sistem menghitung rentang tanggal&lt;br/&gt;awal sampai akhir bulan terpilih]
+ C --&gt; D([Tiga sumber data&lt;br/&gt;dihitung terpisah]):::output
+
+ D --&gt; E[Pemasukan:&lt;br/&gt;SUM pembayaran pada periode]
+ D --&gt; F[Pengeluaran bahan:&lt;br/&gt;SUM pembelian_bahan&lt;br/&gt;pada periode]
+ D --&gt; G[Biaya operasional:&lt;br/&gt;SUM biaya_operasional&lt;br/&gt;pada periode]
+
+ E --&gt; H[Sistem menghitung&lt;br/&gt;Keuntungan = Pemasukan&lt;br/&gt;- Pengeluaran bahan&lt;br/&gt;- Biaya operasional]
+ F --&gt; H
+ G --&gt; H
+
+ H --&gt; I[Sistem menghitung rekap pesanan&lt;br/&gt;per status dan per sumber]
+ I --&gt; J[Sistem menghitung margin&lt;br/&gt;per pesanan]
+ J --&gt; K{Margin pesanan&lt;br/&gt;di bawah 30%?}
+ K -- Ya --&gt; L[Sistem menandai pesanan&lt;br/&gt;dengan peringatan margin]:::output
+ K -- Tidak --&gt; M([Margin pesanan aman]):::output
+ I --&gt; N[Sistem menampilkan posisi&lt;br/&gt;stok bahan terkini]
+ L --&gt; O([Laporan laba rugi&lt;br/&gt;dan ringkasan tampil]):::output
+ M --&gt; O
+ N --&gt; O
+
+ classDef output fill:#e8f6ed, stroke:#15803d, color:#0b3d1e
+</pre></div>
+</section>
+<section class="dok"><h2>02-DFD-Level-0-dan-Level-1</h2>
+<div class="blok"><h3>Diagram 1</h3><pre class="mermaid">flowchart LR
+ Pelanggan([Pelanggan])
+ Owner([Owner / Admin])
+ Pasar([Pasar / Supplier])
+ Dapur([Tim Dapur])
+
+ SIM["Sistem Informasi Manajemen&lt;br/&gt;Dina Catering&lt;br/&gt;&lt;br/&gt;0. SIM DINACATERING"]
+
+ Pelanggan --&gt;|Data Pesanan,&lt;br/&gt;Data Pelanggan| SIM
+ Owner --&gt;|Data Pelanggan,&lt;br/&gt;Data Pesanan,&lt;br/&gt;Data Bahan Baku,&lt;br/&gt;Data Pembelian,&lt;br/&gt;Data Pembayaran,&lt;br/&gt;Data Biaya Operasional,&lt;br/&gt;Data Resep & Paket Menu,&lt;br/&gt;Data Pengaturan,&lt;br/&gt;Kredensial Login| SIM
+ Pasar --&gt;|Data Bahan Baku&lt;br/&gt;dan Harga Beli| SIM
+ Dapur --&gt;|Status Pengerjaan&lt;br/&gt;Tugas Produksi| SIM
+
+ SIM --&gt;|Ringkasan Dashboard,&lt;br/&gt;Rekap Pesanan,&lt;br/&gt;Laporan Laba Rugi,&lt;br/&gt;Margin & Peringatan Margin,&lt;br/&gt;Jadwal Produksi,&lt;br/&gt;Daftar Stok Bahan,&lt;br/&gt;Konfirmasi Pemesanan| Owner
+ SIM --&gt;|Status Pesanan,&lt;br/&gt;Informasi Pembayaran| Pelanggan
+ SIM --&gt;|Informasi Kebutuhan&lt;br/&gt;Bahan| Pasar
+ SIM --&gt;|Tugas Produksi&lt;br/&gt;dan PJ| Dapur
+
+ classDef proc fill:#e8f3fa, stroke:#1d6fa5, color:#0b3550, stroke-width:2px
+ class SIM proc
+</pre></div>
+<div class="blok"><h3>Diagram 2</h3><pre class="mermaid">flowchart TB
+ Owner([Owner / Admin])
+ Pelanggan([Pelanggan])
+ Pasar([Pasar / Supplier])
+ Dapur([Tim Dapur])
+
+ subgraph SIMD["Sistem Informasi Manajemen Dina Catering"]
+ P1["1.0 Manajemen Data Master&lt;br/&gt;(Pelanggan, Bahan, Menu,&lt;br/&gt;Resep, Paket, Pengaturan)"]
+ P2["2.0 Pemrosesan Pesanan"]
+ P3["3.0 Pemrosesan Pembelian dan Stok"]
+ P4["4.0 Pemrosesan Pembayaran"]
+ P5["5.0 Penjadwalan Produksi"]
+ P6["6.0 Pelaporan"]
+ end
+
+ D1[(D1 Pelanggan)]
+ D2[(D2 Bahan Baku dan&lt;br/&gt;Riwayat Harga)]
+ D3[(D3 Menu dan Resep)]
+ D4[(D4 Paket Menu)]
+ D5[(D5 Pesanan)]
+ D6[(D6 Pembayaran)]
+ D7[(D7 Tugas Produksi)]
+ D8[(D8 Biaya Operasional)]
+ D9[(D9 Pengguna dan Pengaturan)]
+
+ Owner --&gt;|Data Pelanggan| P1
+ Owner --&gt;|Data Bahan Baku| P1
+ Owner --&gt;|Data Resep dan Paket Menu| P1
+ Owner --&gt;|Data Pengaturan| P1
+ Owner --&gt;|Data Pesanan| P2
+ Owner --&gt;|Data Pembelian| P3
+ Owner --&gt;|Data Pembayaran| P4
+ Owner --&gt;|Status Tugas| P5
+ Owner --&gt;|Data Biaya Operasional| P6
+ Owner --&gt;|Kredensial Login| P9[("Verifikasi Login&lt;br/&gt;(D9)")]
+
+ Pelanggan --&gt;|Data Pesanan| P2
+ Pasar --&gt;|Data Harga Beli| P3
+ Dapur --&gt;|Status Pengerjaan| P5
+
+ P1 --&gt;|Data Pelanggan| D1
+ P1 --&gt;|Data Bahan Baku| D2
+ P1 --&gt;|Data Resep| D3
+ P1 --&gt;|Data Paket Menu| D4
+ P1 --&gt;|Data Pengaturan| D9
+
+ P2 --&gt;|Data Pesanan| D5
+ P3 --&gt;|Data Pembelian| D2
+ P4 --&gt;|Data Pembayaran| D6
+ P5 --&gt;|Data Tugas Produksi| D7
+ P6 --&gt;|Data Biaya Operasional| D8
+
+ P2 --&gt;|Data Pelanggan| D1
+ P2 --&gt;|Data Paket Menu| D4
+ P4 --&gt;|Data Pesanan| D5
+ P5 --&gt;|Data Pesanan| D5
+ P3 --&gt;|Data Stok Bahan| D2
+ P6 --&gt;|Data Pesanan| D5
+ P6 --&gt;|Data Pembayaran| D6
+ P6 --&gt;|Data Stok Bahan| D2
+
+ P1 --&gt;|Data Master consolidated| P2
+ P1 --&gt;|Harga dan Resep| P2
+ P5 --&gt;|Info Stok terpakai| P3
+ P2 --&gt;|Jumlah Tamu dan Paket| P5
+ P4 --&gt;|Status Pembayaran| P2
+
+ P2 --&gt;|Status Pesanan| Pelanggan
+ P2 --&gt;|Total Harga dan Tenggat| Pelanggan
+ P1 --&gt;|Daftar Master Data| Owner
+ P2 --&gt;|Daftar Pesanan| Owner
+ P3 --&gt;|Info Kebutuhan Bahan| Pasar
+ P3 --&gt;|Stok dan Harga Terakhir| Owner
+ P4 --&gt;|Riwayat Pembayaran| Owner
+ P5 --&gt;|Tugas Produksi dan PJ| Dapur
+ P5 --&gt;|Papan Produksi| Owner
+ P6 --&gt;|Laporan Laba Rugi| Owner
+ P6 --&gt;|Rekap Pesanan| Owner
+ P6 --&gt;|Margin dan Peringatan| Owner
+ P6 --&gt;|Daftar Stok Bahan| Owner
+ P1 --&gt;|Ringkasan Master| Owner
+
+ classDef proc fill:#e8f3fa, stroke:#1d6fa5, color:#0b3550, stroke-width:2px
+ classDef store fill:#fff6e3, stroke:#b45309, color:#5a2b04
+ class P1, P2, P3, P4, P5, P6 proc
+ class D1, D2, D3, D4, D5, D6, D7, D8, D9 store
+</pre></div>
+</section>
+<section class="dok"><h2>03-Diagram-Use-Case</h2>
+<div class="blok"><h3>Diagram 1</h3><pre class="mermaid">flowchart LR
+ Owner([Owner / Admin])
+ Pelanggan([Pelanggan])
+ Pasar([Pasar / Supplier])
+ Dapur([Tim Dapur])
+
+ subgraph Sistem["Sistem Informasi Manajemen Dina Catering"]
+ UC1([1. Login dan Logout])
+ UC2([2. Kelola Pelanggan])
+ UC3([3. Kelola Bahan Baku])
+ UC4([4. Catat Riwayat Harga Bahan])
+ UC5([5. Catat Pembelian Bahan])
+ UC6([6. Kelola Menu dan Resep])
+ UC7([7. Kelola Paket Menu])
+ UC8([8. Hitung HPP])
+ UC9([9. Hitung Margin dan Deteksi Peringatan])
+ UC10([10. Buat Pesanan])
+ UC11([11. Ubah Status Pesanan])
+ UC12([12. Catat Pembayaran])
+ UC13([13. Kelola Tugas Produksi])
+ UC14([14. Catat Biaya Operasional])
+ UC15([15. Atur Pengaturan])
+ UC16([16. Lihat Dashboard])
+ UC17([17. Lihat Laporan])
+ UC18([18. Kelola Stok Bahan])
+ UCH([H. Hitung Harga Efektif Paket])
+ UCM([M. Hitung Margin Paket])
+ UCJ([J. Hitung Jadwal Pembayaran])
+ UCS([S. Perbarui Stok dan Riwayat Harga])
+ UCK([K. Kurangi Stok sesuai Resep])
+ end
+
+ Owner --&gt; UC1
+ Owner --&gt; UC2
+ Owner --&gt; UC3
+ Owner --&gt; UC4
+ Owner --&gt; UC5
+ Owner --&gt; UC6
+ Owner --&gt; UC7
+ Owner --&gt; UC8
+ Owner --&gt; UC9
+ Owner --&gt; UC10
+ Owner --&gt; UC11
+ Owner --&gt; UC12
+ Owner --&gt; UC13
+ Owner --&gt; UC14
+ Owner --&gt; UC15
+ Owner --&gt; UC16
+ Owner --&gt; UC17
+ Owner --&gt; UC18
+
+ Pelanggan -.menyampaikan.-&gt; UC10
+ Pelanggan -.menerima status.-&gt; UC11
+ Pasar -.menyediakan bahan.-&gt; UC5
+ Dapur -.mengerjakan tugas.-&gt; UC13
+
+ UC8 --&gt;|&lt;&lt;include&gt;&gt;| UCM
+ UC9 --&gt;|&lt;&lt;include&gt;&gt;| UCM
+ UC10 --&gt;|&lt;&lt;include&gt;&gt;| UCH
+ UC12 --&gt;|&lt;&lt;include&gt;&gt;| UCJ
+ UC5 --&gt;|&lt;&lt;include&gt;&gt;| UCS
+ UC11 --&gt;|&lt;&lt;include&gt;&gt;| UCK
+
+ UCH --&gt;|&lt;&lt;include&gt;&gt;| UCM
+
+ classDef uc fill:#e8f3fa, stroke:#1d6fa5, color:#0b3550
+ classDef helper fill:#fff6e3, stroke:#b45309, color:#5a2b04, stroke-dasharray:4 3
+ class UC1, UC2, UC3, UC4, UC5, UC6, UC7, UC8, UC9, UC10, UC11, UC12, UC13, UC14, UC15, UC16, UC17, UC18 uc
+ class UCH, UCM, UCJ, UCS, UCK helper
+</pre></div>
+</section>
+<section class="dok"><h2>04-ERD</h2>
+<div class="blok"><h3>Diagram 1</h3><pre class="mermaid">erDiagram
+ USERS {
+ serial id PK
+ text username UK
+ text password_hash
+ text role
+ timestamptz created_at
+ }
+
+ PENGATURAN {
+ text kunci PK
+ text nilai
+ timestamptz updated_at
+ }
+
+ PELANGGAN {
+ serial id PK
+ text nama
+ text kontak
+ text alamat
+ text catatan
+ timestamptz created_at
+ }
+
+ BAHAN_BAKU {
+ serial id PK
+ text nama UK
+ text satuan
+ double stok_saat_ini
+ bigint harga_terakhir
+ timestamptz created_at
+ }
+
+ HARGA_BAHAN_HISTORY {
+ serial id PK
+ int bahan_baku_id FK
+ bigint harga_satuan
+ date tanggal_berlaku
+ timestamptz created_at
+ }
+
+ PEMBELIAN_BAHAN {
+ serial id PK
+ int bahan_baku_id FK
+ double jumlah
+ bigint harga_satuan
+ bigint total
+ text pasar
+ date tanggal
+ timestamptz created_at
+ }
+
+ MENU {
+ serial id PK
+ text nama UK
+ text deskripsi
+ timestamptz created_at
+ }
+
+ RESEP_ITEM {
+ serial id PK
+ int menu_id FK
+ int bahan_baku_id FK
+ double jumlah_per_porsi
+ text satuan
+ }
+
+ PAKET_MENU {
+ serial id PK
+ text nama UK
+ bigint harga_per_porsi
+ bigint harga_per_porsi_weekend "nullable"
+ int tahun_berlaku
+ text deskripsi
+ timestamptz created_at
+ }
+
+ PAKET_MENU_ITEM {
+ serial id PK
+ int paket_menu_id FK
+ int menu_id FK
+ }
+
+ PESANAN {
+ serial id PK
+ int pelanggan_id FK
+ int paket_menu_id FK
+ int jumlah_tamu
+ date tanggal_acara
+ text lokasi
+ text sumber_pesanan
+ bigint total_harga
+ text status
+ text catatan
+ boolean masak_di_lokasi
+ date tgl_jatuh_tempo_dp
+ date tgl_jatuh_tempo_lunas
+ timestamptz created_at
+ }
+
+ PEMBAYARAN {
+ serial id PK
+ int pesanan_id FK
+ bigint jumlah
+ text tipe
+ date tanggal
+ text metode
+ timestamptz created_at
+ }
+
+ TUGAS_PRODUKSI {
+ serial id PK
+ int pesanan_id FK
+ text nama_tugas
+ text pj
+ date deadline "nullable"
+ text status
+ timestamptz created_at
+ }
+
+ BIAYA_OPERASIONAL {
+ serial id PK
+ text kategori
+ text deskripsi
+ bigint jumlah
+ date tanggal
+ timestamptz created_at
+ }
+
+ PELANGGAN ||--o{ PESANAN: "memesan"
+ PAKET_MENU ||--o{ PESANAN: "dipilih"
+ MENU ||--o{ RESEP_ITEM: "diresep"
+ BAHAN_BAKU ||--o{ RESEP_ITEM: "dipakai"
+ PAKET_MENU ||--o{ PAKET_MENU_ITEM: "berisi"
+ MENU ||--o{ PAKET_MENU_ITEM: "tercantum"
+ BAHAN_BAKU ||--o{ HARGA_BAHAN_HISTORY: "riwayat harga"
+ BAHAN_BAKU ||--o{ PEMBELIAN_BAHAN: "dibeli"
+ PESANAN ||--o{ PEMBAYARAN: "dibayar"
+ PESANAN ||--o{ TUGAS_PRODUKSI: "dikerjakan"
+</pre></div>
+</section>
+</main>
+<script type="module">
+import mermaid from "https://unpkg.com/mermaid@11.4.1/dist/mermaid.esm.min.mjs";
+mermaid.initialize({startOnLoad:true, theme:"base", themeVariables:{primaryColor:"#fff4ed", primaryTextColor:"#241d18", primaryBorderColor:"#c74d13", lineColor:"#7d7268", fontFamily:"Segoe UI, Arial, sans-serif"}});
+</script>
+</body>
+</html>

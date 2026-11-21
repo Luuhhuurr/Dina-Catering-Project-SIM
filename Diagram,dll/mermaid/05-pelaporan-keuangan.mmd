@@ -1,0 +1,24 @@
+flowchart TD
+ A([Owner membuka halaman Laporan]) --> B[Owner memilih bulan<br/>periode laporan]
+ B --> C[Sistem menghitung rentang tanggal<br/>awal sampai akhir bulan terpilih]
+ C --> D([Tiga sumber data<br/>dihitung terpisah]):::output
+
+ D --> E[Pemasukan:<br/>SUM pembayaran pada periode]
+ D --> F[Pengeluaran bahan:<br/>SUM pembelian_bahan<br/>pada periode]
+ D --> G[Biaya operasional:<br/>SUM biaya_operasional<br/>pada periode]
+
+ E --> H[Sistem menghitung<br/>Keuntungan = Pemasukan<br/>- Pengeluaran bahan<br/>- Biaya operasional]
+ F --> H
+ G --> H
+
+ H --> I[Sistem menghitung rekap pesanan<br/>per status dan per sumber]
+ I --> J[Sistem menghitung margin<br/>per pesanan]
+ J --> K{Margin pesanan<br/>di bawah 30%?}
+ K -- Ya --> L[Sistem menandai pesanan<br/>dengan peringatan margin]:::output
+ K -- Tidak --> M([Margin pesanan aman]):::output
+ I --> N[Sistem menampilkan posisi<br/>stok bahan terkini]
+ L --> O([Laporan laba rugi<br/>dan ringkasan tampil]):::output
+ M --> O
+ N --> O
+
+ classDef output fill:#e8f6ed, stroke:#15803d, color:#0b3d1e

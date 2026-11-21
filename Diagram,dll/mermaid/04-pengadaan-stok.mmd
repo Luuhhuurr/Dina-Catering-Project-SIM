@@ -1,0 +1,15 @@
+flowchart TD
+ A([Owner mencatat kebutuhan bahan]) --> B[Owner membuka halaman<br/>Pembelian]
+ B --> C[Owner mengisi data pembelian:<br/>bahan, jumlah, harga satuan,<br/>nama pasar, tanggal]
+ C --> D[Sistem memulai transaksi database]
+ D --> E[Sistem menyimpan baris baru<br/>di tabel pembelian_bahan]
+ E --> F[System menambah stok_saat_ini<br/>pada bahan_baku]
+ F --> G[Sistem menyimpan baris baru<br/>di tabel harga_bahan_history]
+ G --> H[Sistem memperbarui harga_terakhir<br/>dengan harga pada tanggal berlaku<br/>paling baru]
+ H --> I([Transaksi di-commit])
+ I --> J([HPP seluruh paket<br/>terhitung ulang otomatis<br/>karena harga bahan berubah]):::output
+
+ D --> K{Bahan tersedia<br/>cukup untuk pesanan<br/>yang masuk produksi?}
+ K -- Tidak --> L[Sistem menampilkan<br/>stok bahan terkini di<br/>dashboard dan laporan]
+
+ classDef output fill:#e8f6ed, stroke:#15803d, color:#0b3d1e

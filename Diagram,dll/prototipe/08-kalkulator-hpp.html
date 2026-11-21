@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kalkulator HPP — Prototipe Antarmuka SIM Dina Catering</title>
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<div class="rangka">
+ <aside class="sidebar">
+ <div class="merek">
+ <span class="logo">DC</span>
+ <span>
+ <span class="nama">Dina Catering</span>
+ <span class="sub">SIM Usaha Katering</span>
+ </span>
+ </div>
+ <nav>
+
+ <div class="nav-grup">
+ <div class="judul">Utama</div>
+ <a href="02-dashboard.html" class=""><span class="kotak-ikon"></span>Dashboard</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Pelanggan & Menu</div>
+ <a href="03-pelanggan.html" class=""><span class="kotak-ikon"></span>Pelanggan</a>
+ <a href="06-menu-resep.html" class=""><span class="kotak-ikon"></span>Menu & Resep</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Bahan & Produksi</div>
+ <a href="04-bahan-baku.html" class=""><span class="kotak-ikon"></span>Bahan Baku</a>
+ <a href="05-pembelian.html" class=""><span class="kotak-ikon"></span>Pembelian</a>
+ <a href="11-produksi.html" class=""><span class="kotak-ikon"></span>Produksi</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Penjualan</div>
+ <a href="07-paket-margin.html" class=""><span class="kotak-ikon"></span>Paket & HPP</a>
+ <a href="08-kalkulator-hpp.html" class="aktif"><span class="kotak-ikon"></span>Kalkulator HPP</a>
+ <a href="09-pesanan.html" class=""><span class="kotak-ikon"></span>Pesanan</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Analitik & Sistem</div>
+ <a href="12-laporan.html" class=""><span class="kotak-ikon"></span>Laporan</a>
+ <a href="13-biaya.html" class=""><span class="kotak-ikon"></span>Biaya</a>
+ <a href="14-pengaturan.html" class=""><span class="kotak-ikon"></span>Pengaturan</a>
+ </div>
+ </nav>
+ </aside>
+
+ <div class="isi">
+ <header class="topbar">
+ <div class="remah">Dina Catering &nbsp;/&nbsp; <b>Kalkulator HPP</b></div>
+ <div class="spasi"></div>
+ <div class="pengguna">
+ <span class="avatar">A</span>
+ <span>
+ <span>admin</span>
+ <span class="peran">admin</span>
+ </span>
+ <button class="tombol kecil polos" type="button">Keluar</button>
+ </div>
+ </header>
+
+ <main class="kontener">
+ <div class="kepala-halaman">
+ <h1>Kalkulator HPP</h1>
+ <p>Hitung HPP per porsi, margin untung, dan harga jual minimum agar margin minimal 30%.</p>
+ </div>
+
+ <section class="kartu">
+ <h2>Pilih yang dihitung</h2>
+ <div class="baris-form">
+ <div class="baris-form kolom-3">
+ <div class="bidang">
+ <label for="paket">Paket</label>
+ <select id="paket">
+ <option>— pilih paket —</option>
+ <option>Standar (Rp 35.000, tahun 2026)</option>
+ <option>Premium (Rp 40.000, tahun 2026)</option>
+ </select>
+ </div>
+ <div class="bidang">
+ <label for="menu">Atau satu menu</label>
+ <select id="menu">
+ <option>— pilih menu —</option>
+ <option>Ayam Bakar</option>
+ <option>Rendang Daging</option>
+ </select>
+ </div>
+ <div class="bidang">
+ <label for="tanggal">Tanggal acuan harga</label>
+ <input type="date" id="tanggal">
+ </div>
+ </div>
+ <div class="baris-tombol">
+ <button class="tombol utama" type="button">Hitung HPP</button>
+ <span class="petunjuk">Biaya operasional yang ditambahkan ke HPP bahan: 10% (dapat diubah di halaman Pengaturan).</span>
+ </div>
+ </div>
+ </section>
+
+ <section class="kartu">
+ <h2>Hasil perhitungan — Paket Standar</h2>
+
+ <table>
+ <thead>
+ <tr><th>Menu</th><th>Bahan</th><th class="angka">Takaran</th><th class="angka">Harga satuan</th><th class="angka">Biaya</th></tr>
+ </thead>
+ <tbody>
+ <tr><td rowspan="2">Nasi Putih</td><td>Beras Premium</td><td class="angka">0,150 kg</td><td class="angka">Rp 16.000</td><td class="angka">Rp 2.400</td></tr>
+ <tr><td>Minyak Goreng</td><td class="angka">0,015 liter</td><td class="angka">Rp 18.000</td><td class="angka">Rp 270</td></tr>
+ <tr><td rowspan="3">Sayur Sop</td><td>Sayur Sop</td><td class="angka">0,200 kg</td><td class="angka">Rp 8.000</td><td class="angka">Rp 1.600</td></tr>
+ <tr><td>Bumbu Racik</td><td class="angka">0,020 kg</td><td class="angka">Rp 12.000</td><td class="angka">Rp 240</td></tr>
+ <tr><td>Minyak Goreng</td><td class="angka">0,015 liter</td><td class="angka">Rp 18.000</td><td class="angka">Rp 270</td></tr>
+ <tr><td rowspan="3">Ayam Bakar</td><td>Ayam Potong</td><td class="angka">0,250 kg</td><td class="angka">Rp 38.000</td><td class="angka">Rp 9.500</td></tr>
+ <tr><td>Bumbu Racik</td><td class="angka">0,040 kg</td><td class="angka">Rp 12.000</td><td class="angka">Rp 480</td></tr>
+ <tr><td>Minyak Goreng</td><td class="angka">0,015 liter</td><td class="angka">Rp 18.000</td><td class="angka">Rp 270</td></tr>
+ <tr><td>Buah Potong</td><td>Buah Potong</td><td class="angka">0,150 kg</td><td class="angka">Rp 15.000</td><td class="angka">Rp 2.250</td></tr>
+ </tbody>
+ </table>
+
+ <div class="grid grid-4" style="margin-top:14px">
+ <div class="statistik">
+ <div class="label">HPP bahan</div>
+ <div class="angka">Rp 18.763</div>
+ <div class="ket">sebelum biaya operasional</div>
+ </div>
+ <div class="statistik">
+ <div class="label">HPP per porsi</div>
+ <div class="angka">Rp 20.640</div>
+ <div class="ket">setelah biaya operasional 10%</div>
+ </div>
+ <div class="statistik">
+ <div class="label">Margin</div>
+ <div class="angka">41,0%</div>
+ <div class="ket">dari harga jual Rp 35.000</div>
+ </div>
+ <div class="statistik">
+ <div class="label">Harga jual minimum</div>
+ <div class="angka">Rp 29.486</div>
+ <div class="ket">HPP / 0,7 untuk margin 30%</div>
+ </div>
+ </div>
+ </section>
+
+
+ <section class="keterangan">
+ <h3>Keterangan rancangan</h3>
+ <h4>Tujuan layar</h4>
+ <p>Menjawab pertanyaan inti owner: berapa HPP per porsi, berapa untungnya, dan berapa harga
+ jual minimum agar margin tetap 30%.</p>
+ <h4>Komponen</h4>
+ <ul>
+ <li>Form: pilih paket atau pilih satu menu, tentukan tanggal acuan harga, tombol Hitung HPP.</li>
+ <li>Panel hasil: rincian per bahan (takaran, harga satuan, biaya), HPP bahan, HPP per porsi,
+ HPP paket, harga jual efektif, margin, dan harga jual minimum.</li>
+ </ul>
+ <h4>Rumus yang dipakai</h4>
+ <ul>
+ <li>Harga efektif bahan = harga terakhir dengan <code>tanggal_berlaku ≤ tanggal acuan</code>.</li>
+ <li>HPP bahan = Σ (takaran per porsi × harga efektif bahan).</li>
+ <li>HPP per porsi = HPP bahan × (1 + persentase biaya operasional ÷ 100).</li>
+ <li>HPP paket = Σ HPP per porsi seluruh menu di dalam paket.</li>
+ <li>Margin = (harga jual efektif − HPP paket) ÷ harga jual efektif × 100.</li>
+ <li>Harga jual minimum 30% = HPP ÷ 0,7.</li>
+ </ul>
+ <h4>Catatan</h4>
+ <ul>
+ <li>Persentase biaya operasional ditampilkan di bawah form agar owner tahu angka yang dipakai.</li>
+ <li>Mengubah tanggal acuan memungkinkan pemeriksaan ulang HPP pada masa lalu.</li>
+ <li>Panel yang sama juga dapat dibuka tanpa JavaScript, lewat <code>GET /hpp/hasil</code>.</li>
+ </ul>
+ </section>
+ </main>
+
+ <footer class="kaki-halaman">
+ Prototipe low-fidelity untuk laporan tugas akhir — Sistem Informasi Manajemen Dina Catering.
+ Rute sebenarnya: <code>/hpp</code>
+ </footer>
+ </div>
+</div>
+</body>
+</html>

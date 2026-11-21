@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login — Prototipe Antarmuka SIM Dina Catering</title>
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body class="body-login">
+ <div class="kotak-login">
+ <div class="merek">
+ <span class="logo">DC</span>
+ <span>
+ <span class="nama">Dina Catering</span>
+ <span class="sub">SIM Usaha Katering</span>
+ </span>
+ </div>
+
+ <div class="baris-form">
+ <div class="bidang">
+ <label for="username">Username</label>
+ <input type="text" id="username" placeholder="admin">
+ </div>
+ <div class="bidang">
+ <label for="password">Password</label>
+ <input type="password" id="password" placeholder="••••••••">
+ </div>
+ <div class="baris-tombol">
+ <button class="tombol utama" type="button">Masuk</button>
+ </div>
+ </div>
+
+ <section class="keterangan">
+ <h3>Keterangan rancangan</h3>
+ <h4>Tujuan layar</h4>
+ <p>Menjaga agar hanya pemilik usaha yang dapat masuk dan melihat data usaha.</p>
+ <h4>Komponen</h4>
+ <ul>
+ <li>Kartu login di tengah layar, tanpa sidebar dan tanpa topbar.</li>
+ <li>Kolom username.</li>
+ <li>Kolom password (disembunyikan, <code>type="password"</code>).</li>
+ <li>Tombol <strong>Masuk</strong>.</li>
+ <li>Banner pesan galat, muncul hanya ketika login gagal.</li>
+ </ul>
+ <h4>Perilaku</h4>
+ <ul>
+ <li>Berhasil &rarr; <code>303</code> ke <code>/</code> (Dashboard).</li>
+ <li>Gagal &rarr; pesan "Username atau password salah", field username tetap terisi.</li>
+ <li>Sudah punya sesi &rarr; <code>303</code> ke <code>/</code>.</li>
+ <li>Password diperiksa terhadap hash bcrypt; cookie sesi bertanda tangan HMAC-SHA256 berlaku 12 jam.</li>
+ </ul>
+ <h4>Catatan</h4>
+ <p>Akun bawaan saat instalasi: <code>admin</code> / <code>admin123</code>. Password di-hash
+ saat proses seed, bukan ditulis di dalam kode.</p>
+ </section>
+ </div>
+</body>
+</html>

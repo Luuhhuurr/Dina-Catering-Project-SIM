@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menu & Resep — Prototipe Antarmuka SIM Dina Catering</title>
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<div class="rangka">
+ <aside class="sidebar">
+ <div class="merek">
+ <span class="logo">DC</span>
+ <span>
+ <span class="nama">Dina Catering</span>
+ <span class="sub">SIM Usaha Katering</span>
+ </span>
+ </div>
+ <nav>
+
+ <div class="nav-grup">
+ <div class="judul">Utama</div>
+ <a href="02-dashboard.html" class=""><span class="kotak-ikon"></span>Dashboard</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Pelanggan & Menu</div>
+ <a href="03-pelanggan.html" class=""><span class="kotak-ikon"></span>Pelanggan</a>
+ <a href="06-menu-resep.html" class="aktif"><span class="kotak-ikon"></span>Menu & Resep</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Bahan & Produksi</div>
+ <a href="04-bahan-baku.html" class=""><span class="kotak-ikon"></span>Bahan Baku</a>
+ <a href="05-pembelian.html" class=""><span class="kotak-ikon"></span>Pembelian</a>
+ <a href="11-produksi.html" class=""><span class="kotak-ikon"></span>Produksi</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Penjualan</div>
+ <a href="07-paket-margin.html" class=""><span class="kotak-ikon"></span>Paket & HPP</a>
+ <a href="08-kalkulator-hpp.html" class=""><span class="kotak-ikon"></span>Kalkulator HPP</a>
+ <a href="09-pesanan.html" class=""><span class="kotak-ikon"></span>Pesanan</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Analitik & Sistem</div>
+ <a href="12-laporan.html" class=""><span class="kotak-ikon"></span>Laporan</a>
+ <a href="13-biaya.html" class=""><span class="kotak-ikon"></span>Biaya</a>
+ <a href="14-pengaturan.html" class=""><span class="kotak-ikon"></span>Pengaturan</a>
+ </div>
+ </nav>
+ </aside>
+
+ <div class="isi">
+ <header class="topbar">
+ <div class="remah">Dina Catering &nbsp;/&nbsp; <b>Menu & Resep</b></div>
+ <div class="spasi"></div>
+ <div class="pengguna">
+ <span class="avatar">A</span>
+ <span>
+ <span>admin</span>
+ <span class="peran">admin</span>
+ </span>
+ <button class="tombol kecil polos" type="button">Keluar</button>
+ </div>
+ </header>
+
+ <main class="kontener">
+ <div class="kepala-halaman">
+ <h1>Menu &amp; Resep</h1>
+ <p>Setiap menu punya bahan dan takaran per porsi; inilah dasar perhitungan HPP.</p>
+ </div>
+
+ <div class="grid grid-2">
+ <section class="kartu">
+ <h2>Tambah menu</h2>
+ <div class="baris-form">
+ <div class="bidang">
+ <label for="nama-menu">Nama menu</label>
+ <input type="text" id="nama-menu" placeholder="Contoh: Ayam Bakar">
+ </div>
+ <div class="bidang">
+ <label for="deskripsi">Deskripsi</label>
+ <textarea id="deskripsi" rows="3" placeholder="Keterangan isi menu"></textarea>
+ </div>
+ <div class="baris-tombol">
+ <button class="tombol utama" type="button">Simpan menu</button>
+ </div>
+ </div>
+ </section>
+
+ <section class="kartu">
+ <h2>Tambah bahan ke resep — Ayam Bakar</h2>
+ <div class="baris-form">
+ <div class="baris-form kolom-2">
+ <div class="bidang">
+ <label for="bahan">Bahan baku</label>
+ <select id="bahan"><option>Ayam Potong</option><option>Bumbu Racik</option><option>Minyak Goreng</option></select>
+ </div>
+ <div class="bidang">
+ <label for="takaran">Takaran per porsi</label>
+ <input type="number" id="takaran" step="0.001" value="0.250">
+ </div>
+ </div>
+ <div class="baris-form kolom-2">
+ <div class="bidang">
+ <label for="satuan-resep">Satuan</label>
+ <select id="satuan-resep"><option>kg</option><option>liter</option></select>
+ </div>
+ <div class="bidang">
+ <label>&nbsp;</label>
+ <div class="baris-tombol" style="margin-top:0"><button class="tombol utama" type="button">Tambah bahan</button></div>
+ </div>
+ </div>
+ </div>
+ </section>
+ </div>
+
+ <section class="kartu">
+ <h2>Resep — Ayam Bakar</h2>
+ <table>
+ <thead><tr><th class="">Bahan</th><th class="angka">Takaran per porsi</th><th class="">Satuan</th><th class="">Aksi</th></tr></thead>
+ <tbody>
+ <tr><td class="">Ayam Potong</td><td class="angka">0,250</td><td class="">kg</td><td class="">Hapus</td></tr>
+ <tr><td class="">Bumbu Racik</td><td class="angka">0,040</td><td class="">kg</td><td class="">Hapus</td></tr>
+ <tr><td class="">Minyak Goreng</td><td class="angka">0,015</td><td class="">liter</td><td class="">Hapus</td></tr>
+ </tbody>
+ </table>
+ </section>
+
+ <section class="kartu">
+ <h2>Daftar menu</h2>
+ <table>
+ <thead><tr><th class="">Nama</th><th class="angka">Jumlah bahan</th><th class="">Aksi</th></tr></thead>
+ <tbody>
+ <tr><td class="">Nasi Putih</td><td class="angka">2</td><td class="">Lihat resep · Hapus</td></tr>
+ <tr><td class="">Ayam Bakar</td><td class="angka">3</td><td class="">Lihat resep · Hapus</td></tr>
+ <tr><td class="">Rendang Daging</td><td class="angka">3</td><td class="">Lihat resep · Hapus</td></tr>
+ <tr><td class="">Sayur Sop</td><td class="angka">3</td><td class="">Lihat resep · Hapus</td></tr>
+ <tr><td class="">Buah Potong</td><td class="angka">1</td><td class="">Lihat resep · Hapus</td></tr>
+ </tbody>
+ </table>
+ </section>
+
+
+ <section class="keterangan">
+ <h3>Keterangan rancangan</h3>
+ <h4>Tujuan layar</h4>
+ <p>Mendefinisikan menu dan bahannya per porsi. Data inilah yang dipakai kalkulator HPP
+ untuk menghitung HPP per porsi.</p>
+ <h4>Komponen</h4>
+ <ul>
+ <li>Form tambah menu (nama, deskripsi).</li>
+ <li>Form tambah bahan ke resep (bahan, takaran per porsi, satuan).</li>
+ <li>Panel resep untuk menu yang dipilih.</li>
+ <li>Tabel seluruh menu.</li>
+ </ul>
+ <h4>Aturan mainannya</h4>
+ <ul>
+ <li>Nama menu unik.</li>
+ <li>Satuan resep mengikuti satuan bahan baku.</li>
+ <li>Menghapus menu ikut menghapus seluruh resepnya (ON DELETE CASCADE).</li>
+ <li>Menghapus bahan yang masih dipakai recipe lain tetap dimungkinkan, namun resep yang
+ menunjuk bahan tersebut ikut terhapus.</li>
+ </ul>
+ <h4>Contoh data</h4>
+ <ul>
+ <li>Nasi Putih: Beras Premium 0,150 kg + Minyak Goreng 0,015 liter.</li>
+ <li>Ayam Bakar: Ayam Potong 0,250 kg + Bumbu Racik 0,040 kg + Minyak Goreng 0,015 liter.</li>
+ </ul>
+ </section>
+ </main>
+
+ <footer class="kaki-halaman">
+ Prototipe low-fidelity untuk laporan tugas akhir — Sistem Informasi Manajemen Dina Catering.
+ Rute sebenarnya: <code>/menu</code>
+ </footer>
+ </div>
+</div>
+</body>
+</html>

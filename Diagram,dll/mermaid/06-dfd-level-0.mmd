@@ -1,0 +1,20 @@
+flowchart LR
+ Pelanggan([Pelanggan])
+ Owner([Owner / Admin])
+ Pasar([Pasar / Supplier])
+ Dapur([Tim Dapur])
+
+ SIM["Sistem Informasi Manajemen<br/>Dina Catering<br/><br/>0. SIM DINACATERING"]
+
+ Pelanggan -->|Data Pesanan,<br/>Data Pelanggan| SIM
+ Owner -->|Data Pelanggan,<br/>Data Pesanan,<br/>Data Bahan Baku,<br/>Data Pembelian,<br/>Data Pembayaran,<br/>Data Biaya Operasional,<br/>Data Resep & Paket Menu,<br/>Data Pengaturan,<br/>Kredensial Login| SIM
+ Pasar -->|Data Bahan Baku<br/>dan Harga Beli| SIM
+ Dapur -->|Status Pengerjaan<br/>Tugas Produksi| SIM
+
+ SIM -->|Ringkasan Dashboard,<br/>Rekap Pesanan,<br/>Laporan Laba Rugi,<br/>Margin & Peringatan Margin,<br/>Jadwal Produksi,<br/>Daftar Stok Bahan,<br/>Konfirmasi Pemesanan| Owner
+ SIM -->|Status Pesanan,<br/>Informasi Pembayaran| Pelanggan
+ SIM -->|Informasi Kebutuhan<br/>Bahan| Pasar
+ SIM -->|Tugas Produksi<br/>dan PJ| Dapur
+
+ classDef proc fill:#e8f3fa, stroke:#1d6fa5, color:#0b3550, stroke-width:2px
+ class SIM proc

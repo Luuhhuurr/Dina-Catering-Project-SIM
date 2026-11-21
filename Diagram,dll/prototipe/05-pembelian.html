@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pembelian — Prototipe Antarmuka SIM Dina Catering</title>
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<div class="rangka">
+ <aside class="sidebar">
+ <div class="merek">
+ <span class="logo">DC</span>
+ <span>
+ <span class="nama">Dina Catering</span>
+ <span class="sub">SIM Usaha Katering</span>
+ </span>
+ </div>
+ <nav>
+
+ <div class="nav-grup">
+ <div class="judul">Utama</div>
+ <a href="02-dashboard.html" class=""><span class="kotak-ikon"></span>Dashboard</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Pelanggan &amp; Menu</div>
+ <a href="03-pelanggan.html" class=""><span class="kotak-ikon"></span>Pelanggan</a>
+ <a href="06-menu-resep.html" class=""><span class="kotak-ikon"></span>Menu &amp; Resep</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Bahan &amp; Produksi</div>
+ <a href="04-bahan-baku.html" class=""><span class="kotak-ikon"></span>Bahan Baku</a>
+ <a href="05-pembelian.html" class="aktif"><span class="kotak-ikon"></span>Pembelian</a>
+ <a href="11-produksi.html" class=""><span class="kotak-ikon"></span>Produksi</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Penjualan</div>
+ <a href="07-paket-margin.html" class=""><span class="kotak-ikon"></span>Paket &amp; HPP</a>
+ <a href="08-kalkulator-hpp.html" class=""><span class="kotak-ikon"></span>Kalkulator HPP</a>
+ <a href="09-pesanan.html" class=""><span class="kotak-ikon"></span>Pesanan</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Analitik &amp; Sistem</div>
+ <a href="12-laporan.html" class=""><span class="kotak-ikon"></span>Laporan</a>
+ <a href="13-biaya.html" class=""><span class="kotak-ikon"></span>Biaya</a>
+ <a href="14-pengaturan.html" class=""><span class="kotak-ikon"></span>Pengaturan</a>
+ </div>
+ </nav>
+ </aside>
+
+ <div class="isi">
+ <header class="topbar">
+ <div class="remah">Dina Catering &nbsp;/&nbsp; <b>Pembelian</b></div>
+ <div class="spasi"></div>
+ <div class="pengguna">
+ <span class="avatar">A</span>
+ <span>
+ <span>admin</span>
+ <span class="peran">admin</span>
+ </span>
+ <button class="tombol kecil polos" type="button">Keluar</button>
+ </div>
+ </header>
+
+ <main class="kontener">
+ <div class="kepala-halaman">
+ <h1>Pembelian Bahan di Pasar</h1>
+ <p>Setiap pembelian menambah stok bahan dan mencatat harga baru ke riwayat harga, sehingga HPP ikut terhitung ulang.</p>
+ </div>
+
+ <div class="grid grid-2">
+ <section class="kartu">
+ <h2>Catat pembelian</h2>
+ <div class="baris-form">
+ <div class="bidang">
+ <label for="bahan">Bahan</label>
+ <select id="bahan">
+ <option>Beras Premium (kg)</option>
+ <option>Daging Sapi (kg)</option>
+ <option>Ayam Potong (kg)</option>
+ <option>Minyak Goreng (liter)</option>
+ </select>
+ </div>
+ <div class="baris-form kolom-2">
+ <div class="bidang">
+ <label for="jumlah">Jumlah</label>
+ <input type="number" id="jumlah" step="0.01" value="25">
+ </div>
+ <div class="bidang">
+ <label for="harga_satuan">Harga satuan (Rp)</label>
+ <input type="number" id="harga_satuan" step="100" value="16000">
+ </div>
+ </div>
+ <div class="baris-form kolom-2">
+ <div class="bidang">
+ <label for="pasar">Pasar</label>
+ <input type="text" id="pasar" placeholder="mis. Pasar Klewer">
+ </div>
+ <div class="bidang">
+ <label for="tanggal">Tanggal pembelian</label>
+ <input type="date" id="tanggal">
+ </div>
+ </div>
+ <div class="baris-tombol">
+ <button class="tombol utama" type="button">Simpan pembelian</button>
+ </div>
+ </div>
+ <p class="petunjuk">Totaltransaksi = jumlah x harga satuan. Nilai total dihitung sistem, tidak perlu diisi manual.</p>
+ </section>
+
+ <section class="kartu">
+ <h2>Riwayat pembelian</h2>
+ <p class="petunjuk">Periode 01 Juni 2026 - 30 Juni 2026</p>
+ <table>
+ <thead><tr><th>Tanggal</th><th>Bahan</th><th class="angka">Jumlah</th><th class="angka">Harga</th><th class="angka">Total</th><th>Pasar</th></tr></thead>
+ <tbody>
+ <tr><td>21 Jun 2026</td><td>Beras Premium</td><td class="angka">25 kg</td><td class="angka">Rp 16.000</td><td class="angka">Rp 400.000</td><td>Pasar Klewer</td></tr>
+ <tr><td>18 Jun 2026</td><td>Ayam Potong</td><td class="angka">20 kg</td><td class="angka">Rp 38.000</td><td class="angka">Rp 760.000</td><td>Pasar Klewer</td></tr>
+ <tr><td>15 Jun 2026</td><td>Minyak Goreng</td><td class="angka">10 liter</td><td class="angka">Rp 18.000</td><td class="angka">Rp 180.000</td><td>Pasar Klewer</td></tr>
+ </tbody>
+ </table>
+ </section>
+ </div>
+
+ <section class="keterangan">
+ <h3>Keterangan rancangan</h3>
+ <h4>Tujuan layar</h4>
+ <p>Mencatat pembelian bahan di pasar dalam satu langkah. Setiap transaksi menambah stok bahan dan
+ menulis baris riwayat harga baru, sehingga perhitungan HPP selalu memakai harga yang benar.</p>
+ <h4>Komponen</h4>
+ <ul>
+ <li>Form catat pembelian: bahan, jumlah, harga satuan, pasar, tanggal pembelian.</li>
+ <li>Panel riwayat pembelian pada periode terpilih.</li>
+ </ul>
+ <h4>Aturan mainannya</h4>
+ <ul>
+ <li>Jumlah boleh pecahan (mis. 2,5 kg), satuan mengikuti satuan bahan yang dipilih.</li>
+ <li>Total transaksi dihitung otomatis dari jumlah x harga satuan.</li>
+ <li>Menyimpan pembelian menambah <code>stok_saat_ini</code> bahan dan memperbarui
+ <code>harga_terakhir</code> beserta riwayat harga.</li>
+ <li>Bila tanggal pembelian lebih lama daripada riwayat harga terbaru, riwayat harga lama
+ tetap dipertahankan sebagai arsip.</li>
+ <li>Kolom pasar bersifat bebas dan hanya untuk keperluan jejak belanja.</li>
+ </ul>
+ <h4>Aksi</h4>
+ <ul>
+ <li>Simpan pembelian — mencatat pembelian beserta pembaruan stok dan riwayat harga.</li>
+ <li>Pilih periode — mengubah rentang riwayat yang ditampilkan.</li>
+ </ul>
+ </section>
+ </main>
+
+ <footer class="kaki-halaman">
+ Prototipe low-fidelity untuk laporan tugas akhir — Sistem Informasi Manajemen Dina Catering.
+ Rute sebenarnya: <code>/pembelian</code>
+ </footer>
+ </div>
+</div>
+</body>
+</html>

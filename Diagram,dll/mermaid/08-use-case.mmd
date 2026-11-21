@@ -1,0 +1,69 @@
+flowchart LR
+ Owner([Owner / Admin])
+ Pelanggan([Pelanggan])
+ Pasar([Pasar / Supplier])
+ Dapur([Tim Dapur])
+
+ subgraph Sistem["Sistem Informasi Manajemen Dina Catering"]
+ UC1([1. Login dan Logout])
+ UC2([2. Kelola Pelanggan])
+ UC3([3. Kelola Bahan Baku])
+ UC4([4. Catat Riwayat Harga Bahan])
+ UC5([5. Catat Pembelian Bahan])
+ UC6([6. Kelola Menu dan Resep])
+ UC7([7. Kelola Paket Menu])
+ UC8([8. Hitung HPP])
+ UC9([9. Hitung Margin dan Deteksi Peringatan])
+ UC10([10. Buat Pesanan])
+ UC11([11. Ubah Status Pesanan])
+ UC12([12. Catat Pembayaran])
+ UC13([13. Kelola Tugas Produksi])
+ UC14([14. Catat Biaya Operasional])
+ UC15([15. Atur Pengaturan])
+ UC16([16. Lihat Dashboard])
+ UC17([17. Lihat Laporan])
+ UC18([18. Kelola Stok Bahan])
+ UCH([H. Hitung Harga Efektif Paket])
+ UCM([M. Hitung Margin Paket])
+ UCJ([J. Hitung Jadwal Pembayaran])
+ UCS([S. Perbarui Stok dan Riwayat Harga])
+ UCK([K. Kurangi Stok sesuai Resep])
+ end
+
+ Owner --> UC1
+ Owner --> UC2
+ Owner --> UC3
+ Owner --> UC4
+ Owner --> UC5
+ Owner --> UC6
+ Owner --> UC7
+ Owner --> UC8
+ Owner --> UC9
+ Owner --> UC10
+ Owner --> UC11
+ Owner --> UC12
+ Owner --> UC13
+ Owner --> UC14
+ Owner --> UC15
+ Owner --> UC16
+ Owner --> UC17
+ Owner --> UC18
+
+ Pelanggan -.menyampaikan.-> UC10
+ Pelanggan -.menerima status.-> UC11
+ Pasar -.menyediakan bahan.-> UC5
+ Dapur -.mengerjakan tugas.-> UC13
+
+ UC8 -->|<<include>>| UCM
+ UC9 -->|<<include>>| UCM
+ UC10 -->|<<include>>| UCH
+ UC12 -->|<<include>>| UCJ
+ UC5 -->|<<include>>| UCS
+ UC11 -->|<<include>>| UCK
+
+ UCH -->|<<include>>| UCM
+
+ classDef uc fill:#e8f3fa, stroke:#1d6fa5, color:#0b3550
+ classDef helper fill:#fff6e3, stroke:#b45309, color:#5a2b04, stroke-dasharray:4 3
+ class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8,UC9,UC10,UC11,UC12,UC13,UC14,UC15,UC16,UC17,UC18 uc
+ class UCH,UCM,UCJ,UCS,UCK helper

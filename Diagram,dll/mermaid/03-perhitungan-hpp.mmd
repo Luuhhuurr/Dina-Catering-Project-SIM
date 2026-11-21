@@ -1,0 +1,17 @@
+flowchart TD
+ A([Owner mencatat pembelian bahan<br/>atau mengubah harga bahan]) --> B[Sistem menyimpan baris baru<br/>di tabel harga_bahan_history<br/>dengan tanggal berlaku]
+ B --> C[Sistem memperbarui<br/>harga_terakhir bahan]
+ C --> D[Owner membuka menu atau paket<br/>dan menekan Hitung HPP]
+ D --> E[Sistem membaca resep menu:<br/>bahan dan takaran per porsi]
+ E --> F{Untuk setiap bahan,<br/>harga efektif pada<br/>tanggal acuan}
+ F -- G[Ambil harga terakhir dengan<br/>tanggal_berlaku &lt;= tanggal acuan]
+ F --> H[Sistem menghitung<br/>HPP bahan = SUM<br/>takaran x harga efektif]
+ G --> H
+ H --> I[Sistem menambahkan biaya operasional<br/>persentase ke HPP bahan]
+ I --> J[Sistem menjumlahkan HPP seluruh<br/>menu di dalam paket]
+ J --> K["Sistem menghitung margin<br/>= (harga jual - HPP) / harga jual"]
+ K --> L{Margin minimal<br/>30% tercapai?}
+ L -- Tidak --> M[Sistem menampilkan badge<br/>peringatan dan harga jual<br/>minimum HPP / 0,7]:::output
+ L -- Ya --> N([Margin aman, paket<br/>siap dijual]):::output
+
+ classDef output fill:#e8f6ed, stroke:#15803d, color:#0b3d1e

@@ -10,6 +10,7 @@ HTMX**. Tanpa ORM, tanpa framework frontend.
 | | |
 |---|---|
 | **Dokumentasi Docker (untuk pemula)** | [`docs/DOCKER.md`](docs/DOCKER.md) |
+| **Diagram & rancangan (lampiran laporan)** | [`Diagram,dll/`](Diagram,dll/) — diagram proses, DFD, use case, ERD, wireframe, dan 9 diagram PNG |
 | **Bahasa** | Go 1.26 · `html/template` + HTMX 2 (vanilla CSS) |
 | **Database** | PostgreSQL 16 · akses via **sqlc (pgx/v5)**, tanpa ORM |
 | **Migrasi** | golang-migrate v4 (file migrasi di-embed ke binary) |
@@ -210,7 +211,20 @@ dina-catering/
 ├── Dockerfile
 ├── docker-compose.yml
 ├── .env.example
-├── scripts/smoke-test.sh             # uji otomatis seluruh alur aplikasi
+├── scripts/
+│   ├── smoke-test.sh             # uji otomatis seluruh alur aplikasi
+│   └── render-diagram.mjs        # render sumber Mermaid menjadi PNG/SVG
+├── Diagram,dll/                       # materi lampiran laporan tugas akhir
+│   ├── 01-Diagram-Proses-Usulan.md    # alur proses manual/usulan, HPP, stok, laporan
+│   ├── 02-DFD-Level-0-dan-Level-1.md  # context diagram + DFD level 1
+│   ├── 03-Diagram-Use-Case.md         # use case diagram + deskripsi
+│   ├── 04-ERD.md                      # ERD 14 tabel + kamus data
+│   ├── 05-Rancangan-Antarmuka.md      # rancangan tiap layar
+│   ├── PNG/                           # kumpulan 9 diagram PNG siap disisipkan
+│   ├── gambar/                        # hasil render PNG + SVG
+│   ├── mermaid/                       # sumber Mermaid (.mmd) yang dapat diedit
+│   ├── prototipe/                     # 14 wireframe antarmuka low-fidelity (HTML)
+│   └── viewer.html                    # merender semua diagram Mermaid di browser
 ├── docs/
 │   ├── DOCKER.md                     # panduan Docker untuk pemula
 │   └── screenshots/                  # tangkapan layar halaman utama

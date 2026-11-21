@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Detail Pesanan — Prototipe Antarmuka SIM Dina Catering</title>
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<div class="rangka">
+ <aside class="sidebar">
+ <div class="merek">
+ <span class="logo">DC</span>
+ <span>
+ <span class="nama">Dina Catering</span>
+ <span class="sub">SIM Usaha Katering</span>
+ </span>
+ </div>
+ <nav>
+
+ <div class="nav-grup">
+ <div class="judul">Utama</div>
+ <a href="02-dashboard.html" class=""><span class="kotak-ikon"></span>Dashboard</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Pelanggan & Menu</div>
+ <a href="03-pelanggan.html" class=""><span class="kotak-ikon"></span>Pelanggan</a>
+ <a href="06-menu-resep.html" class=""><span class="kotak-ikon"></span>Menu & Resep</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Bahan & Produksi</div>
+ <a href="04-bahan-baku.html" class=""><span class="kotak-ikon"></span>Bahan Baku</a>
+ <a href="05-pembelian.html" class=""><span class="kotak-ikon"></span>Pembelian</a>
+ <a href="11-produksi.html" class=""><span class="kotak-ikon"></span>Produksi</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Penjualan</div>
+ <a href="07-paket-margin.html" class=""><span class="kotak-ikon"></span>Paket & HPP</a>
+ <a href="08-kalkulator-hpp.html" class=""><span class="kotak-ikon"></span>Kalkulator HPP</a>
+ <a href="09-pesanan.html" class="aktif"><span class="kotak-ikon"></span>Pesanan</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Analitik & Sistem</div>
+ <a href="12-laporan.html" class=""><span class="kotak-ikon"></span>Laporan</a>
+ <a href="13-biaya.html" class=""><span class="kotak-ikon"></span>Biaya</a>
+ <a href="14-pengaturan.html" class=""><span class="kotak-ikon"></span>Pengaturan</a>
+ </div>
+ </nav>
+ </aside>
+
+ <div class="isi">
+ <header class="topbar">
+ <div class="remah">Dina Catering &nbsp;/&nbsp; <b>Pesanan / #4</b></div>
+ <div class="spasi"></div>
+ <div class="pengguna">
+ <span class="avatar">A</span>
+ <span>
+ <span>admin</span>
+ <span class="peran">admin</span>
+ </span>
+ <button class="tombol kecil polos" type="button">Keluar</button>
+ </div>
+ </header>
+
+ <main class="kontener">
+ <div class="kepala-halaman">
+ <h1>Pesanan #4 — Agus Prasetyo</h1>
+ <p>Paket Standar · 150 tamu · Acara 25 Nov 2026 · Hotel Sindang, Ungaran</p>
+ </div>
+
+ <div class="grid grid-4">
+ <div class="statistik">
+ <div class="label">Total harga</div>
+ <div class="angka">Rp 5.250.000</div>
+ <div class="ket">150 tamu × Rp 35.000</div>
+ </div>
+ <div class="statistik">
+ <div class="label">Total dibayar</div>
+ <div class="angka">Rp 2.625.000</div>
+ <div class="ket">DP 50%</div>
+ </div>
+ <div class="statistik">
+ <div class="label">Sisa tagihan</div>
+ <div class="angka">Rp 2.625.000</div>
+ <div class="ket">belum lunas</div>
+ </div>
+ <div class="statistik">
+ <div class="label">Status</div>
+ <div class="angka">Produksi</div>
+ <div class="ket">tahap masak sedang berjalan</div>
+ </div>
+ </div>
+
+ <div class="grid grid-2">
+ <section class="kartu">
+ <h2>Ubah status pesanan</h2>
+ <table>
+ <thead><tr><th>Status</th><th>Status berikutnya</th></tr></thead>
+ <tbody>
+ <tr><td>Baru</td><td><span class="lencana">Final Meeting</span></td></tr>
+ <tr><td>Final Meeting</td><td><span class="lencana">Survei Lokasi</span></td></tr>
+ <tr><td>Survei Lokasi</td><td><span class="lencana">Produksi</span></td></tr>
+ <tr><td>Produksi</td><td><span class="lencana">Pengiriman</span></td></tr>
+ <tr><td>Pengiriman</td><td><span class="lencana">Selesai</span></td></tr>
+ <tr><td>—</td><td><span class="lencana bahaya">Batal</span></td></tr>
+ </tbody>
+ </table>
+ <div class="baris-tombol">
+ <button class="tombol utama" type="button">Ubah status ke Pengiriman</button>
+ </div>
+ </section>
+
+ <section class="kartu">
+ <h2>Catat pembayaran</h2>
+ <div class="baris-form">
+ <div class="baris-form kolom-2">
+ <div class="bidang">
+ <label for="tipe">Tipe</label>
+ <select id="tipe"><option>Pelunasan</option><option>DP</option></select>
+ </div>
+ <div class="bidang">
+ <label for="jumlah-bayar">Jumlah (Rp)</label>
+ <input type="number" id="jumlah-bayar" value="2625000">
+ <div class="petunjuk">Terisi otomatis sesuai sisa tagihan.</div>
+ </div>
+ </div>
+ <div class="baris-form kolom-2">
+ <div class="bidang">
+ <label for="tgl-bayar">Tanggal</label>
+ <input type="date" id="tgl-bayar">
+ </div>
+ <div class="bidang">
+ <label for="metode">Metode</label>
+ <select id="metode"><option>Transfer</option><option>Tunai</option><option>Kas</option></select>
+ </div>
+ </div>
+ <div class="baris-tombol">
+ <button class="tombol utama" type="button">Simpan pembayaran</button>
+ </div>
+ </div>
+ </section>
+ </div>
+
+ <section class="kartu">
+ <h2>Riwayat pembayaran</h2>
+ <table>
+ <thead><tr><th class="">Tanggal</th><th class="">Tipe</th><th class="angka">Jumlah</th><th class="">Metode</th></tr></thead>
+ <tbody>
+ <tr><td class="">26 Okt 2026</td><td class="">DP</td><td class="angka">Rp 2.625.000</td><td class="">Transfer</td></tr>
+ </tbody>
+ </table>
+ </section>
+
+ <section class="kartu">
+ <h2>Jadwal pembayaran</h2>
+ <table>
+ <thead><tr><th class="">Jenis</th><th class="">Jatuh tempo</th><th class="">Status</th></tr></thead>
+ <tbody>
+ <tr><td class="">DP 50%</td><td class="">26 Okt 2026</td><td class=""><span class="lencana">Terbayar</span></td></tr>
+ <tr><td class="">Pelunasan</td><td class="">18 Nov 2026</td><td class=""><span class="lencana peringatan">Belum dibayar</span></td></tr>
+ </tbody>
+ </table>
+ </section>
+
+ <section class="kartu">
+ <h2>Tugas produksi</h2>
+ <table>
+ <thead><tr><th class="">Tugas</th><th class="">PJ</th><th class="">Deadline</th><th class="">Status</th></tr></thead>
+ <tbody>
+ <tr><td class="">Persiapan bahan &amp; alat</td><td class="">Sari</td><td class="">24 Nov 2026</td><td class=""><span class="lencana">Selesai</span></td></tr>
+ <tr><td class="">Masak seluruh menu</td><td class="">Dedi</td><td class="">25 Nov 2026</td><td class=""><span class="lencana">Berjalan</span></td></tr>
+ <tr><td class="">Plating &amp; cek porsi</td><td class="">Sari</td><td class="">25 Nov 2026</td><td class=""><span class="lencana">Belum</span></td></tr>
+ <tr><td class="">Pengiriman ke lokasi</td><td class="">Rizky</td><td class="">25 Nov 2026</td><td class=""><span class="lencana">Belum</span></td></tr>
+ </tbody>
+ </table>
+ </section>
+
+
+ <section class="keterangan">
+ <h3>Keterangan rancangan</h3>
+ <h4>Tujuan layar</h4>
+ <p>Tempat kendali satu pesanan dari status awal sampai lunas: status, pembayaran, jadwal
+ bayar, tugas produksi, dan margin pesanan.</p>
+ <h4>Komponen</h4>
+ <ul>
+ <li>Empat kartu ringkasan: total harga, total dibayar, sisa tagihan, status.</li>
+ <li>Panel ubah status pesanan beserta alur status.</li>
+ <li>Form catat pembayaran.</li>
+ <li>Tabel riwayat pembayaran.</li>
+ <li>Tabel jadwal pembayaran (tenggat DP dan pelunasan).</li>
+ <li>Tabel tugas produksi.</li>
+ </ul>
+ <h4>Alur status</h4>
+ <p><code>baru</code> → <code>final_meeting</code> → <code>survei_lokasi</code> → <code>produksi</code> → <code>pengiriman</code> → <code>selesai</code>, dengan <code>batal</code> sebagai jalur keluar.</p>
+ <h4>Aturan mainannya</h4>
+ <ul>
+ <li>Total dibayar dan sisa tagihan dihitung otomatis dari riwayat pembayaran.</li>
+ <li>Mencatat DP saat pesanan masih berstatus <code>baru</code> menaikkan status menjadi
+ <code>final_meeting</code> dan membuat tugas produksi default untuk hari acara.</li>
+ <li>Status <code>produksi</code> mengurangi stok bahan sesuai resep dikali jumlah tamu
+ dalam satu transaksi.</li>
+ <li>Status <code>batal</code> tidak mengurangi stok.</li>
+ <li>Jumlah pembayaran tidak boleh melebihi sisa tagihan.</li>
+ </ul>
+ </section>
+ </main>
+
+ <footer class="kaki-halaman">
+ Prototipe low-fidelity untuk laporan tugas akhir — Sistem Informasi Manajemen Dina Catering.
+ Rute sebenarnya: <code>/pesanan/4</code>
+ </footer>
+ </div>
+</div>
+</body>
+</html>

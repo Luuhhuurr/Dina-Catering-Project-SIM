@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paket & Margin — Prototipe Antarmuka SIM Dina Catering</title>
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<div class="rangka">
+ <aside class="sidebar">
+ <div class="merek">
+ <span class="logo">DC</span>
+ <span>
+ <span class="nama">Dina Catering</span>
+ <span class="sub">SIM Usaha Katering</span>
+ </span>
+ </div>
+ <nav>
+
+ <div class="nav-grup">
+ <div class="judul">Utama</div>
+ <a href="02-dashboard.html" class=""><span class="kotak-ikon"></span>Dashboard</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Pelanggan & Menu</div>
+ <a href="03-pelanggan.html" class=""><span class="kotak-ikon"></span>Pelanggan</a>
+ <a href="06-menu-resep.html" class=""><span class="kotak-ikon"></span>Menu & Resep</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Bahan & Produksi</div>
+ <a href="04-bahan-baku.html" class=""><span class="kotak-ikon"></span>Bahan Baku</a>
+ <a href="05-pembelian.html" class=""><span class="kotak-ikon"></span>Pembelian</a>
+ <a href="11-produksi.html" class=""><span class="kotak-ikon"></span>Produksi</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Penjualan</div>
+ <a href="07-paket-margin.html" class="aktif"><span class="kotak-ikon"></span>Paket & HPP</a>
+ <a href="08-kalkulator-hpp.html" class=""><span class="kotak-ikon"></span>Kalkulator HPP</a>
+ <a href="09-pesanan.html" class=""><span class="kotak-ikon"></span>Pesanan</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Analitik & Sistem</div>
+ <a href="12-laporan.html" class=""><span class="kotak-ikon"></span>Laporan</a>
+ <a href="13-biaya.html" class=""><span class="kotak-ikon"></span>Biaya</a>
+ <a href="14-pengaturan.html" class=""><span class="kotak-ikon"></span>Pengaturan</a>
+ </div>
+ </nav>
+ </aside>
+
+ <div class="isi">
+ <header class="topbar">
+ <div class="remah">Dina Catering &nbsp;/&nbsp; <b>Paket & HPP</b></div>
+ <div class="spasi"></div>
+ <div class="pengguna">
+ <span class="avatar">A</span>
+ <span>
+ <span>admin</span>
+ <span class="peran">admin</span>
+ </span>
+ <button class="tombol kecil polos" type="button">Keluar</button>
+ </div>
+ </header>
+
+ <main class="kontener">
+ <div class="kepala-halaman">
+ <h1>Paket Menu, HPP &amp; Margin</h1>
+ <p>Harga jual per paket beserta HPP dan margin yang dihitung otomatis.</p>
+ </div>
+
+ <div class="grid grid-2">
+ <section class="kartu">
+ <h2>Tambah paket menu</h2>
+ <div class="baris-form">
+ <div class="bidang">
+ <label for="nama-paket">Nama paket</label>
+ <input type="text" id="nama-paket" placeholder="Contoh: Premium">
+ </div>
+ <div class="baris-form kolom-2">
+ <div class="bidang">
+ <label for="harga-porsi">Harga per porsi (Rp)</label>
+ <input type="number" id="harga-porsi" value="40000">
+ </div>
+ <div class="bidang">
+ <label for="harga-weekend">Harga akhir pekan (Rp)</label>
+ <input type="number" id="harga-weekend" placeholder="Kosong = sama dengan harga biasa">
+ </div>
+ </div>
+ <div class="baris-form kolom-2">
+ <div class="bidang">
+ <label for="tahun">Tahun berlaku</label>
+ <input type="number" id="tahun" value="2026">
+ </div>
+ <div class="bidang">
+ <label for="desk-paket">Deskripsi</label>
+ <input type="text" id="desk-paket" placeholder="Isi paket">
+ </div>
+ </div>
+ <div class="baris-tombol">
+ <button class="tombol utama" type="button">Simpan paket</button>
+ </div>
+ </div>
+ </section>
+
+ <section class="kartu">
+ <h2>Isi paket — Standar</h2>
+ <table>
+ <thead><tr><th>Menu</th><th>Aksi</th></tr></thead>
+ <tbody>
+ <tr><td>Nasi Putih</td><td>Hapus</td></tr>
+ <tr><td>Sayur Sop</td><td>Hapus</td></tr>
+ <tr><td>Ayam Bakar</td><td>Hapus</td></tr>
+ <tr><td>Buah Potong</td><td>Hapus</td></tr>
+ </tbody>
+ </table>
+ <div class="baris-form" style="margin-top:12px">
+ <div class="bidang">
+ <label for="tambah-menu">Tambah menu ke paket</label>
+ <select id="tambah-menu"><option>Rendang Daging</option></select>
+ </div>
+ <div class="baris-tombol">
+ <button class="tombol utama" type="button">Tambah</button>
+ </div>
+ </div>
+ </section>
+ </div>
+
+ <section class="kartu">
+ <h2>Daftar paket beserta HPP dan margin</h2>
+ <table>
+ <thead><tr><th class="">Paket</th><th class="angka">Harga</th><th class="angka">HPP/porsi</th><th class="angka">Margin</th><th class="angka">Harga min. 30%</th><th class="angka">Menu</th></tr></thead>
+ <tbody>
+ <tr><td class="">Hemat</td><td class="angka">Rp 30.000</td><td class="angka">Rp 17.850</td><td class="angka">40,5%</td><td class="angka">Rp 25.500</td><td class="angka">3</td></tr>
+ <tr><td class="">Standar</td><td class="angka">Rp 35.000</td><td class="angka">Rp 20.640</td><td class="angka">41,0%</td><td class="angka">Rp 29.486</td><td class="angka">4</td></tr>
+ <tr><td class="">Premium</td><td class="angka">Rp 40.000</td><td class="angka">Rp 29.850</td><td class="angka"><span class="lencana bahaya">25,4%</span></td><td class="angka">Rp 42.643</td><td class="angka">4</td></tr>
+ </tbody>
+ </table>
+ </section>
+
+
+ <section class="keterangan">
+ <h3>Keterangan rancangan</h3>
+ <h4>Tujuan layar</h4>
+ <p>Menetapkan harga jual paket dan memantau apakah marginnya masih aman. Inilah tempat
+ owner melihat langsung akibat kenaikan harga bahan baku.</p>
+ <h4>Komponen</h4>
+ <ul>
+ <li>Form tambah paket: nama, harga per porsi, harga akhir pekan (opsional), tahun berlaku, deskripsi.</li>
+ <li>Panel isi paket: daftar menu dalam paket dan penambahan menu baru.</li>
+ <li>Tabel paket: harga, HPP per porsi, margin, harga jual minimum, jumlah menu.</li>
+ </ul>
+ <h4>Aturan mainannya</h4>
+ <ul>
+ <li>Kombinasi nama paket dan tahun berlaku harus unik. Paket dengan nama sama dapat dibuat
+ ulang untuk tahun berikutnya dengan harga yang berbeda.</li>
+ <li>Harga akhir pekan boleh dikosongkan; bila kosong berarti sama dengan harga biasa.</li>
+ <li>Margin di bawah 30% diberi badge peringatan dan disertai harga jual minimum
+ <code>HPP / 0,7</code>.</li>
+ <li>Harga akhir pekan dipakai bila tanggal acara jatuh pada Sabtu atau Minggu.</li>
+ </ul>
+ <h4>Contoh data</h4>
+ <ul>
+ <li>Hemat — Rp 30.000 (akhir pekan Rp 32.000), tahun 2026.</li>
+ <li>Standar — Rp 35.000 (akhir pekan Rp 38.000), tahun 2026.</li>
+ <li>Premium — Rp 40.000 (akhir pekan Rp 43.000), tahun 2026; sengaja ber-margin di bawah
+ 30% agar peringatan langsung terlihat saat demo.</li>
+ </ul>
+ </section>
+ </main>
+
+ <footer class="kaki-halaman">
+ Prototipe low-fidelity untuk laporan tugas akhir — Sistem Informasi Manajemen Dina Catering.
+ Rute sebenarnya: <code>/paket</code>
+ </footer>
+ </div>
+</div>
+</body>
+</html>

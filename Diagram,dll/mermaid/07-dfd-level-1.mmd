@@ -1,0 +1,86 @@
+flowchart TB
+ Owner([Owner / Admin])
+ Pelanggan([Pelanggan])
+ Pasar([Pasar / Supplier])
+ Dapur([Tim Dapur])
+
+ subgraph SIMD["Sistem Informasi Manajemen Dina Catering"]
+ P1["1.0 Manajemen Data Master<br/>(Pelanggan, Bahan, Menu,<br/>Resep, Paket, Pengaturan)"]
+ P2["2.0 Pemrosesan Pesanan"]
+ P3["3.0 Pemrosesan Pembelian dan Stok"]
+ P4["4.0 Pemrosesan Pembayaran"]
+ P5["5.0 Penjadwalan Produksi"]
+ P6["6.0 Pelaporan"]
+ end
+
+ D1[("D1 Pelanggan")]
+ D2[("D2 Bahan Baku dan<br/>Riwayat Harga")]
+ D3[("D3 Menu dan Resep")]
+ D4[("D4 Paket Menu")]
+ D5[("D5 Pesanan")]
+ D6[("D6 Pembayaran")]
+ D7[("D7 Tugas Produksi")]
+ D8[("D8 Biaya Operasional")]
+ D9[("D9 Pengguna dan Pengaturan")]
+
+ Owner -->|Data Pelanggan| P1
+ Owner -->|Data Bahan Baku| P1
+ Owner -->|Data Resep dan Paket Menu| P1
+ Owner -->|Data Pengaturan| P1
+ Owner -->|Data Pesanan| P2
+ Owner -->|Data Pembelian| P3
+ Owner -->|Data Pembayaran| P4
+ Owner -->|Status Tugas| P5
+ Owner -->|Data Biaya Operasional| P6
+ Owner -->|Kredensial Login| P9[("Verifikasi Login<br/>(D9)")]
+
+ Pelanggan -->|Data Pesanan| P2
+ Pasar -->|Data Harga Beli| P3
+ Dapur -->|Status Pengerjaan| P5
+
+ P1 -->|Data Pelanggan| D1
+ P1 -->|Data Bahan Baku| D2
+ P1 -->|Data Resep| D3
+ P1 -->|Data Paket Menu| D4
+ P1 -->|Data Pengaturan| D9
+
+ P2 -->|Data Pesanan| D5
+ P3 -->|Data Pembelian| D2
+ P4 -->|Data Pembayaran| D6
+ P5 -->|Data Tugas Produksi| D7
+ P6 -->|Data Biaya Operasional| D8
+
+ P2 -->|Data Pelanggan| D1
+ P2 -->|Data Paket Menu| D4
+ P4 -->|Data Pesanan| D5
+ P5 -->|Data Pesanan| D5
+ P3 -->|Data Stok Bahan| D2
+ P6 -->|Data Pesanan| D5
+ P6 -->|Data Pembayaran| D6
+ P6 -->|Data Stok Bahan| D2
+
+ P1 -->|Data Master consolidated| P2
+ P1 -->|Harga dan Resep| P2
+ P5 -->|Info Stok terpakai| P3
+ P2 -->|Jumlah Tamu dan Paket| P5
+ P4 -->|Status Pembayaran| P2
+
+ P2 -->|Status Pesanan| Pelanggan
+ P2 -->|Total Harga dan Tenggat| Pelanggan
+ P1 -->|Daftar Master Data| Owner
+ P2 -->|Daftar Pesanan| Owner
+ P3 -->|Info Kebutuhan Bahan| Pasar
+ P3 -->|Stok dan Harga Terakhir| Owner
+ P4 -->|Riwayat Pembayaran| Owner
+ P5 -->|Tugas Produksi dan PJ| Dapur
+ P5 -->|Papan Produksi| Owner
+ P6 -->|Laporan Laba Rugi| Owner
+ P6 -->|Rekap Pesanan| Owner
+ P6 -->|Margin dan Peringatan| Owner
+ P6 -->|Daftar Stok Bahan| Owner
+ P1 -->|Ringkasan Master| Owner
+
+ classDef proc fill:#e8f3fa, stroke:#1d6fa5, color:#0b3550, stroke-width:2px
+ classDef store fill:#fff6e3, stroke:#b45309, color:#5a2b04
+ class P1,P2,P3,P4,P5,P6 proc
+ class D1,D2,D3,D4,D5,D6,D7,D8,D9 store

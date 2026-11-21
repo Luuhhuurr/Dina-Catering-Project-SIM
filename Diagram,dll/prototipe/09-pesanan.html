@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pesanan — Prototipe Antarmuka SIM Dina Catering</title>
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<div class="rangka">
+ <aside class="sidebar">
+ <div class="merek">
+ <span class="logo">DC</span>
+ <span>
+ <span class="nama">Dina Catering</span>
+ <span class="sub">SIM Usaha Katering</span>
+ </span>
+ </div>
+ <nav>
+
+ <div class="nav-grup">
+ <div class="judul">Utama</div>
+ <a href="02-dashboard.html" class=""><span class="kotak-ikon"></span>Dashboard</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Pelanggan & Menu</div>
+ <a href="03-pelanggan.html" class=""><span class="kotak-ikon"></span>Pelanggan</a>
+ <a href="06-menu-resep.html" class=""><span class="kotak-ikon"></span>Menu & Resep</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Bahan & Produksi</div>
+ <a href="04-bahan-baku.html" class=""><span class="kotak-ikon"></span>Bahan Baku</a>
+ <a href="05-pembelian.html" class=""><span class="kotak-ikon"></span>Pembelian</a>
+ <a href="11-produksi.html" class=""><span class="kotak-ikon"></span>Produksi</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Penjualan</div>
+ <a href="07-paket-margin.html" class=""><span class="kotak-ikon"></span>Paket & HPP</a>
+ <a href="08-kalkulator-hpp.html" class=""><span class="kotak-ikon"></span>Kalkulator HPP</a>
+ <a href="09-pesanan.html" class="aktif"><span class="kotak-ikon"></span>Pesanan</a>
+ </div>
+
+ <div class="nav-grup">
+ <div class="judul">Analitik & Sistem</div>
+ <a href="12-laporan.html" class=""><span class="kotak-ikon"></span>Laporan</a>
+ <a href="13-biaya.html" class=""><span class="kotak-ikon"></span>Biaya</a>
+ <a href="14-pengaturan.html" class=""><span class="kotak-ikon"></span>Pengaturan</a>
+ </div>
+ </nav>
+ </aside>
+
+ <div class="isi">
+ <header class="topbar">
+ <div class="remah">Dina Catering &nbsp;/&nbsp; <b>Pesanan</b></div>
+ <div class="spasi"></div>
+ <div class="pengguna">
+ <span class="avatar">A</span>
+ <span>
+ <span>admin</span>
+ <span class="peran">admin</span>
+ </span>
+ <button class="tombol kecil polos" type="button">Keluar</button>
+ </div>
+ </header>
+
+ <main class="kontener">
+ <div class="kepala-halaman">
+ <h1>Pesanan</h1>
+ <p>Total harga, tenggat DP (H-30), dan tenggat pelunasan (H-7) dihitung otomatis.</p>
+ </div>
+
+ <div class="grid grid-2">
+ <section class="kartu">
+ <h2>Pesanan baru</h2>
+ <div class="baris-form">
+ <div class="baris-form kolom-2">
+ <div class="bidang">
+ <label for="pelanggan">Pelanggan</label>
+ <select id="pelanggan"><option>Ratna Wulandari</option><option>Budi Santoso</option><option>Siti Aminah</option></select>
+ </div>
+ <div class="bidang">
+ <label for="paket-pesanan">Paket</label>
+ <select id="paket-pesanan"><option>Standar - Rp 35.000 (tahun 2026)</option><option>Hemat - Rp 30.000 (tahun 2026)</option></select>
+ </div>
+ </div>
+ <div class="baris-form kolom-2">
+ <div class="bidang">
+ <label for="tamu">Jumlah tamu</label>
+ <input type="number" id="tamu" min="1" value="50">
+ </div>
+ <div class="bidang">
+ <label for="tanggal-acara">Tanggal acara</label>
+ <input type="date" id="tanggal-acara">
+ </div>
+ </div>
+ <div class="baris-form kolom-2">
+ <div class="bidang">
+ <label for="sumber">Sumber pesanan</label>
+ <select id="sumber">
+ <option>Instagram</option><option>Mulut ke Mulut</option><option>Hotel / Wedding</option><option>Lainnya</option>
+ </select>
+ </div>
+ <div class="bidang">
+ <label for="lokasi">Lokasi acara</label>
+ <input type="text" id="lokasi" placeholder="Contoh: Gedung Serbaguna Ungaran">
+ </div>
+ </div>
+ <div class="bidang">
+ <label for="catatan">Catatan</label>
+ <input type="text" id="catatan" placeholder="Contoh: Prasmanan, minta sambal terpisah">
+ </div>
+ <label class="centang"><input type="checkbox"> Masak di lokasi</label>
+ <div class="baris-tombol">
+ <button class="tombol utama" type="button">Simpan pesanan</button>
+ </div>
+ </div>
+ </section>
+
+ <section class="kartu">
+ <h2>Menunggu pembayaran</h2>
+ <table>
+ <thead><tr><th class="">Pesanan</th><th class="angka">Sisa</th><th class="">Tenggat</th></tr></thead>
+ <tbody>
+ <tr><td class="">Agus Prasetyo<br><small>Standar</small></td><td class="angka">Rp 2.625.000</td><td class=""><span class="lencana bahaya">DP terlambat</span></td></tr>
+ <tr><td class="">Budi Santoso<br><small>Hemat</small></td><td class="angka">Rp 800.000</td><td class=""><span class="lencana peringatan">Pelunasan jatuh tempo</span></td></tr>
+ </tbody>
+ </table>
+ </section>
+ </div>
+
+ <section class="kartu">
+ <h2>Daftar pesanan</h2>
+ <table>
+ <thead><tr><th class="">#</th><th class="">Pelanggan</th><th class="">Paket</th><th class="">Acara</th><th class="angka">Total</th><th class="">Status</th></tr></thead>
+ <tbody>
+ <tr><td class="">#1</td><td class="">Ratna Wulandari</td><td class="">Standar</td><td class="">16 Des 2026</td><td class="angka">Rp 2.800.000</td><td class=""><span class="lencana">Baru</span></td></tr>
+ <tr><td class="">#2</td><td class="">Budi Santoso</td><td class="">Hemat</td><td class="">05 Des 2026</td><td class="angka">Rp 1.600.000</td><td class=""><span class="lencana">Final Meeting</span></td></tr>
+ <tr><td class="">#3</td><td class="">Siti Aminah</td><td class="">Premium</td><td class="">09 Des 2026</td><td class="angka">Rp 5.160.000</td><td class=""><span class="lencana">Survei Lokasi</span></td></tr>
+ <tr><td class="">#4</td><td class="">Agus Prasetyo</td><td class="">Standar</td><td class="">25 Nov 2026</td><td class="angka">Rp 5.250.000</td><td class=""><span class="lencana">Produksi</span></td></tr>
+ <tr><td class="">#5</td><td class="">Dewi Lestari</td><td class="">Premium</td><td class="">11 Nov 2026</td><td class="angka">Rp 8.000.000</td><td class=""><span class="lencana">Selesai</span></td></tr>
+ <tr><td class="">#6</td><td class="">Rizky Maulana</td><td class="">Hemat</td><td class="">20 Jan 2027</td><td class="angka">Rp 1.920.000</td><td class=""><span class="lencana">Batal</span></td></tr>
+ </tbody>
+ </table>
+ </section>
+
+
+ <section class="keterangan">
+ <h3>Keterangan rancangan</h3>
+ <h4>Tujuan layar</h4>
+ <p>Mencatat pesanan masuk dan memantau pesanan yang belum lunas.</p>
+ <h4>Komponen</h4>
+ <ul>
+ <li>Form pesanan baru di kolom kiri.</li>
+ <li>Tabel pesanan menunggu pembayaran di kolom kanan.</li>
+ <li>Tabel seluruh pesanan di bawahnya.</li>
+ </ul>
+ <h4>Field form</h4>
+ <ul>
+ <li>Pelanggan (wajib) — pilihan dari master pelanggan.</li>
+ <li>Paket (wajib) — memilih nama paket; harga yang dipakai ditentukan otomatis dari tahun acara.</li>
+ <li>Jumlah tamu (wajib, minimal 1).</li>
+ <li>Tanggal acara (wajib) — menentukan harga akhir pekan dan jadwal pembayaran.</li>
+ <li>Sumber pesanan — Instagram, Mulut ke Mulut, Hotel / Wedding, Lainnya.</li>
+ <li>Lokasi acara, Catatan — bebas.</li>
+ <li>Masak di lokasi — centang bila makanan dimasak di lokasi acara.</li>
+ </ul>
+ <h4>Aturan mainannya</h4>
+ <ul>
+ <li>Total harga = jumlah tamu × harga jual efektif.</li>
+ <li>Harga akhir pekan dipakai bila tanggal acara jatuh pada Sabtu atau Minggu dan harga
+ akhir pekan tersedia pada paket.</li>
+ <li>Tenggat DP = tanggal acara − 30 hari; tenggat pelunasan = tanggal acara − 7 hari.
+ Keduanya dihitung otomatis dan tidak dapat diisi manual.</li>
+ <li>Setelah pesanan tersimpan, owner diarahkan ke halaman detail pesanan agar bisa langsung
+ mencatat DP.</li>
+ </ul>
+ </section>
+ </main>
+
+ <footer class="kaki-halaman">
+ Prototipe low-fidelity untuk laporan tugas akhir — Sistem Informasi Manajemen Dina Catering.
+ Rute sebenarnya: <code>/pesanan</code>
+ </footer>
+ </div>
+</div>
+</body>
+</html>

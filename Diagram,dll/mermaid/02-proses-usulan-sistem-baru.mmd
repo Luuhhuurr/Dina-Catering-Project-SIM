@@ -1,0 +1,37 @@
+flowchart TD
+ A([Pelanggan mengirim pesanan<br/>via Instagram / WhatsApp]) --> B[Owner login ke aplikasi<br/>SIM Dina Catering]
+ B --> C[Owner membuka halaman<br/>Pesanan dan mengisi form<br/>pesanan baru]
+
+ C --> D[Owner memilih Pelanggan<br/>atau menambah pelanggan baru]
+ D --> E[Owner memilih Paket Menu<br/>dan mengisi jumlah tamu<br/>serta tanggal acara]
+
+ E --> F[Owner menyimpan pesanan]
+ F --> G([Sistem menghitung total harga<br/>otomatis])
+ G --> H{Sistem mencari harga paket<br/>berlaku pada tahun acara}
+ H -- I[Ambil baris paket dengan<br/>tahun_berlaku &lt;= tahun acara<br/>paling dekat]
+ H --> J{Saturday/Minggu<br/>dan ada harga weekend?}
+ J -- Ya --> K[Harga jual efektif memakai<br/>harga akhir pekan]
+ J -- Tidak --> L[Harga jual efektif memakai<br/>harga biasa]
+ I --> M[Sistem menghitung tenggat<br/>DP H-30 dan pelunasan H-7]
+ K --> M
+ L --> M
+
+ M --> N([Pesanan tersimpan dengan<br/>status 'baru' dan<br/>tenggat pembayaran]):::output
+
+ N --> O[Owner mencatat pembayaran DP 50%]
+ O --> P{Sistem membuat tugas produksi<br/>default untuk hari acara}
+ P -- Q[Persiapan bahan H-1, Masak H,<br/>Plating H, Pengiriman H]
+ Q --> R[Status pesanan naik otomatis<br/>ke 'final_meeting']:::output
+ R --> S[Owner melakukan final meeting<br/>dan survei lokasi bersama pelanggan]
+
+ S --> T[Owner mengubah status pesanan<br/>menjadi 'produksi']
+ T --> U([Sistem mengurangi stok bahan<br/>sesuai resep x jumlah tamu<br/>dalam satu transaksi]):::output
+ U --> V[Tim dapur mengerjakan tugas<br/>pada papan produksi]
+ V --> W[Owner mengubah status pesanan<br/>menjadi 'pengiriman' lalu 'selesai']
+ W --> X[Owner mencatat pelunasan]
+ X --> Y([Pesanan lunas])
+
+ Y --> Z[Owner membuka halaman Laporan]
+ Z --> AA([Laba rugi, rekap pesanan,<br/>margin per pesanan, dan<br/>posisi stok bahan]):::output
+
+ classDef output fill:#e8f6ed, stroke:#15803d, color:#0b3d1e
